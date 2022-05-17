@@ -47,9 +47,9 @@ st.write('Yeah! MySQL server connected using the SSH tunnel connection!')
 try:
     nom = st.text_input ("Nom et prénom d'élève")
     st.write(nom)
-    elevesdf = pd.read_sql_query("""select * from elevesdf where name = {nom} """ ,conn_addr)
+    elevesdf = pd.read_sql_query(f"""select * from elevesdf where name = "{nom}" """ ,conn_addr)
 except:
-    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+    elevesdf = pd.read_sql_query("""select * from elevesdf;""",conn_addr)
 
 st.write(elevesdf)
 
