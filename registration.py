@@ -301,9 +301,69 @@ with st.form("Inscrivez-vous"):
     except:
         pass
 
-#mySql_insert_query = """INSERT INTO 'elevesdf' (Id, Name, Price, Purchase_date) VALUES (15, 'Lenovo ThinkPad P71', 6459, '2019-08-14') """
-#mySql_insert_query = """INSERT INTO 'coursdf' (Id, Name, Price, Purchase_date) VALUES  (15, 'Lenovo ThinkPad P71', 6459, '2019-08-14') """
-#mySql_insert_query = """INSERT INTO 'classesdf' (Id, Name, Price, Purchase_date) VALUES (15, 'Lenovo ThinkPad P71', 6459, '2019-08-14') """
-#mySql_insert_query = """INSERT INTO 'paimentsdf' (Id, Name, Price, Purchase_date) VALUES  (15, 'Lenovo ThinkPad P71', 6459, '2019-08-14') """
+try:
+    if submitted == True:
+        name= name.title()
+        date = parser.parse(birthday)
+        birthday=date.strftime('%d-%m-%Y')
+        address = address.title()
+        city = city.title()
+        pcode = pcode
+        mail = mail.lower()
+        legal_representative =legal_representative.title()
+        course = course.lower()
+        schedule = schedule.lower()
+        course2=course2.lower()
+        schedule2=schedule2.lower()
+        course3=course3.lower()
+        schedule3=schedule3.lower()
+
+        certificat_dassurance
+        certificat_medical
+        classes_student=[mail]
+        data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
+        for cours in data_courses:
+            if course == cours or course2 == cours or course3 == cours:
+                if course != 'carte 10 cours':
+                    classes_student.append(1)
+                else:
+                    for i in range(15):
+                        classes_student.append(1)
+            else:
+                classes_student.append(0)
+    db_server= '127.0.0.1'
+    user='tete'
+    db_port = '3306'
+    password = 'frida2202'
+    ip = 'localhost'
+    db_name = 'attitude'        
+    server = SSHTunnelForwarder(('138.197.99.33', 4242), ssh_username="tete", ssh_password="frida", remote_bind_address=('127.0.0.1', 3306))
+    server.start()
+    port = str(server.local_bind_port)
+    conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
+    engine = create_engine(conn_addr)
+    connection = engine.connect()
+    cursor = connection.cursor()
+
+    try:
+        mySql_insert_query0 = """UPDATE elevesdf set `Nom et prénom d'élève` = {name}, `Date de naissance`={birthday}, `Adresse`={address}, `Cité`={city}, `Code Postale`={pcode}, `E-mail`={mail}, `Téléphone` = {telephone}, `Représentant légal de l’inscrit (pour les mineurs)= {legal_representative} where `Nom et prénom d'élève` = {name} """"         
+        cursor.execute(mySql_insert_query0)
+    except: 
+        mySql_insert_query1 = """INSERT INTO 'elevesdf' (`Nom et prénom d'élève`, `Date de naissance`, `Adresse`, `Cité`, `Code Postale`, `E-mail`, `Téléphone`, `Représentant légal de l’inscrit (pour les mineurs)`) VALUES ({name}, {birthday}, {address}, {city}, {pcode}, {mail}, {telephone}. {legal_representative}) """
+        cursor.execute(mySql_insert_query1)
+    mySql_insert_query2 = """INSERT INTO 'coursdf' (`E-mail`, `Cours`, `Horaire`, `Cours 2`, `Horaire 2`, `Cours 3`, `Horaire 3`) VALUES  ({mail}, {course}, {schedule},{course2}, {schedule2},{course3}, {schedule3}) """
+    mySql_insert_query3 = """INSERT INTO 'classesdf' (`email`, `classique 1`,`pointes`, `classique interm. – avancé`,`éveil`,`classique 2`,`pbt`,`préparatoire`,`moderne`,`pilates`,`classique moyen`,`classique avancé`,`contemporain`,`barre à terre`,`pbt + ballet fitness`,`initiation`) VALUES ({classes_student}) """
+    mySql_insert_query4 = """INSERT INTO "paimentsdf" (`E-mail`, `Adhésion`, `Paiement fractionné`, `Paiement Total`) VALUES  ({mail}, {registration}, {installments}, {total})"""
+    cursor.execute(mySql_insert_query2)
+    cursor.execute(mySql_insert_query3)
+    cursor.execute(mySql_insert_query4)
+    
+    connection.close()  
+    server.stop()
+except:
+    pass
+    
+
+
 
 
