@@ -6,7 +6,6 @@ import pandas as pd
 from sshtunnel import SSHTunnelForwarder
 import sqlalchemy as db
 from sqlalchemy import create_engine
-from sqlalchemy.engine import Engine
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
@@ -32,6 +31,7 @@ db_port = '3306'
 password = 'frida2202'
 ip = 'localhost'
 db_name = 'attitude'
+
 try: 
     server = SSHTunnelForwarder(('138.197.99.33', 4242), ssh_username="tete", ssh_password="frida", remote_bind_address=('127.0.0.1', 3306))
     server.start()
@@ -43,12 +43,15 @@ conn_addr = ('mysql://' + user + ':' + password + '@' + db_server + ':' + port +
 engine = create_engine(conn_addr)
 connection = engine.connect()
 st.write('Yeah! MySQL server connected using the SSH tunnel connection!')
-  
 
+try:
+    nom = st.text_input ("Nom et prénom d'élève")
+    st.write(nom)
+    elevesdf = pd.read_sql_query("""select * from elevesdf where name = {nom} """ ,conn_addr)
+except:
+    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
 
-#elevesdf = pd.read_csv(sql_query_to_csv("""select * from elevesdf"""))
-
-#t.write(elevesdf)
+st.write(elevesdf)
 
 #wordcloud = WordCloud().generate(nuvem_de_palavras)
     #fig, ax = plt.subplots()
