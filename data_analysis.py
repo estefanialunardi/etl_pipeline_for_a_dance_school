@@ -46,10 +46,15 @@ st.write('Yeah! MySQL server connected using the SSH tunnel connection!')
 
 try:
     nom = st.text_input ("Nom et prénom d'élève")
-    st.write(nom)
-    elevesdf = pd.read_sql_query(f"""select * from elevesdf where name = "{nom}" """ ,conn_addr)
+    if nom == "":
+        elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+    else:
+        elevesdf = pd.read_sql_query(f"""select * from elevesdf where name = "{nom}" """ ,conn_addr)
+    birthday_today = pd.read_sql_query(f"""select name from elevesdf where birthday = CURRENT_DATE() """ ,conn_addr)
+    if birthday_today != "":
+        st.write(f"Aujourd'hui c'est l'anniversaire de {birthday_today}!")
 except:
-    elevesdf = pd.read_sql_query("""select * from elevesdf;""",conn_addr)
+    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
 
 st.write(elevesdf)
 
