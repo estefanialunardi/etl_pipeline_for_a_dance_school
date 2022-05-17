@@ -44,28 +44,36 @@ engine = create_engine(conn_addr)
 connection = engine.connect()
 st.write('Yeah! MySQL server connected using the SSH tunnel connection!')
 
+nom = st.text_input ("Nom et prénom d'élève")
+if nom == "":
+    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+    st.write(elevesdf)
+else:
+    elevesdf_query = pd.read_sql_query(f"""select * from elevesdf where name = "{nom}" """ ,conn_addr)
+    st.write(elevesdfquery)
 try:
-    nom = st.text_input ("Nom et prénom d'élève")
-    if nom == "":
-        elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
-    else:
-        elevesdf = pd.read_sql_query(f"""select * from elevesdf where name = "{nom}" """ ,conn_addr)
     birthday_today = pd.read_sql_query(f"""select name from elevesdf where birthday = CURRENT_DATE() """ ,conn_addr)
     if birthday_today != "":
         st.write(f"Aujourd'hui c'est l'anniversaire de {birthday_today}!")
 except:
-    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+    pass
 
-st.write(elevesdf)
 
-coursdf22 = pd.read_sql_query("""select * from coursdf22""",conn_addr)
-st.write(coursdf22)
-#fig = px.bar(coursdf22, x="cod_caminho", y=["ecoturismo", "cultural", "gastronomico", 'religioso'],labels={'x':'Caminho', 'y':'Vocação Turística'})
-    #fig.update_xaxes(showticklabels=False)
-    #fig.update_yaxes(showticklabels=False)
-    #st.plotly_chart(fig)
+
+
+
+
+
+#coursdf22 = pd.read_sql_query("""select * from coursdf22 where schedule <> '0' and schedule2 <>'0' and schedule3<>'0'""",conn_addr)
+#st.write(coursdf22)
+#fig = px.bar(coursdf22, x='name', y=["schedule", "schedule2", "schedule3"],labels={'x':'Caminho', 'y':'Vocação Turística'})
+#st.plotly_chart(fig)
 
 classesdf22 = pd.read_sql_query("""select * from classesdf22""",conn_addr)
+st.write(classesdf22)
+fig = px.bar(classesdf22 ,labels={'x':'Caminho', 'y':'Vocação Turística'})
+st.plotly_chart(fig)
+
 paimentsdf22 = pd.read_sql_query("""select * from paimentsdf22""",conn_addr)
 
 #wordcloud = WordCloud().generate(nuvem_de_palavras)
