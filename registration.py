@@ -12,14 +12,12 @@ st.sidebar.title('Réservez un cours')
 with st.form("Inscrivez-vous"):
 
     name= st.text_input ("Nom e prénom d'élève")
-    birthday=st.text_input("Date de naissance")
+    birthday=st.text_input("Date de naissance (jj/mm/aa)")
     address = st.text_input ("Addresse")
     city = st.text_input ("Ville")
     pcode = st.text_input ("Postal / Zip Code", key = int)
     mail = st.text_input ("Email")
-    st.write('example@example.com')
-    telephone =st.text_input('Téléphone')
-    st.write("S'il vous plaît entrer un numéro de téléphone valide")
+    telephone =st.text_input('Téléphone (example: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal de l’inscrit (Pour les mineurs)")
 
     courses_qtd = 0
@@ -343,21 +341,21 @@ try:
     conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
     engine = create_engine(conn_addr)
     connection = engine.connect()
-    cursor = connection.cursor()
+
 
     try:
-        mySql_insert_query0 = """UPDATE elevesdf set `Nom et prénom d'élève` = {name}, `Date de naissance`={birthday}, `Adresse`={address}, `Cité`={city}, `Code Postale`={pcode}, `E-mail`={mail}, `Téléphone` = {telephone}, `Représentant légal de l’inscrit (pour les mineurs)= {legal_representative} where `Nom et prénom d'élève` = {name} """"         
-        cursor.execute(mySql_insert_query0)
+        mySql_insert_query0 = """UPDATE elevesdf set `Nom et prénom d'élève` = {name}, `Date de naissance`={birthday}, `Adresse`={address}, `Cité`={city}, `Code Postale`={pcode}, `E-mail`={mail}, `Téléphone` = {telephone}, `Représentant légal de l’inscrit (pour les mineurs)= {legal_representative} where `Nom et prénom d'élève` = {name}"""
+        engine.execute(mySql_insert_query0)
     except: 
         mySql_insert_query1 = """INSERT INTO 'elevesdf' (`Nom et prénom d'élève`, `Date de naissance`, `Adresse`, `Cité`, `Code Postale`, `E-mail`, `Téléphone`, `Représentant légal de l’inscrit (pour les mineurs)`) VALUES ({name}, {birthday}, {address}, {city}, {pcode}, {mail}, {telephone}. {legal_representative}) """
-        cursor.execute(mySql_insert_query1)
-    mySql_insert_query2 = """INSERT INTO 'coursdf' (`E-mail`, `Cours`, `Horaire`, `Cours 2`, `Horaire 2`, `Cours 3`, `Horaire 3`) VALUES  ({mail}, {course}, {schedule},{course2}, {schedule2},{course3}, {schedule3}) """
-    mySql_insert_query3 = """INSERT INTO 'classesdf' (`email`, `classique 1`,`pointes`, `classique interm. – avancé`,`éveil`,`classique 2`,`pbt`,`préparatoire`,`moderne`,`pilates`,`classique moyen`,`classique avancé`,`contemporain`,`barre à terre`,`pbt + ballet fitness`,`initiation`) VALUES ({classes_student}) """
-    mySql_insert_query4 = """INSERT INTO "paimentsdf" (`E-mail`, `Adhésion`, `Paiement fractionné`, `Paiement Total`) VALUES  ({mail}, {registration}, {installments}, {total})"""
-    cursor.execute(mySql_insert_query2)
-    cursor.execute(mySql_insert_query3)
-    cursor.execute(mySql_insert_query4)
-    
+        engine.execute(mySql_insert_query1)
+    mySql_insert_query2 = """INSERT INTO 'coursdf23' (`E-mail`, `Cours`, `Horaire`, `Cours 2`, `Horaire 2`, `Cours 3`, `Horaire 3`) VALUES  ({mail}, {course}, {schedule},{course2}, {schedule2},{course3}, {schedule3}) """
+    mySql_insert_query3 = """INSERT INTO 'classesdf23' (`email`, `classique 1`,`pointes`, `classique interm. – avancé`,`éveil`,`classique 2`,`pbt`,`préparatoire`,`moderne`,`pilates`,`classique moyen`,`classique avancé`,`contemporain`,`barre à terre`,`pbt + ballet fitness`,`initiation`) VALUES ({classes_student}) """
+    mySql_insert_query4 = """INSERT INTO "paimentsdf23" (`E-mail`, `Adhésion`, `Paiement fractionné`, `Paiement Total`) VALUES  ({mail}, {registration}, {installments}, {total})"""
+    engine.execute(mySql_insert_query2)
+    engine.execute(mySql_insert_query3)
+    engine.execute(mySql_insert_query4)
+
     connection.close()  
     server.stop()
 except:
