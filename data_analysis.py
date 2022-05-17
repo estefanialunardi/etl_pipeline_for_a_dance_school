@@ -58,6 +58,16 @@ except:
 
 st.write(elevesdf)
 
+coursdf22 = pd.read_sql_query("""select * from coursdf22""",conn_addr)
+st.write(coursdf22)
+#fig = px.bar(coursdf22, x="cod_caminho", y=["ecoturismo", "cultural", "gastronomico", 'religioso'],labels={'x':'Caminho', 'y':'Vocação Turística'})
+    #fig.update_xaxes(showticklabels=False)
+    #fig.update_yaxes(showticklabels=False)
+    #st.plotly_chart(fig)
+
+classesdf22 = pd.read_sql_query("""select * from classesdf22""",conn_addr)
+paimentsdf22 = pd.read_sql_query("""select * from paimentsdf22""",conn_addr)
+
 #wordcloud = WordCloud().generate(nuvem_de_palavras)
     #fig, ax = plt.subplots()
     #plt.imshow(wordcloud, interpolation='bilinear')
