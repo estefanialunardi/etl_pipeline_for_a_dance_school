@@ -3,6 +3,13 @@ import pandas as pd
 import re
 import os, os.path
 import datetime
+from sshtunnel import SSHTunnelForwarder
+import sqlalchemy as db
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session
+from sqlalchemy.orm import sessionmaker
+import pymysql
+pymysql.install_as_MySQLdb()
 
 st.image(('logo.png'))
 
@@ -329,6 +336,7 @@ try:
                         classes_student.append(1)
             else:
                 classes_student.append(0)
+                
     db_server= '127.0.0.1'
     user='tete'
     db_port = '3306'
@@ -349,9 +357,9 @@ try:
     except: 
         mySql_insert_query1 = """INSERT INTO 'elevesdf' (`Nom et prénom d'élève`, `Date de naissance`, `Adresse`, `Cité`, `Code Postale`, `E-mail`, `Téléphone`, `Représentant légal de l’inscrit (pour les mineurs)`) VALUES ({name}, {birthday}, {address}, {city}, {pcode}, {mail}, {telephone}. {legal_representative}) """
         engine.execute(mySql_insert_query1)
-    mySql_insert_query2 = """INSERT INTO 'coursdf23' (`E-mail`, `Cours`, `Horaire`, `Cours 2`, `Horaire 2`, `Cours 3`, `Horaire 3`) VALUES  ({mail}, {course}, {schedule},{course2}, {schedule2},{course3}, {schedule3}) """
-    mySql_insert_query3 = """INSERT INTO 'classesdf23' (`email`, `classique 1`,`pointes`, `classique interm. – avancé`,`éveil`,`classique 2`,`pbt`,`préparatoire`,`moderne`,`pilates`,`classique moyen`,`classique avancé`,`contemporain`,`barre à terre`,`pbt + ballet fitness`,`initiation`) VALUES ({classes_student}) """
-    mySql_insert_query4 = """INSERT INTO "paimentsdf23" (`E-mail`, `Adhésion`, `Paiement fractionné`, `Paiement Total`) VALUES  ({mail}, {registration}, {installments}, {total})"""
+    mySql_insert_query2 = """INSERT INTO 'coursdf23' (`Nom et prénom d'élève`, `Cours`, `Horaire`, `Cours 2`, `Horaire 2`, `Cours 3`, `Horaire 3`) VALUES  ({mail}, {course}, {schedule},{course2}, {schedule2},{course3}, {schedule3}) """
+    mySql_insert_query3 = """INSERT INTO 'classesdf23' (`nom`, `classique 1`,`pointes`, `classique interm. – avancé`,`éveil`,`classique 2`,`pbt`,`préparatoire`,`moderne`,`pilates`,`classique moyen`,`classique avancé`,`contemporain`,`barre à terre`,`pbt + ballet fitness`,`initiation`) VALUES ({classes_student}) """
+    mySql_insert_query4 = """INSERT INTO "paimentsdf23" (`Nom et prénom d'élève`, `Adhésion`, `Paiement fractionné`, `Paiement Total`) VALUES  ({mail}, {registration}, {installments}, {total})"""
     engine.execute(mySql_insert_query2)
     engine.execute(mySql_insert_query3)
     engine.execute(mySql_insert_query4)
