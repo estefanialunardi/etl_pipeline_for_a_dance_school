@@ -60,21 +60,24 @@ except:
 
 
 
-
-
-
-
-#coursdf22 = pd.read_sql_query("""select * from coursdf22 where schedule <> '0' and schedule2 <>'0' and schedule3<>'0'""",conn_addr)
-#st.write(coursdf22)
-#fig = px.bar(coursdf22, x='name', y=["schedule", "schedule2", "schedule3"],labels={'x':'Caminho', 'y':'Vocação Turística'})
-#st.plotly_chart(fig)
-
-classesdf22 = pd.read_sql_query("""select * from classesdf22""",conn_addr)
-st.write(classesdf22)
-fig = px.bar(classesdf22 ,labels={'x':'Caminho', 'y':'Vocação Turística'})
+coursdf22 = pd.read_sql_query("""select * from coursdf22 where schedule <> '0' and schedule2 <>'0' and schedule3<>'0'""",conn_addr)
+st.write(coursdf22)
+fig = px.bar(coursdf22, x='name', y=["schedule", "schedule2", "schedule3"],labels={'x':'Caminho', 'y':'Vocação Turística'})
 st.plotly_chart(fig)
 
+classesdf22 = pd.read_sql_query("""select * from classesdf22""",conn_addr)
+#st.write(classesdf22)
+#fig = px.histogram(classesdf22, x=('initiation', 'contemporain', 'carte_10_cours','preparatoire','barre_a_terre','classique_avance','classique_2','eveil','pbt','pointes','pilates','moderne','pbt_ballet_fitness', 'classique_1','classique_interm_avance','classique_moyen'))
+#fig.update_layout(bargap=0.2)
+#st.plotly_chart(fig)
+
+
 paimentsdf22 = pd.read_sql_query("""select * from paimentsdf22""",conn_addr)
+st.write(paimentsdf22)
+fig = px.bar(paimentsdf22, x='installments', y='total',labels={'x':'Installments', 'y':'Total'})
+st.plotly_chart(fig)
+connection.close() 
+server.stop()
 
 #wordcloud = WordCloud().generate(nuvem_de_palavras)
     #fig, ax = plt.subplots()
