@@ -39,11 +39,11 @@ else:
 
     elevesdf_query = pd.read_sql_query(f"select elevesdf.name, birthday, age, address, city, toulouse, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total from elevesdf join coursdf22 on coursdf22.name=elevesdf.name join paimentsdf22 on elevesdf.name=paimentsdf22.name where elevesdf.name = '{nom}'" ,conn_addr)
     st.write(elevesdf_query)
-
 elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
 
 st.title('How old are the students?')
 st.write('All students')
+
 fig1 = px.histogram(elevesdf, x='age', nbins=20)
 fig1.update_layout(bargap=0.2)
 st.plotly_chart(fig1)
@@ -76,10 +76,9 @@ fig.update_layout(autosize=True,hovermode='closest',showlegend =False,mapbox=dic
 st.plotly_chart(fig)
 
 
-
-cours_cust = pd.read_sql_query(f"select coursdf22.name, course, schedule, course2, schedule2, course3, schedule3, total, CASE WHEN course2 = 0 THEN NULL ELSE course2 END, CASE WHEN course3 = 0 THEN NULL ELSE course3 END from paimentsdf22 join coursdf22 on coursdf22.name=paimentsdf22.name",conn_addr)
-
-fig = go.Figure(go.Bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Course', 'y':'Total'}))
+cours_cust = pd.read_sql_query(f"select coursdf22.name, nullif(course,'0') as course, nullif(course2, '0') as course2, nullif(course3, '0') as course3, total from paimentsdf22 join coursdf22 on coursdf22.name=paimentsdf22.name",conn_addr)
+fig = px.bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Total', 'y':'Courses'})
+fig.update_layout(barmode='stack', yaxis1={'range': [0, 30]})
 
 st.plotly_chart(fig)
 

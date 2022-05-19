@@ -352,7 +352,7 @@ try:
 
 
     try:
-        mySql_insert_query0 = """UPDATE elevesdf set `Nom et prénom d'élève` = {name}, `Date de naissance`={birthday}, `Adresse`={address}, `Cité`={city}, `Code Postale`={pcode}, `E-mail`={mail}, `Téléphone` = {telephone}, `Représentant légal de l’inscrit (pour les mineurs)= {legal_representative} where `Nom et prénom d'élève` = {name}"""
+    mySql_insert_query0 = """UPDATE elevesdf set `Nom et prénom d'élève` = {name}, `Date de naissance`={birthday}, `Adresse`={address}, `Cité`={city}, `Code Postale`={pcode}, `E-mail`={mail}, `Téléphone` = {telephone}, `Représentant légal de l’inscrit (pour les mineurs)= {legal_representative} where `Nom et prénom d'élève` = {name}"""
         engine.execute(mySql_insert_query0)
     except: 
         mySql_insert_query1 = """INSERT INTO 'elevesdf' (`Nom et prénom d'élève`, `Date de naissance`, `Adresse`, `Cité`, `Code Postale`, `E-mail`, `Téléphone`, `Représentant légal de l’inscrit (pour les mineurs)`) VALUES ({name}, {birthday}, {address}, {city}, {pcode}, {mail}, {telephone}. {legal_representative}) """
@@ -363,7 +363,16 @@ try:
     engine.execute(mySql_insert_query2)
     engine.execute(mySql_insert_query3)
     engine.execute(mySql_insert_query4)
-
+    courses = pd.read_sql_query("""SELECT name, course from coursdf22 union all select name, course2 from coursdf22 union all select name, course3 from coursdf22""",conn_addr)
+    courses_filled=[]
+    name_filled=[]
+    for row in range(len(courses['course'])):
+        if courses['course'].iloc[row] !='0' and courses['course'].iloc[row]  != "":
+            courses_filled.append(courses['course'].iloc[row])
+            name_filled.append(courses['name'].iloc[row])
+    course_filled = pd.DataFrame(zip(courses_filled, name_filled))
+    course_filled.columns = ['course', 'name']
+    course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
     connection.close()  
     server.stop()
 except:
