@@ -52,6 +52,11 @@ courses_ages =pd.read_sql_query("""select c.name, c.course, e.age from course_fi
 fig3 = px.bar(courses_ages, x ='name', y=['course'], color = 'age', labels={'x':'Course', 'y':''})
 st.plotly_chart(fig3)
 
+cours_cust = pd.read_sql_query(f"select coursdf22.name, nullif(course,'0') as course, nullif(course2, '0') as course2, nullif(course3, '0') as course3, total from paimentsdf22 join coursdf22 on coursdf22.name=paimentsdf22.name",conn_addr)
+fig = px.bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Total', 'y':'Courses'})
+fig.update_layout(barmode='stack', yaxis1={'range': [0, 30]})
+st.plotly_chart(fig)
+
 st.title('Where do they live?')
 fig2 = px.bar(elevesdf, x='name', y=['toulouse'], color='city', labels={'x':'Éleve', 'y':'Ville'})
 st.plotly_chart(fig2)
@@ -76,12 +81,6 @@ fig.update_layout(autosize=True,hovermode='closest',showlegend =False,mapbox=dic
 st.plotly_chart(fig)
 
 
-cours_cust = pd.read_sql_query(f"select coursdf22.name, nullif(course,'0') as course, nullif(course2, '0') as course2, nullif(course3, '0') as course3, total from paimentsdf22 join coursdf22 on coursdf22.name=paimentsdf22.name",conn_addr)
-fig = px.bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Total', 'y':'Courses'})
-fig.update_layout(barmode='stack', yaxis1={'range': [0, 30]})
-
-st.plotly_chart(fig)
-
 paimentsdf22 = pd.read_sql_query("""select * from paimentsdf22""",conn_addr)
 fig = px.bar(paimentsdf22, x='name', y=['installments'],  color= 'total', labels={'x':'Installments', 'y':'Total'})
 fig.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':['1', '2', '3', '4', '5', '10']})
@@ -102,20 +101,9 @@ fig = px.bar(paimentsdf22, x=num_courses, y='total', labels={'x':'Numero Cours',
 fig.update_layout(barmode='stack', xaxis={'categoryorder': 'array', 'categoryarray':['1', '2', '3', '10']})
 st.plotly_chart(fig)
 
-
-
 total_bill = paimentsdf22['total'].sum()
-st.write(f'Total 2022 = {total_bill}')
+st.write(f'In 2022, the regular students payment sumed {total_bill}')
 
-#connection.close() 
-#server.stop()
-
-#wordcloud = WordCloud().generate(nuvem_de_palavras)
-    #fig, ax = plt.subplots()
-    #plt.imshow(wordcloud, interpolation='bilinear')
-    #plt.axis("off")
-    #plt.show()
-    #st.pyplot(fig)
 
 
 def disconnect_mysql ():
