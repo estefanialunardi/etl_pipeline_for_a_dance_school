@@ -42,8 +42,7 @@ After extracting all data, with this optmized process aiming to reduce the work 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
 ## Data Analysis Web Application
-Also connected to the DB server, this application 
-
+Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
 
 
 
