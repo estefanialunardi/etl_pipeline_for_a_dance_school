@@ -1,0 +1,154 @@
+,course,name
+0,barre à terre,Blatt Luce
+1,préparatoire,Paulon Lily
+2,classique moyen,Mezard Emmanuelle
+3,pilates,Corbiere Beatrix
+4,barre à terre,François Eve
+5,barre à terre,Bernies-Abelanet Brigitte
+6,classique 1,Gaiddon Emma
+7,préparatoire,Austruy Pandore
+8,éveil,Austruy Simone
+9,classique moyen,Guez Anne Valerie
+10,barre à terre,Réau Lise
+11,barre à terre,Michon Claudy
+12,classique moyen,Courselle Christèle
+13,classique moyen,Virginie Casas/De Bienassis
+14,classique moyen,Pyronnet-Masterson Christine
+15,classique moyen,Tremas Helene
+16,classique moyen,Vandenplas-Etchepare Géraldine
+17,préparatoire,Lewin Fleur Rose
+18,classique moyen,Latge Nicole
+19,pointes,Clamen Laborie Tessa
+20,classique interm. – avancé,Bonnevialle Margaux
+21,initiation,Pichon Venturini Apolline
+22,éveil,De Roquette Buisson Maya
+23,classique 2,Vergé-Brian Mathilde
+24,classique 1,Marty Desbordes Valentina
+25,barre à terre,Sahal Dominique
+26,classique 1,Mahdi Lucie
+27,classique interm. – avancé,Cassagnes Béatrice
+28,pbt,Ducos Emma
+29,classique moyen,Causse Leslie
+30,classique interm. – avancé,Safa Helene
+31,initiation,Coibion Giulia
+32,barre à terre,Vella-Lafage Marjorie
+33,barre à terre,Jeandel Josephine
+34,initiation,Sécail Louise
+35,préparatoire,Izard Margaux
+36,pointes,Ottavioli Justine
+37,classique interm. – avancé,Moreaux Nancy
+38,pointes,Bonnet Hortense
+39,pilates,Rossi-Lefevre Marie
+40,initiation,Liberatore Oustry Sibylle
+41,classique 1,Goulet-Thoumazet Justine
+42,éveil,Arib Augustine
+43,contemporain,Tozge Marie
+44,pilates,Jude Alice
+45,préparatoire,Montastruc Camille
+46,pbt + ballet fitness,Teyssie Margie
+47,pilates,François Victoria
+48,barre à terre,Maret Arlette
+49,classique interm. – avancé,Hervy Domitille
+50,classique 1,Ané Hector
+51,classique 1,Ané Erell
+52,classique moyen,Prévôt Caroline
+53,classique moyen,Mathis Elliot
+54,contemporain,Izard Elodie
+55,pilates,Beyn Royer Marie
+56,classique moyen,Belhon Josiane
+57,classique avancé,Piquemal Alessia
+58,pointes,Fouilleron Heloïse
+59,barre à terre,Fouilleron Ambre
+60,éveil,Franceschetti Camille
+61,initiation,Dambrin Rose
+62,classique interm. – avancé,Capmarty Camille
+63,classique interm. – avancé,Bonafé Marie
+64,contemporain,Trystram Valentina
+65,pilates,Gasc Beatrice
+66,classique 1,Placet Noémie
+67,classique moyen,Mechiche Isabelle
+68,barre à terre,Delour Marie
+69,classique 1,Soulie Louise
+70,classique interm. – avancé,Zerbib Betsalel
+71,classique 1,Morcillo Isabelle
+72,éveil,Jamal Valentina
+73,éveil,Falguieres Masha
+74,classique interm. – avancé,Alcouffe Camille
+75,initiation,Pecqueret Apoline
+76,éveil,Labarre Margot
+77,classique 1,Waeghemaeker Alix
+78,classique interm. – avancé,Courrege Martine
+79,classique interm. – avancé,Galissier Anne-Lise
+80,pbt,Van Rothem Juliette
+81,éveil,Opstad Julia
+82,pilates,Lembeye Julie
+83,préparatoire,Lermigny Sacha
+84,initiation,Lafitte Camille
+85,classique moyen,Lermigny Caroline
+86,pilates,Isabelle Estebe
+87,classique interm. – avancé,De Volontat Jeanne
+88,carte 10 cours,Shawali Natacha
+89,initiation,Antunes Alyssa
+90,classique interm. – avancé,Tanay Claire
+91,contemporain,Blangis Marina
+92,classique interm. – avancé,Sergent Alexandra
+93,éveil,Peccia-Galletto Sasha
+94,barre à terre,Galvani Francoise
+95,moderne,Lemozit Sasha
+96,préparatoire,Blanc Bouny Celeste
+97,classique 2,Ferreira Constance
+98,pbt + ballet fitness,Blatt Luce
+99,pbt + ballet fitness,Mezard Emmanuelle
+100,classique moyen,François Eve
+101,pbt,Gaiddon Emma
+102,classique moyen,Guez Anne Valerie
+103,pointes,Virginie Casas/De Bienassis
+104,barre à terre,Pyronnet-Masterson Christine
+105,moderne,Tremas Helene
+106,classique interm. – avancé,Vandenplas-Etchepare Géraldine
+107,classique moyen,Latge Nicole
+108,classique 2,Clamen Laborie Tessa
+109,classique interm. – avancé,Bonnevialle Margaux
+110,pointes,Vergé-Brian Mathilde
+111,classique moyen,Sahal Dominique
+112,classique interm. – avancé,Cassagnes Béatrice
+113,pointes,Ducos Emma
+114,classique moyen,Vella-Lafage Marjorie
+115,classique moyen,Jeandel Josephine
+116,classique 2,Ottavioli Justine
+117,pointes,Moreaux Nancy
+118,classique 2,Bonnet Hortense
+119,classique interm. – avancé,Tozge Marie
+120,classique moyen,Maret Arlette
+121,classique interm. – avancé,Prévôt Caroline
+122,classique interm. – avancé,Izard Elodie
+123,classique interm. – avancé,Belhon Josiane
+124,pbt,Piquemal Alessia
+125,classique 2,Fouilleron Heloïse
+126,pbt,Capmarty Camille
+127,classique interm. – avancé,Bonafé Marie
+128,classique interm. – avancé,Galissier Anne-Lise
+129,pointes,Van Rothem Juliette
+130,pointes,De Volontat Jeanne
+131,classique interm. – avancé,Blangis Marina
+132,classique moyen,Mezard Emmanuelle
+133,barre à terre,François Eve
+134,pbt,Gaiddon Emma
+135,classique moyen,Tremas Helene
+136,pointes,Latge Nicole
+137,classique 2,Clamen Laborie Tessa
+138,pointes,Bonnevialle Margaux
+139,pointes,Vergé-Brian Mathilde
+140,classique 1,Sahal Dominique
+141,classique 1,Cassagnes Béatrice
+142,classique 2,Ducos Emma
+143,classique 2,Ottavioli Justine
+144,classique interm. – avancé,Moreaux Nancy
+145,classique 1,Tozge Marie
+146,classique moyen,Maret Arlette
+147,classique 1,Izard Elodie
+148,classique interm. – avancé,Belhon Josiane
+149,classique 2,Piquemal Alessia
+150,classique 2,Fouilleron Heloïse
+151,pbt,Capmarty Camille
+152,classique interm. – avancé,Blangis Marina
