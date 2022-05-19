@@ -1,6 +1,6 @@
 The cleaning process is documented below with the exception of sensible data, such as students personal information, due to confidentiality, security and privacy issues.
 
-#ETL Proccess
+# ETL Proccess
 ## Extracting available data
 ### Prior data
 When the school provided the PDF documents, which were extracted from a free online form builder for school applications, my first action was to take a look in the very first pages of the first document and understand it. I realized that, instead of organized tables with information about the students, all data was stored in form-based PDFs. It was very look alike a printed document filled by each student separately. The main goal of keeping those documents were just records of students inscriptions, with no strategic business intent for that data.
@@ -45,5 +45,24 @@ In the beggining of each school year, a new table is set for courses and payment
 Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
 
 
+# Analyzed data
+For a better understanding of the school's target audience, questions regarding the students' profile were evaluated - both in personal matters and in their class preferences.
 
+## Who they are?
+
+The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.
+
+Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
+
+Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
+
+Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
+
+## Where do they live?
+
+90% of students live in Toulouse, the city where the school is based. In addition, it is possible to observe that most students live extremely close to the school, some even on the same block.
+
+## How do they pay?
+
+Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.
 
