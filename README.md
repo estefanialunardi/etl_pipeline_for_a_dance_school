@@ -1,4 +1,28 @@
-The cleaning process is documented below with the exception of sensible data, such as students personal information, due to confidentiality, security and privacy issues.
+Seeking to optimize the data collection system of a ballet school, an ETL pipeline was developed to optimize all company's data processes, ensuring usability and storage in a safe and accessible place.
+
+As there was no systematized process, the entire pipeline was developed from the very beggining according to the requests of the school administration, seeking solutions that suited the profile of both the students (to provide data) and the administration (for access and analysis of the data).
+
+Thus, a relational database was created, hosted remotely on a Virtual Private Server (VPS), which is powered and accessed by intuitive and user-friendly web applications.
+
+All the code was written in Python, both in Jupyter Notebook, for the primary extraction of data and creation of the base that will be updated by the web applications, and in Visual Studio Code, where these applications were created.
+
+The process is documented in this repository with the exception of sensible data, such as students personal information, due to confidentiality, security and privacy issues.
+
+# Libraries
+streamlit
+plotly.express
+pymysql
+pandas 
+pdfplumber
+re
+os
+dateutil
+sshtunnel
+sqlalchemy 
+dotenv
+datetime
+geopy.geocoders
+
 
 # ETL Proccess
 ## Extracting available data
