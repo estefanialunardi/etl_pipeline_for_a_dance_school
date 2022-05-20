@@ -85,7 +85,7 @@ Finally, once the connection is set, the process of uploading tables (creating o
   <img src="https://user-images.githubusercontent.com/101064720/169431148-f2e3f8ca-622d-4610-8ca6-b6c4b08cfffe.gif" width="800" align="center" type="gif">
 Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled out were given, so there are less chances of inadequate filling out. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
   
-After extracting all data, with this optmized process aiming to reduce the work of cleansing data, the application openas a SSH tunnel and connects to MySQL server. Then, it automatically updates all tables of the TB. The students table, which keeps information from all students, regardless if they are former students or not, search for the name provided. If there is already someone with that name in the table, it just updates its data. If its a newbie, it inserts a new row.
+After extracting all data, with this optmized process aiming to reduce the work of cleansing data, the application openas a SSH tunnel and connects to MySQL server. Then, it automatically updates all tables of the TB. The students table, which keeps information from all students, regardless if they are former students or not, search for the name provided. If there is already someone with that name in the table, it just updates its data. If its a new student, it inserts a new row.
 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
@@ -100,9 +100,9 @@ For a better understanding of the school's target audience, questions regarding 
 The most frequent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.
 <img src="https://user-images.githubusercontent.com/101064720/169437408-e09176e7-072a-4ce9-9837-0ee92ac7f107.gif" width="800" align="center" type="gif">
 
-Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
+Although they are the proportionally most significant age group in the school, children are divided between the courses they most attend. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
 
-Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
+Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most attended.
 
 Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
 
