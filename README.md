@@ -78,7 +78,7 @@ Using Plataform As A Service (PAAS) on cloud, such as AWS Relational Database Se
 
 In order to increase the security of the DB server, its public access was disabled, and an SSH Tunnel was used to create a secure connection from the local computer to the remote server. I developed an extra function to first open an encrypted SSH tunnel and then use this connection to be able to reach the DB server.
 
-Finally, once the connection is set, the process of uploading tables (creating or replacing them (if they already existed on the DB)), as well as extracting updated data for analysis was possible from both from my local computer and  also using the developed web applications.
+Finally, once the connection is set, the process of uploading tables (creating or replacing them (if they already existed on the DB), as well as extracting updated data for analysis is possible from both from my local computer and also using the developed web applications.
 
 # Web Applications
 ## CRUD Web Application
