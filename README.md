@@ -1,3 +1,18 @@
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+[![Made withJupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://github.com/estefanialunardi/Projeto-Estrada-Real/blob/main/PROJETO%20ESTRADA%20REAL.ipynb)
+<img src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=whitehttps://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white" />
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+<img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=whitee" />
+<img src="https://img.shields.io/badge/Plotly-%233F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white" />
+<img src='https://img.shields.io/badge/Neo4j-018bff?style=for-the-badge&logo=neo4j&logoColor=white' />
+<img src='https://img.shields.io/badge/Plotly-239120?style=for-the-badge&logo=plotly&logoColor=white' />
+<img src='https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white' />
+
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/estefanialunardi/) 
+[<img src='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' />](https://www.linkedin.com/in/estefania-mesquita)
+
+
 Seeking to optimize the data collection system of a ballet school, an ETL pipeline was developed to optimize all company's data processes, ensuring usability and storage in a safe and accessible place.
 
 As there was no systematized process, the entire pipeline was developed from the very beggining according to the requests of the school administration, seeking solutions that suited the profile of both the students (to provide data) and the administration (for access and analysis of the data).
@@ -59,8 +74,9 @@ Finally, once the connection is set, the process of uploading tables (creating o
 
 # Web Applications
 ## CRUD Web Application
- Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled were given, so there are less chances of inadequate filling. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
-
+  <img src="https://user-images.githubusercontent.com/101064720/169431148-f2e3f8ca-622d-4610-8ca6-b6c4b08cfffe.gif" width="420" align="center" type="gif">
+Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled were given, so there are less chances of inadequate filling. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
+  
 After extracting all data, with this optmized process aiming to reduce the work of cleansing data, the application openas a SSH tunnel and connects to MySQL server. Then, it automatically updates all tables of the TB. The students table, which keeps information from all students, regardless if they are former students or not, search for the name provided. If there is already someone with that name in the table, it just updates its data. If its a newbie, it inserts a new row.
 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
