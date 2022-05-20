@@ -81,7 +81,7 @@ Finally, once the connection is set, the process of uploading tables (creating o
 
 # Web Applications
 ## CRUD Web Application
-  <img src="https://user-images.githubusercontent.com/101064720/169431148-f2e3f8ca-622d-4610-8ca6-b6c4b08cfffe.gif" width="420" align="center" type="gif">
+  <img src="https://user-images.githubusercontent.com/101064720/169431148-f2e3f8ca-622d-4610-8ca6-b6c4b08cfffe.gif" width="800" align="center" type="gif">
 Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled were given, so there are less chances of inadequate filling. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
   
 After extracting all data, with this optmized process aiming to reduce the work of cleansing data, the application openas a SSH tunnel and connects to MySQL server. Then, it automatically updates all tables of the TB. The students table, which keeps information from all students, regardless if they are former students or not, search for the name provided. If there is already someone with that name in the table, it just updates its data. If its a newbie, it inserts a new row.
@@ -89,33 +89,38 @@ After extracting all data, with this optmized process aiming to reduce the work 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
 ## Data Analysis Web Application
- <img src="https://user-images.githubusercontent.com/101064720/169437585-24c2bac1-017e-423d-90ad-e7f0ca8411e7.gif" width="420" align="center" type="gif">
+ <img src="https://user-images.githubusercontent.com/101064720/169441223-1705ab81-0a5b-4f35-a0ff-6417e4cc7629.gif" width="800" align="center" type="gif">
 Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
 
 # Analyzed data
 For a better understanding of the school's target audience, questions regarding the students' profile were evaluated - both in personal matters and in their class preferences.
 
 ## Who they are?
- <img src="https://user-images.githubusercontent.com/101064720/169437408-e09176e7-072a-4ce9-9837-0ee92ac7f107.gif" width="420" align="center" type="gif">
- <img src="https://user-images.githubusercontent.com/101064720/169437161-9560caee-65cd-4cd0-9864-bb81593a984f.png" width="420" align="center">
-  <img src="https://user-images.githubusercontent.com/101064720/169437261-1963e9ce-7019-4719-88ec-b8100547640a.png" width="420" align="center">
 The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.
- 
+ <img src="https://user-images.githubusercontent.com/101064720/169437408-e09176e7-072a-4ce9-9837-0ee92ac7f107.gif" width="800" align="center" type="gif">
+
 Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
 
 Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
 
 Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
 
+<img src="https://user-images.githubusercontent.com/101064720/169437161-9560caee-65cd-4cd0-9864-bb81593a984f.png" width="750" align="center">
+
+<img src="https://user-images.githubusercontent.com/101064720/169437261-1963e9ce-7019-4719-88ec-b8100547640a.png" width="750" align="center">
+
 ## Where do they live?
 
 90% of students live in Toulouse, the city where the school is based. In addition, it is possible to observe that most students live extremely close to the school, some even on the same block.
-<img src="https://user-images.githubusercontent.com/101064720/169438360-7fc46527-8574-4a23-b705-a5719d7fc29b.pn" width="420" align="center">
-<img src="https://user-images.githubusercontent.com/101064720/169437344-13e64119-610f-491b-98c1-da08547f5a9b.png" width="420" align="center">
+<img src="https://user-images.githubusercontent.com/101064720/169438360-7fc46527-8574-4a23-b705-a5719d7fc29b.pn" width="750" align="center">
+
+<img src="https://user-images.githubusercontent.com/101064720/169437344-13e64119-610f-491b-98c1-da08547f5a9b.png" width="750" align="center">
 ## How do they pay?
 Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.
-<img src="https://user-images.githubusercontent.com/101064720/169438702-c4b8702c-9ec8-49df-a804-fce821a3803b.jpg" width="420" align="center">
-<img src="https://user-images.githubusercontent.com/101064720/169438710-d311df41-f48d-47e3-b3db-532c3cfa78f9.jpg" width="420" align="center">
+<img src="https://user-images.githubusercontent.com/101064720/169438702-c4b8702c-9ec8-49df-a804-fce821a3803b.jpg" width="750" align="center">
+<img src="https://user-images.githubusercontent.com/101064720/169438710-d311df41-f48d-47e3-b3db-532c3cfa78f9.jpg" width="750" align="center">
+
+Thank you!
 
 
 
