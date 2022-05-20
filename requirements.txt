@@ -1,0 +1,11 @@
+streamlit
+pandas
+re
+os, os.path
+datetime
+sshtunnel
+sqlalchemy 
+pymysql
+seaborn
+plotly.express
+plotly.graph_objects 

@@ -11,16 +11,15 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime, date
 
 
-st.title('Data Analysis?')
+st.title('Data Analysis')
 
-   
+#connect_to_tunnel_and_mysqlserver  
 db_server= '127.0.0.1'
 user='tete'
 db_port = '3306'
 password = 'frida2202'
 ip = 'localhost'
 db_name = 'attitude'
-
 try: 
     server = SSHTunnelForwarder(('138.197.99.33', 4242), ssh_username="tete", ssh_password="frida", remote_bind_address=('127.0.0.1', 3306))
     server.start()
@@ -42,25 +41,32 @@ else:
 elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
 
 st.title('How old are the students?')
-st.write('All students')
-
-fig1 = px.histogram(elevesdf, x='age', nbins=20)
-fig1.update_layout(bargap=0.2)
+st.write('The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.')
+fig1 = px.histogram(elevesdf, x='age', nbins=20, title="Students by age groups")
+fig1.update_layout(bargap=0.2, xaxis1={'title': 'Age Group'}, yaxis1={'title': 'Students'})
 st.plotly_chart(fig1)
 
+st.write("""Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
+
+Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
+""")
 courses_ages =pd.read_sql_query("""select c.name, c.course, e.age from course_filled as c join elevesdf as e on e.name = c.name""",conn_addr)
-fig3 = px.bar(courses_ages, x ='name', y=['course'], color = 'age', labels={'x':'Course', 'y':''})
+fig3 = px.bar(courses_ages, x ='name', y=['course'], color = 'age', labels={'x':'Course', 'y':''}, title="Courses by age")
+fig3.update_layout(barmode='stack', xaxis1={'title': 'Courses'}, yaxis1={'title': ''})
 st.plotly_chart(fig3)
 
+st.write("""Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
+""")
 cours_cust = pd.read_sql_query(f"select coursdf22.name, nullif(course,'0') as course, nullif(course2, '0') as course2, nullif(course3, '0') as course3, total from paimentsdf22 join coursdf22 on coursdf22.name=paimentsdf22.name",conn_addr)
-fig = px.bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Total', 'y':'Courses'})
-fig.update_layout(barmode='stack', yaxis1={'range': [0, 30]})
+fig = px.bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Total', 'y':'Courses'}, title="Courses choosen as first, second or third choices")
+fig.update_layout(barmode='stack', xaxis1={'title': 'Courses'}, yaxis1={'range': [0, 30], 'title': ''})
 st.plotly_chart(fig)
 
 st.title('Where do they live?')
-fig2 = px.bar(elevesdf, x='name', y=['toulouse'], color='city', labels={'x':'Éleve', 'y':'Ville'})
+fig2 = px.bar(elevesdf, x='name', y=['toulouse'], color='city', labels={'x':'Éleve', 'y':'Ville'}, title="Students by city")
+fig.update_layout(barmode='stack', xaxis1={'title': 'City'}, yaxis1={'title': 'Number of students'})
 st.plotly_chart(fig2)
-
+st.write("""90% of students live in Toulouse, the city where the school is based. In addition, it is possible to observe that most students live extremely close to the school, some even on the same block.""")
 mapbox_access_token ="pk.eyJ1IjoidGV0ZW1lc3F1aXRhIiwiYSI6ImNsM2J5N2dlZzAybmEzZG11NGRrNnZjazgifQ.Knpx0Cs7nDR7zY9aPA55Bg"
 px.set_mapbox_access_token(mapbox_access_token)
 place = [nom for nom in elevesdf.name]
@@ -75,15 +81,14 @@ for i in lattd:
         ecole.append(15)
     else:
         ecole.append(1)
-
 fig = px.scatter_mapbox(lat=lattd, lon=longi, color=place, size=ecole, color_continuous_scale=px.colors.sequential.Inferno, size_max=15, zoom=10)
 fig.update_layout(autosize=True,hovermode='closest',showlegend =False,mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=43.591001956445716, lon=1.454922592057386),pitch=0,zoom=10),)
 st.plotly_chart(fig)
 
-
+st.write("""Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.""")
 paimentsdf22 = pd.read_sql_query("""select * from paimentsdf22""",conn_addr)
-fig = px.bar(paimentsdf22, x='name', y=['installments'],  color= 'total', labels={'x':'Installments', 'y':'Total'})
-fig.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':['1', '2', '3', '4', '5', '10']})
+fig = px.bar(paimentsdf22, x='name', y=['installments'],  color= 'total', labels={'x':'Installments', 'y':'Total'}, title="Total paid and number of installments")
+fig.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':['1', '2', '3', '4', '5', '10'], 'title': 'Number of Installments'}, yaxis1={'title': 'Number of students'})
 st.plotly_chart(fig)
 
 num_courses=[]
@@ -97,12 +102,12 @@ for course in paimentsdf22['total']:
     else:
         num_courses.append('10')
 
-fig = px.bar(paimentsdf22, x=num_courses, y='total', labels={'x':'Numero Cours', 'y':'Total'})
-fig.update_layout(barmode='stack', xaxis={'categoryorder': 'array', 'categoryarray':['1', '2', '3', '10']})
+fig = px.bar(paimentsdf22, x=num_courses, y='total', labels={'x':'Numero Cours', 'y':'Total'}, title="Income by number of classes package")
+fig.update_layout(barmode='stack', xaxis={'categoryorder': 'array', 'categoryarray':['1', '2', '3', '10'], 'title': 'Number of classes'},  yaxis1={'title': 'Income'})
 st.plotly_chart(fig)
 
 total_bill = paimentsdf22['total'].sum()
-st.write(f'In 2022, the regular students payment sumed {total_bill}')
+st.title(f'In 2022, the regular students payment sumed {total_bill} Euros')
 
 
 
