@@ -97,23 +97,26 @@ For a better understanding of the school's target audience, questions regarding 
 
 ## Who they are?
  <img src="https://user-images.githubusercontent.com/101064720/169437408-e09176e7-072a-4ce9-9837-0ee92ac7f107.gif" width="420" align="center" type="gif">
-The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.
  <img src="https://user-images.githubusercontent.com/101064720/169437161-9560caee-65cd-4cd0-9864-bb81593a984f.png" width="420" align="center">
+  <img src="https://user-images.githubusercontent.com/101064720/169437261-1963e9ce-7019-4719-88ec-b8100547640a.png" width="420" align="center">
+The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.
+ 
 Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
 
 Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
- <img src="https://user-images.githubusercontent.com/101064720/169437261-1963e9ce-7019-4719-88ec-b8100547640a.png" width="420" align="center">
+
 Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
 
 ## Where do they live?
-<img src="https://user-images.githubusercontent.com/101064720/169437344-13e64119-610f-491b-98c1-da08547f5a9b.png" width="420" align="center">
+
 90% of students live in Toulouse, the city where the school is based. In addition, it is possible to observe that most students live extremely close to the school, some even on the same block.
 <img src="https://user-images.githubusercontent.com/101064720/169438360-7fc46527-8574-4a23-b705-a5719d7fc29b.pn" width="420" align="center">
-
+<img src="https://user-images.githubusercontent.com/101064720/169437344-13e64119-610f-491b-98c1-da08547f5a9b.png" width="420" align="center">
 ## How do they pay?
-<img src="https://user-images.githubusercontent.com/101064720/169438710-d311df41-f48d-47e3-b3db-532c3cfa78f9.jpg" width="420" align="center">
 Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.
 <img src="https://user-images.githubusercontent.com/101064720/169438702-c4b8702c-9ec8-49df-a804-fce821a3803b.jpg" width="420" align="center">
+<img src="https://user-images.githubusercontent.com/101064720/169438710-d311df41-f48d-47e3-b3db-532c3cfa78f9.jpg" width="420" align="center">
+
 
 
 
