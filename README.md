@@ -12,6 +12,7 @@
 <img src="https://user-images.githubusercontent.com/101064720/169435791-1aa00813-e987-4ff1-a4ad-d493f23f1c0e.jpg" width="390" align="right">
 Seeking to optimize the data collection system of a ballet school, an ETL pipeline was developed to optimize all company's data processes, ensuring usability and storage in a safe and accessible place.
 
+
 As there was no systematized process, the entire pipeline was developed from the very beggining according to the requests of the school's administration, seeking solutions that suited the profile of both the students (to provide data) and the administration (for access and analysis of the data).
 
 Thus, a relational database was created, hosted remotely on a Virtual Private Server (VPS), which is powered and accessed by intuitive and user-friendly web applications.
@@ -46,7 +47,7 @@ The process is documented in this repository with the exception of sensible data
 ## Extracting available data
 <img src="https://user-images.githubusercontent.com/101064720/169434647-b51bee4e-2508-49c3-9098-656ca5c8274c.jpg" width="300" align="left">
 
-When the school provided the PDF documents, which were extracted from a free online form builder for school applications, my first action was to take a look in the very first pages of the first document and understand it. I realized that, instead of organized tables with information about the students, all data was stored in form-based PDFs. It was very look alike a printed document filled by each student separately. The main goal of keeping those documents were just records of students inscriptions, with no strategic business intent for that data.
+When the school provided the PDF documents, which were extracted from a free online form builder for school applications, my first action was to take a look in the very first pages of the first document and understand it. I realized that, instead of organized tables with information about the students, all data was stored in form-based PDFs. It was very look alike a printed document filled by each student separately. The main purpose of keeping those documents was to keep records of student's enrollments, with no strategic business intent for that data.
 
 Therefore, I've proposed a different pipeline for that data, that not only could escalate, enabling larger volumes of data, but also that allowed the school to catalogue, clean, filter, manipulate and analyze all that value informations to find the best business solutions.
 
