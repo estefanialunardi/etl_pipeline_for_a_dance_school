@@ -74,7 +74,7 @@ Before saving and exporting data to the Database, I've created two additional da
 ## Connecting to MySQL server through SSH Tunnel
 I've chosen not to have my Database Server locally on my computer, since this database must be available for the web application and clients on the internet. Also, processing power and scalability are more reliable in cloud servers. 
 
-Using Plataform As A Service (PAAS) on cloud, such as AWS Relational Database Service (RDS) or similar, would be more expensive due to their advanced features on scaling/backup/availability. Given the small size of this project, volume of data and probable growth of the database for the next year, would not justify the extra investment. Thus, the chosen solution was to use a virtual private server (VPS) that guarantees benefits over the location, and availabilty and is considerably cheaper than PAAS services mentioned above.
+Using Plataform As A Service (PAAS) on cloud, such as AWS Relational Database Service (RDS) or similar, would be more expensive due to their advanced features on scaling/backup/availability. Given the small size of this project, volume of data and probable growth of the database for the next year, the extra investment would not be necessary. Thus, the chosen solution was to use a virtual private server (VPS) that guarantees benefits over the location, and availabilty and is considerably cheaper than PAAS services mentioned above.
 
 In order to increase the security of the DB server, its public access was disabled, and an SSH Tunnel was used to create a secure connection from the local computer to the remote server. I developed an extra function to first open an encrypted SSH tunnel and then use this connection to be able to reach the DB server.
 
