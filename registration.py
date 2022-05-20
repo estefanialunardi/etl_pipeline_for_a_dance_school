@@ -18,8 +18,8 @@ st.image(('logo.png'))
 st.title('Inscrivez-vous')
 st.sidebar.title('Réservez un cours')
 
-with st.form("Inscrivez-vous"):
-
+#with st.form("Inscrivez-vous"):
+try:
     name= st.text_input ("Nom e prénom d'élève")
     birthday=st.text_input("Date de naissance (jj/mm/aa)")
     address = st.text_input ("Addresse")
@@ -29,10 +29,11 @@ with st.form("Inscrivez-vous"):
     telephone =st.text_input('Téléphone (example: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal de l’inscrit (Pour les mineurs)")
 
+
     courses_qtd = 0
-    course = st.selectbox("Cours",('Sélectionnez votre cours', 'Carte de 10 cours', 'Classique','Moderne','Contemporain','Barre à Terre','PBT + Ballet Fitness','PBT','Pilates'))
+    course = st.selectbox('Cours', ['Sélectionnez votre cours', 'Carte de 10 cours', 'Classique', 'Moderne', 'Contemporain', 'Barre à Terre', 'PBT + Ballet Fitness', 'PBT', 'Pilates'])
     if course == 'Classique':
-        course == st.selectbox("Cours", ('Sélectionnez votre cours Classique','Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire'))
+        course = st.selectbox("Cours", ['Sélectionnez votre cours Classique','Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire'])
     else:
         pass
     if course == 'Carte de 10 cours':
@@ -290,13 +291,13 @@ with st.form("Inscrivez-vous"):
                     reconnais_pris = st.multiselect("Je reconnais avoir pris connaissance du règlement intérieur *, des conditions générales d’inscriptions* de l’Association Attitude Corps et Danses, d’avoir présenté un certificat médical de non-contre indication à la pratique de la danse et d’avoir présenté un certificat d’assurance extra-scolaire ou assurance civil.* (*Règlement intérieur/ conditions générales disponibles sur: https://attitudecorpsetdanses.com/reglement-interieur/*).", ["Oui", "Non"])
 
                     
-                    submitted = st.form_submit_button("Envoyer")
+                    submitted = st.button("Envoyer")
                     if submitted == True:
                         st.title("Merci! Rendez-vous en classe !")
     except:
         pass
     try:
-            submitted2 = st.form_submit_button("Envoyer")
+            submitted2 = st.button("Envoyer")
             if submitted2 == True:
                 if courses_qtd == 0:
                     st.write("Remplissez l'intégralité du formulaire pour le soumettre !")
@@ -307,7 +308,8 @@ with st.form("Inscrivez-vous"):
                     
     except:
         pass
-
+except:
+    pass
 try:
     if submitted == True:
         name= name.title()
@@ -324,9 +326,6 @@ try:
         schedule2=schedule2.lower()
         course3=course3.lower()
         schedule3=schedule3.lower()
-
-        certificat_dassurance
-        certificat_medical
         classes_student=[mail]
         data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
         for cours in data_courses:
@@ -338,19 +337,20 @@ try:
                         classes_student.append(1)
             else:
                 classes_student.append(0)
-                
-#connect_to_tunnel_and_mysqlserver  
-load_dotenv()
-db_server= os.getenv('db_server')
-user=os.getenv("user")
-db_port=os.getenv("db_port")
-password=os.getenv("password")
-ip=os.getenv("ip")
-db_name=os.getenv("db_name")
-ip_ssh=os.getenv("ip_ssh")
-ssh_username=os.getenv("ssh_username")
-ssh_password=os.getenv("ssh_password")
-remote_bind_address=os.getenv("remote_bind_address")
+  
+    #connect_to_tunnel_and_mysqlserver  
+    load_dotenv()
+
+    db_server= os.getenv('db_server')
+    user=os.getenv("user")
+    db_port=os.getenv("db_port")
+    password=os.getenv("password")
+    ip=os.getenv("ip")
+    db_name=os.getenv("db_name")
+    ip_ssh=os.getenv("ip_ssh")
+    ssh_username=os.getenv("ssh_username")
+    ssh_password=os.getenv("ssh_password")
+    remote_bind_address=os.getenv("remote_bind_address")
 
     server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
     server.start()
