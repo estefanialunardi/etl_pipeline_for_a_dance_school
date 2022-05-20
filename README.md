@@ -12,13 +12,13 @@
 <img src="https://user-images.githubusercontent.com/101064720/169435791-1aa00813-e987-4ff1-a4ad-d493f23f1c0e.jpg" width="390" align="right">
 Seeking to optimize the data collection system of a ballet school, an ETL pipeline was developed to optimize all company's data processes, ensuring usability and storage in a safe and accessible place.
 
-As there was no systematized process, the entire pipeline was developed from the very beggining according to the requests of the school administration, seeking solutions that suited the profile of both the students (to provide data) and the administration (for access and analysis of the data).
+As there was no systematized process, the entire pipeline was developed from the very beggining according to the requests of the school's administration, seeking solutions that suited the profile of both the students (to provide data) and the administration (for access and analysis of the data).
 
 Thus, a relational database was created, hosted remotely on a Virtual Private Server (VPS), which is powered and accessed by intuitive and user-friendly web applications.
 
 All the code was written in Python, both in Jupyter Notebook, for the primary extraction of data and creation of the base that will be updated by the web applications, and in Visual Studio Code, where these applications were created.
 
-The process is documented in this repository with the exception of sensible data, such as students personal information, due to confidentiality, security and privacy issues.
+The process is documented in this repository with the exception of sensible data, such as students' personal information, due to confidentiality, security and privacy issues.
 
 # Libraries
 <table align="center">
@@ -51,7 +51,7 @@ When the school provided the PDF documents, which were extracted from a free onl
 Therefore, I've proposed a different pipeline for that data, that not only could escalate, enabling larger volumes of data, but also that allowed the school to catalogue, clean, filter, manipulate and analyze all that value informations to find the best business solutions.
 
 ###  Proposing a new way to store data
-So, for a better comprehension of the available data, i've tried to create an organized table with all subscriptions information. Regardless any particularity of each student, they all filled the same form for submission, so I could easily identify the fields despite there was no obvious separators between fields. I've created lists to store these informations, according to the fields filled in the inscription form, and gathered them as columns of a dataframe.
+So, for a better comprehension of the available data, i've tried to create an organized table with all subscriptions information. Regardless any particularity of each student, they all filled out the same form for submission, so I could easily identify the fields despite there was no obvious separators between fields. I've created lists to store these informations, according to the fields filled in the inscription form, and gathered them as columns of a dataframe.
 
 
 ## Transforming data 
@@ -64,7 +64,7 @@ Beside correcting typos, removing duplicates and filling blank fields, I also ma
 
 Cleaning classes information was the most challenging step of the ETL. Many fields had typos or were filled improperly. The classes schedule also were non standardized as they've changed as registrations were made and students requested minor time adjustments. Thus, there was no uniformity between courses and their respective schedules. I've mapped all those changes and left no blank field. Students that were enrolled in only one class, the fields referring to the second and third courses were filled with 0. These fields were replaced with null values, for later application in graphics.
 
-The original dataframe was split into three: the first with the students personal information, the second containing data regarding their classes attended, and finally a last one with payment information. To the Students Dataframe, it was inserted four new columns (age, latitude, longitude and if the person lives in Toulouse or not). Those fields, extracted from other columns information, made easier to analyze personal data, as it would require less computer processing and make the process faster.
+The original dataframe was split into three: the first with the students' personal information, the second containing data regarding their classes attended, and finally a last one with payment information. To the Students Dataframe, it was inserted four new columns (age, latitude, longitude and if the person lives in Toulouse or not). Those fields, extracted from other columns information, made easier to analyze personal data, as it would require less computer processing and make the process faster.
 
 ##  Exporting data
 ###  Setting data to export
@@ -90,7 +90,7 @@ In the beggining of each school year, a new table is set for courses and payment
 
 ## Data Analysis Web Application
  <img src="https://user-images.githubusercontent.com/101064720/169441223-1705ab81-0a5b-4f35-a0ff-6417e4cc7629.gif" width="800" align="center" type="gif">
-Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
+Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school's administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
 
 # Analyzed data
 For a better understanding of the school's target audience, questions regarding the students' profile were evaluated - both in personal matters and in their class preferences.
