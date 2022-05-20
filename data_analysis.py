@@ -9,19 +9,25 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime, date
-
+import os, os.path
+from dotenv import load_dotenv
 
 st.title('Data Analysis')
 
 #connect_to_tunnel_and_mysqlserver  
-db_server= '127.0.0.1'
-user='tete'
-db_port = '3306'
-password = 'frida2202'
-ip = 'localhost'
-db_name = 'attitude'
+load_dotenv()
+db_server= os.getenv('db_server')
+user=os.getenv("user")
+db_port=os.getenv("db_port")
+password=os.getenv("password")
+ip=os.getenv("ip")
+db_name=os.getenv("db_name")
+ip_ssh=os.getenv("ip_ssh")
+ssh_username=os.getenv("ssh_username")
+ssh_password=os.getenv("ssh_password")
+remote_bind_address=os.getenv("remote_bind_address")
 try: 
-    server = SSHTunnelForwarder(('138.197.99.33', 4242), ssh_username="tete", ssh_password="frida", remote_bind_address=('127.0.0.1', 3306))
+    server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
     server.start()
 except:
     st.write('Failed opening the tunnel :-(')
