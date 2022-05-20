@@ -117,8 +117,8 @@ Most students take only one class - children in particular do not tend to take t
 <img src="https://user-images.githubusercontent.com/101064720/169437344-13e64119-610f-491b-98c1-da08547f5a9b.png" width="750" align="center">
 ## How do they pay?
 Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.
-<img src="https://user-images.githubusercontent.com/101064720/169438702-c4b8702c-9ec8-49df-a804-fce821a3803b.jpg" width="750" align="center">
 <img src="https://user-images.githubusercontent.com/101064720/169438710-d311df41-f48d-47e3-b3db-532c3cfa78f9.jpg" width="750" align="center">
+<img src="https://user-images.githubusercontent.com/101064720/169438702-c4b8702c-9ec8-49df-a804-fce821a3803b.jpg" width="750" align="center">
 
 Thank you!
 
