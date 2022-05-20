@@ -8,7 +8,8 @@
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/estefanialunardi/) 
 [<img src='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' />](https://www.linkedin.com/in/estefania-mesquita)
 
-
+# Data Dance (Or ETL Pipeline for a Ballet School)
+<img src="https://user-images.githubusercontent.com/101064720/169435791-1aa00813-e987-4ff1-a4ad-d493f23f1c0e.jpg" width="390" align="right">
 Seeking to optimize the data collection system of a ballet school, an ETL pipeline was developed to optimize all company's data processes, ensuring usability and storage in a safe and accessible place.
 
 As there was no systematized process, the entire pipeline was developed from the very beggining according to the requests of the school administration, seeking solutions that suited the profile of both the students (to provide data) and the administration (for access and analysis of the data).
@@ -20,24 +21,31 @@ All the code was written in Python, both in Jupyter Notebook, for the primary ex
 The process is documented in this repository with the exception of sensible data, such as students personal information, due to confidentiality, security and privacy issues.
 
 # Libraries
-streamlit
-plotly.express
-pymysql
-pandas 
-pdfplumber
-re
-os
-dateutil
-sshtunnel
-sqlalchemy 
-dotenv
-datetime
-geopy.geocoders
-
+<table align="center">
+    <tr>
+        <td>Pdfplumber</td>
+        <td>Requests</td>
+        <td>Pandas</td>
+        <td>Os</td>
+      <td>Sshtunnel</td>
+        <td>Dotenv</td>
+<td>Selenium</td>
+    </tr>
+     <tr>
+        <td>Dateutil</td>
+      <td>SQLAlchemy</td>
+        <td>Plotly</td>
+        <td>Pymysql</td>
+        <td>Streamlit</td>
+       <td>Datetime</td>
+        <td>Geopy.geocoders</td>
+  </tr>
+</table>
 
 # ETL Proccess
 ## Extracting available data
-### Prior data
+<img src="https://user-images.githubusercontent.com/101064720/169434647-b51bee4e-2508-49c3-9098-656ca5c8274c.jpg" width="300" align="left">
+
 When the school provided the PDF documents, which were extracted from a free online form builder for school applications, my first action was to take a look in the very first pages of the first document and understand it. I realized that, instead of organized tables with information about the students, all data was stored in form-based PDFs. It was very look alike a printed document filled by each student separately. The main goal of keeping those documents were just records of students inscriptions, with no strategic business intent for that data.
 
 Therefore, I've proposed a different pipeline for that data, that not only could escalate, enabling larger volumes of data, but also that allowed the school to catalogue, clean, filter, manipulate and analyze all that value informations to find the best business solutions.
@@ -45,8 +53,11 @@ Therefore, I've proposed a different pipeline for that data, that not only could
 ###  Proposing a new way to store data
 So, for a better comprehension of the available data, i've tried to create an organized table with all subscriptions information. Regardless any particularity of each student, they all filled the same form for submission, so I could easily identify the fields despite there was no obvious separators between fields. I've created lists to store these informations, according to the fields filled in the inscription form, and gathered them as columns of a dataframe.
 
-## Transforming data
+
+## Transforming data 
+
 ### Checking columns:
+<img src="https://user-images.githubusercontent.com/101064720/169436300-9ef13936-7fc3-4a32-bdf4-9c7d68c83076.PNG" width="300" align="right">
 I started to clean the date, column by column. When it was possible, I've used automatic methods, but sometimes I had to contact administrative staff and other sources of research (such as Google search) to correct data errors or complete missing data fields. Some of them, such as birthday or address, were not possible to find, so it remained blank or, in case of calculating age, it was filled with the mean value.
 
 Beside correcting typos, removing duplicates and filling blank fields, I also made data normalization to allow me to identify matches to apply functions properly and help me establishing standards for a consistent CRUD experience. Fields with multiple information, such as address, were split into various (address, city, postal code, etc.) for the benefit of a better analysis later. From the address field, I've extracted the latitude and longitude information. It was necessary to locate each student in the map graphic and estimate their distance from school.
@@ -78,27 +89,31 @@ After extracting all data, with this optmized process aiming to reduce the work 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
 ## Data Analysis Web Application
+ <img src="https://user-images.githubusercontent.com/101064720/169437585-24c2bac1-017e-423d-90ad-e7f0ca8411e7.gif" width="420" align="center" type="gif">
 Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
-
 
 # Analyzed data
 For a better understanding of the school's target audience, questions regarding the students' profile were evaluated - both in personal matters and in their class preferences.
 
 ## Who they are?
-
+ <img src="https://user-images.githubusercontent.com/101064720/169437408-e09176e7-072a-4ce9-9837-0ee92ac7f107.gif" width="420" align="center" type="gif">
 The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.
-
+ <img src="https://user-images.githubusercontent.com/101064720/169437161-9560caee-65cd-4cd0-9864-bb81593a984f.png" width="420" align="center">
 Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
 
 Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
-
+ <img src="https://user-images.githubusercontent.com/101064720/169437261-1963e9ce-7019-4719-88ec-b8100547640a.png" width="420" align="center">
 Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
 
 ## Where do they live?
-
+<img src="https://user-images.githubusercontent.com/101064720/169437344-13e64119-610f-491b-98c1-da08547f5a9b.png" width="420" align="center">
 90% of students live in Toulouse, the city where the school is based. In addition, it is possible to observe that most students live extremely close to the school, some even on the same block.
+<img src="https://user-images.githubusercontent.com/101064720/169438360-7fc46527-8574-4a23-b705-a5719d7fc29b.pn" width="420" align="center">
 
 ## How do they pay?
-
+<img src="https://user-images.githubusercontent.com/101064720/169438710-d311df41-f48d-47e3-b3db-532c3cfa78f9.jpg" width="420" align="center">
 Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.
+<img src="https://user-images.githubusercontent.com/101064720/169438702-c4b8702c-9ec8-49df-a804-fce821a3803b.jpg" width="420" align="center">
+
+
 
