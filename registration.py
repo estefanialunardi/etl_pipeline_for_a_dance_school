@@ -3,6 +3,8 @@ import pandas as pd
 import re
 import os, os.path
 import datetime
+from dateutil import parser
+from geopy.geocoders import Nominatim 
 from sshtunnel import SSHTunnelForwarder
 import sqlalchemy as db
 from sqlalchemy import create_engine
@@ -12,6 +14,10 @@ import pymysql
 import os, os.path
 from dotenv import load_dotenv
 pymysql.install_as_MySQLdb()
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib,ssl
+
 
 st.image(('logo.png'))
 
@@ -21,7 +27,7 @@ st.sidebar.title('Réservez un cours')
 #with st.form("Inscrivez-vous"):
 try:
     name= st.text_input ("Nom e prénom d'élève")
-    birthday=st.text_input("Date de naissance (jj/mm/aa)")
+    birthday=st.text_input("Date de naissance (jj/mm/aaaa)")
     address = st.text_input ("Addresse")
     city = st.text_input ("Ville")
     pcode = st.text_input ("Postal / Zip Code", key = int)
@@ -43,224 +49,236 @@ try:
         pass
     if course == 'Classique 1':
         schedule = st.multiselect('Horaire', ['Mercredi 14h15-15h30', 'Je voudrais un autre horaire'])
-        courses_qtd +=1
+        courses_qtd += len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course == 'Classique 2':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Mercredi 17h45-19h15', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Classique Moyen':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Classique Interm. – Avancé':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Classique Avancé':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Mardi 19h30-21h','Samedi 10h30-12h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Pointes':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Éveil':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Mardi 17h-17h45', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Préparatoire':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Lundi 17h-18h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Moderne':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Avertissez-moi lorsque les cours sont disponibles'])
     elif course =='Contemporain':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Barre à Terre':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h','Samedi 12h-13h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='PBT + Ballet Fitness':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='PBT':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Lundi 18h-19h','Mercredi 15h30-16h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     elif course =='Pilates':
-        courses_qtd +=1
         schedule = st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h45-21h45','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(schedule)
         if schedule == 'Je voudrais un autre horaire':
             st.text_input ("Suggérer l'horaire")
     else:
         pass   
     with st.expander("Plus de cours"):
-        course2 = st.selectbox("Cours 2",('Sélectionnez votre cours', 'Classique','Moderne','Contemporain','Barre à Terre','PBT + Ballet Fitness','PBT','Pilates'))
         try:
-            if course2 == 'Classique':
-                course2 == st.selectbox("Cours 2",('Sélectionnez votre cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire'))
+            course2 = st.selectbox("Cours 2",('Sélectionnez votre cours', 'Classique','Moderne','Contemporain','Barre à Terre','PBT + Ballet Fitness','PBT','Pilates'))
+            try:
+                if course2 == 'Classique':
+                    course2 == st.selectbox("Cours 2",('Sélectionnez votre cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire'))
+            except:
+                pass
+            if course2 == 'Classique 1':
+                schedule2 = st.multiselect('Horaire', ['Mercredi 14h15-15h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 == 'Classique 2':
+                schedule2 = st.multiselect('Horaire', ['Mercredi 17h45-19h15', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Classique Moyen':
+                schedule2 = st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Classique Interm. – Avancé':
+                schedule2 = st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Classique Avancé':
+                schedule2 = st.multiselect('Horaire', ['Mardi 19h30-21h','Samedi 10h30-12h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Pointes':
+                schedule2 = st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Éveil':
+                schedule2 = st.multiselect('Horaire', ['Mardi 17h-17h45', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Préparatoire':
+                schedule2 = st.multiselect('Horaire', ['Lundi 17h-18h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Moderne':
+                schedule2 = st.multiselect('Horaire', ['Avertissez-moi lorsque les cours sont disponibles'])
+                courses_qtd +=len(schedule2)
+            elif course2 =='Contemporain':
+                schedule2 = st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Barre à Terre':
+                schedule2 = st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h','Samedi 12h-13h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='PBT + Ballet Fitness':
+                schedule2 = st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='PBT':
+                schedule2 = st.multiselect('Horaire', ['Lundi 18h-19h','Mercredi 15h30-16h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course2 =='Pilates':
+                schedule2 = st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h45-21h45','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule2)
+                if schedule2 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")   
+            else:
+                course2="0"
+                schedule2 = "0"
         except:
-            pass
-        if course2 == 'Classique 1':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Mercredi 14h15-15h30', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 == 'Classique 2':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Mercredi 17h45-19h15', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Classique Moyen':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Classique Interm. – Avancé':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Classique Avancé':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Mardi 19h30-21h','Samedi 10h30-12h', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Pointes':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Éveil':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Mardi 17h-17h45', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Préparatoire':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Lundi 17h-18h', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Moderne':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Avertissez-moi lorsque les cours sont disponibles'])
-        elif course2 =='Contemporain':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Barre à Terre':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h','Samedi 12h-13h', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='PBT + Ballet Fitness':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='PBT':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Lundi 18h-19h','Mercredi 15h30-16h30', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course2 =='Pilates':
-            courses_qtd +=1
-            schedule2 = st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h45-21h45','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
-            if schedule2 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")     
-        course3 = st.selectbox("Cours 3",('Sélectionnez votre cours','Classique','Moderne','Contemporain','Barre à Terre','PBT + Ballet Fitness','PBT','Pilates'))
+            course2="0"
+            schedule2="0"  
         try:
-            if course3 == 'Classique':
-                course3 == st.selectbox("Cours 3",('Sélectionnez votre cours','Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire'))
-        except:        
-            pass
-        if course3 == 'Classique 1':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Mercredi 14h15-15h30', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 == 'Classique 2':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Mercredi 17h45-19h15', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Classique Moyen':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Classique Interm. – Avancé':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Classique Avancé':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Mardi 19h30-21h','Samedi 10h30-12h', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Pointes':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Éveil':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Mardi 17h-17h45', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Préparatoire':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Lundi 17h-18h', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Moderne':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Avertissez-moi lorsque les cours sont disponibles'])
-        elif course3 =='Contemporain':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Barre à Terre':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h','Samedi 12h-13h', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='PBT + Ballet Fitness':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='PBT':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Lundi 18h-19h','Mercredi 15h30-16h30', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-        elif course3 =='Pilates':
-            courses_qtd +=1
-            schedule3 = st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h45-21h45','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
-            if schedule3 == 'Je voudrais un autre horaire':
-                st.text_input ("Suggérer l'horaire")
-
+            course3 = st.selectbox("Cours 3",('Sélectionnez votre cours','Classique','Moderne','Contemporain','Barre à Terre','PBT + Ballet Fitness','PBT','Pilates'))
+            try:
+                if course3 == 'Classique':
+                    course3 == st.selectbox("Cours 3",('Sélectionnez votre cours','Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire'))
+            except:        
+                pass
+            if course3 == 'Classique 1':
+                schedule3 = st.multiselect('Horaire', ['Mercredi 14h15-15h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 == 'Classique 2':
+                schedule3 = st.multiselect('Horaire', ['Mercredi 17h45-19h15', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Classique Moyen':
+                schedule3 = st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Classique Interm. – Avancé':
+                schedule3 = st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Classique Avancé':
+                schedule3 = st.multiselect('Horaire', ['Mardi 19h30-21h','Samedi 10h30-12h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Pointes':
+                schedule3 = st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Éveil':
+                schedule3 = st.multiselect('Horaire', ['Mardi 17h-17h45', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Préparatoire':
+                schedule3 = st.multiselect('Horaire', ['Lundi 17h-18h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Moderne':
+                schedule3 = st.multiselect('Horaire', ['Avertissez-moi lorsque les cours sont disponibles'])
+                courses_qtd +=len(schedule3)
+            elif course3 =='Contemporain':
+                schedule3 = st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Barre à Terre':
+                schedule3 = st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h','Samedi 12h-13h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='PBT + Ballet Fitness':
+                schedule3 = st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='PBT':
+                schedule3 = st.multiselect('Horaire', ['Lundi 18h-19h','Mercredi 15h30-16h30', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            elif course3 =='Pilates':
+                schedule3 = st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h45-21h45','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
+                courses_qtd +=len(schedule3)
+                if schedule3 == 'Je voudrais un autre horaire':
+                    st.text_input ("Suggérer l'horaire")
+            else:
+                course3="0"
+                schedule3="0"
+        except:
+            course3="0"
+            schedule3="0"
     if courses_qtd == 0:
         st.write("Sélectionnez votre cours pour continuez")
     elif courses_qtd == 1:
@@ -292,51 +310,53 @@ try:
 
                     
                     submitted = st.button("Envoyer")
-                    if submitted == True:
-                        st.title("Merci! Rendez-vous en classe !")
-    except:
-        pass
-    try:
-            submitted2 = st.button("Envoyer")
-            if submitted2 == True:
-                if courses_qtd == 0:
-                    st.write("Remplissez l'intégralité du formulaire pour le soumettre !")
-                if certificat_medical is None:
-                    st.write("Remplissez l'intégralité du formulaire pour le soumettre !")
-                if daccord != "Je suis d'accord" and autorise_image != 'Oui' and reconnais_pris != "Oui":
-                    st.write("Remplissez l'intégralité du formulaire pour le soumettre !")
-                    
+
     except:
         pass
 except:
     pass
-try:
-    if submitted == True:
-        name= name.title()
-        date = parser.parse(birthday)
-        birthday=date.strftime('%d-%m-%Y')
-        address = address.title()
-        city = city.title()
-        pcode = pcode
-        mail = mail.lower()
-        legal_representative =legal_representative.title()
-        course = course.lower()
-        schedule = schedule.lower()
-        course2=course2.lower()
-        schedule2=schedule2.lower()
-        course3=course3.lower()
-        schedule3=schedule3.lower()
-        classes_student=[mail]
-        data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
-        for cours in data_courses:
-            if course == cours or course2 == cours or course3 == cours:
-                if course != 'carte 10 cours':
-                    classes_student.append(1)
-                else:
-                    for i in range(15):
-                        classes_student.append(1)
+if submitted:
+    name= name.title()
+    date = parser.parse(birthday)
+    birthday=date.strftime('%d-%m-%Y')
+    born = str(birthday).split('-')[-1]
+    today = date.today()
+    age = today.year - int(born)
+    address = address.title()
+    geolocator = Nominatim(user_agent="geolocalização")
+    location = geolocator.geocode(f'{address} {city} {pcode}')
+    lat = location.latitude
+    lon = location.longitude       
+    city = city.title()
+    pcode = pcode
+    mail = mail.lower()
+    legal_representative =legal_representative.title()
+    classes=[]
+    for i in range(len(schedule)):
+        classes.append(schedule[i])
+    classes= ", ".join(classes)
+    schedule=classes
+    classes2=[]
+    for i in range(len(schedule2)):
+        classes2.append(schedule2[i])
+    classes2= ", ".join(classes2)
+    schedule2=classes2
+    classes3=[]
+    for i in range(len(schedule3)):
+        classes3.append(schedule3[i])
+    classes3= ", ".join(classes3)
+    schedule3=classes3
+    classes_student=[mail]
+    data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
+    for cours in data_courses:
+        if course == cours or course2 == cours or course3 == cours:
+            if course != 'carte 10 cours':
+                classes_student.append(1)
             else:
-                classes_student.append(0)
+                for i in range(15):
+                    classes_student.append(1)
+        else:
+            classes_student.append(0)
   
     #connect_to_tunnel_and_mysqlserver  
     load_dotenv()
@@ -351,27 +371,51 @@ try:
     ssh_username=os.getenv("ssh_username")
     ssh_password=os.getenv("ssh_password")
     remote_bind_address=os.getenv("remote_bind_address")
-
-    server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
-    server.start()
-    port = str(server.local_bind_port)
-    conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
-    engine = create_engine(conn_addr)
-    connection = engine.connect()
-
-
     try:
-        mySql_insert_query0 = """UPDATE elevesdf set `Nom et prénom d'élève` = {name}, `Date de naissance`={birthday}, `Adresse`={address}, `Cité`={city}, `Code Postale`={pcode}, `E-mail`={mail}, `Téléphone` = {telephone}, `Représentant légal de l’inscrit (pour les mineurs)= {legal_representative} where `Nom et prénom d'élève` = {name}"""
+        server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
+        server.start()
+        port = str(server.local_bind_port)
+        conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
+        engine = create_engine(conn_addr)
+        connection = engine.connect()
+    except:
+        st.write("Quelque chose s'est mal passé. Réessayez plus tard!")
+    try:
+        mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
         engine.execute(mySql_insert_query0)
+        st.write ('Vos informations ont été mises à jour !')
     except: 
-        mySql_insert_query1 = """INSERT INTO 'elevesdf' (`Nom et prénom d'élève`, `Date de naissance`, `Adresse`, `Cité`, `Code Postale`, `E-mail`, `Téléphone`, `Représentant légal de l’inscrit (pour les mineurs)`) VALUES ({name}, {birthday}, {address}, {city}, {pcode}, {mail}, {telephone}. {legal_representative}) """
+        mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ('{name}', '{birthday}', {age}, '{address}', '{city}', {pcode},{lat}, {lon}, '{mail}', '{telephone}', '{legal_representative}')"""
         engine.execute(mySql_insert_query1)
-    mySql_insert_query2 = """INSERT INTO 'coursdf23' (`Nom et prénom d'élève`, `Cours`, `Horaire`, `Cours 2`, `Horaire 2`, `Cours 3`, `Horaire 3`) VALUES  ({mail}, {course}, {schedule},{course2}, {schedule2},{course3}, {schedule3}) """
-    mySql_insert_query3 = """INSERT INTO 'classesdf23' (`nom`, `classique 1`,`pointes`, `classique interm. – avancé`,`éveil`,`classique 2`,`pbt`,`préparatoire`,`moderne`,`pilates`,`classique moyen`,`classique avancé`,`contemporain`,`barre à terre`,`pbt + ballet fitness`,`initiation`) VALUES ({classes_student}) """
-    mySql_insert_query4 = """INSERT INTO "paimentsdf23" (`Nom et prénom d'élève`, `Adhésion`, `Paiement fractionné`, `Paiement Total`) VALUES  ({mail}, {registration}, {installments}, {total})"""
+    mySql_insert_query2 = f"""INSERT INTO coursdf23 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES  ('{mail}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
+    
+    def convert_binary(filename):
+        with open(filename, 'rb') as file:
+            binaryData = file.read()
+        return binaryData
+    def insert_file(id, mail, file,):
+        try:
+            sql_blob_query = """ INSERT INTO medical23
+                            (id, mail, file) VALUES (%s,%s,%s)"""
+
+            fileconverted = convert_binary(file)
+            blob_tuple = (id, name, fileconverted, file)
+            result = cursor.execute(sql_blob_query, blob_tuple)
+            connection.commit()
+
+        except:
+            st.write('error')
+
+    insert_file(1, f"{mail}", {certificat_medical})
+    insert_file(2, f"{mail}", {certificat_dassurance})
+    
+    
+    
+    
+    mySql_insert_query4 = f"""INSERT INTO paimentsdf23 (name, registration, installments, total) VALUES  ('{mail}', '{registration}', '{installments}', '{total}');"""
     engine.execute(mySql_insert_query2)
-    engine.execute(mySql_insert_query3)
     engine.execute(mySql_insert_query4)
+    st.write ("S'il vous plaît, attendez! !")
     courses = pd.read_sql_query("""SELECT name, course from coursdf22 union all select name, course2 from coursdf22 union all select name, course3 from coursdf22""",conn_addr)
     courses_filled=[]
     name_filled=[]
@@ -382,10 +426,27 @@ try:
     course_filled = pd.DataFrame(zip(courses_filled, name_filled))
     course_filled.columns = ['course', 'name']
     course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
+    st.write ('Vos informations ont été reçues !')
     connection.close()  
     server.stop()
-except:
-    pass
+
+    my_email= os.getenv('my_email')
+    mail_password= os.getenv('mail_password')
+
+    msg=MIMEText(f"""{name} , 
+    votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+     Rendez-vous en classe !""")
+    msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
+    msg['From']= my_email
+    msg["To"]= f'{mail}, {my_email}'
+    mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+    mail_server.ehlo()
+    mail_server.login(my_email, mail_password)
+    mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+
+    mail_server.close()
+
+    st.title("Merci! Rendez-vous en classe !")
     
 
 
