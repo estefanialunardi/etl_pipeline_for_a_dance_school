@@ -8,9 +8,7 @@ python-dateutil
 geopy
 sshtunnel
 sqlalchemy
-MIMEMultipart
-email.mime.text 
-MIMEText
+email-to
 smtplib
 base64
 sqlite3
