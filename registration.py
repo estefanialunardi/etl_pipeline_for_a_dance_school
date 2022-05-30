@@ -3,9 +3,6 @@ import pandas as pd
 import re
 import datetime
 from dateutil import parser
-import geopandas as gpd
-import geocoder
-import geopy 
 from geopy.geocoders import Nominatim 
 from geopy.extra.rate_limiter import RateLimiter
 from sshtunnel import SSHTunnelForwarder
