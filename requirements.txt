@@ -9,7 +9,6 @@ geopy
 sshtunnel
 sqlalchemy
 pymysql
-dotenv
 sql.install_as_MySQLdb
 email.mime.multipart 
 MIMEMultipart
