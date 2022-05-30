@@ -5,8 +5,10 @@ regex
 path
 datetime
 python-dateutil 
+geocoder
 geopy
 geopy.geocoders
+geopandas
 sshtunnel
 sqlalchemy
 email-to
