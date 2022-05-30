@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import re
-import os, os.path
+import os 
 import datetime
 from dateutil import parser
 from geopy.geocoders import Nominatim 
