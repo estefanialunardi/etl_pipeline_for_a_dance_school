@@ -8,9 +8,6 @@ python-dateutil
 geopy
 sshtunnel
 sqlalchemy
-pymysql
-sql.install_as_MySQLdb
-email.mime.multipart 
 MIMEMultipart
 email.mime.text 
 MIMEText
