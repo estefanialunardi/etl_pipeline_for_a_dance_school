@@ -3,7 +3,7 @@ import pandas as pd
 import re
 import datetime
 from dateutil import parser
-import geopy
+import geopy as gp
 from geopy.geocoders import Nominatim 
 from geopy.extra.rate_limiter import RateLimiter
 from sshtunnel import SSHTunnelForwarder
@@ -243,7 +243,6 @@ if submitted:
     age = today.year - int(born)
     address = address.title()
     try: 
-        geolocator = Nominatim(user_agent="my_app") #using open street map API 
         geolocator = Nominatim(user_agent="my_app")
         location = geolocator.geocode(f'{address} {city} {pcode}')
         lat = location.latitude

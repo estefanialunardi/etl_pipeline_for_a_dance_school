@@ -6,6 +6,7 @@ path
 datetime
 python-dateutil 
 geopy
+geopy.geocoders
 sshtunnel
 sqlalchemy
 email-to
