@@ -90,7 +90,7 @@ with col1:
         components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=1200, height=800, scrolling=True)
 
 with col2:
-    stage = st.button("🧘 Réservez Atelier/Stage/Masterclass")
+    stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
     if pilates:
         st.subheader("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
         #components.iframe(f"", width=1200, height=800, scrolling=True)
@@ -284,18 +284,19 @@ except:
     
 try:
     #connect_to_tunnel_and_mysqlserver  
-    load_dotenv()
-    
-    st.write(db_server, st.secrets["db_server"])
-    st.write(user, st.secrets["user"])
-    st.write(db_port, st.secrets["db_port"])
-    st.write(password, st.secrets["password"])
-    st.write(ip, st.secrets["ip"])
-    st.write(db_name, st.secrets["db_name"])
-    st.write(ip_ssh, st.secrets["ip_ssh"])
-    st.write(ssh_username, st.secrets["ssh_username"])
-    st.write(ssh_password, st.secrets["ssh_password"])
-    st.write(remote_bind_address, st.secrets["remote_bind_address"])
+    #load_dotenv()
+
+    db_server = st.secrets["db_server"])
+    user = st.secrets["user"])
+    db_port = st.secrets["db_port"])
+    password = st.secrets["password"])
+    ip = st.secrets["ip"])
+    db_name = st.secrets["db_name"])
+    ip_ssh = st.secrets["ip_ssh"])
+    ssh_username = st.secrets["ssh_username"])
+    ssh_password = st.secrets["ssh_password"])
+    remote_bind_address = st.secrets["remote_bind_address"])
+
 
     #db_server= os.getenv('db_server')
     #user=os.getenv("user")
@@ -308,10 +309,10 @@ try:
     #ssh_password=os.getenv("ssh_password")
     #remote_bind_address=os.getenv("remote_bind_address")
     try:
-        server = SSHTunnelForwarder((st.secrets["ip_ssh"], 4242), ssh_username=st.secrets["ssh_username"], ssh_password=secrets["ssh_password"], remote_bind_address=(st.secrets["db_server"], 3306))
+        server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
         server.start()
         port = str(server.local_bind_port)
-        conn_addr = 'mysql://' + st.secrets["user"] + ':' + st.secrets["password"] + '@' + st.secrets["db_server"] + ':' + port + '/' + st.secrets["db_name"]
+        conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
         engine = create_engine(conn_addr)
         connection = engine.connect()
     except:
