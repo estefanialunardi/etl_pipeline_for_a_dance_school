@@ -6,8 +6,10 @@ path
 datetime
 python-dateutil 
 geopy==2.1.0
+Nominatim
 geopandas
 sshtunnel
+RateLimiter
 sqlalchemy
 email-to
 secure-smtplib

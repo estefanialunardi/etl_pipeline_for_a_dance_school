@@ -1,3 +1,9 @@
+from gettext import install
+from turtle import get_poly
+
+pip install geopy 
+
+
 import streamlit as st
 import pandas as pd
 import re
