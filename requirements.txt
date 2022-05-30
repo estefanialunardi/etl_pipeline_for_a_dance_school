@@ -1,8 +1,6 @@
-
-
 streamlit
 pandas
-re
+regex
 path
 os
 os.path
@@ -29,8 +27,4 @@ uuid
 rt
 seaborn
 plotly.express
-<<<<<<< HEAD
 plotly.graph_objects
-=======
-plotly.graph_objects
->>>>>>> 28b5168765476ca012dee4a4a6a60dd0da93c8d0
