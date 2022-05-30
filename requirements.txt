@@ -1,5 +1,6 @@
 streamlit
 pandas
+pystan==2.19.1.1
 regex
 path
 datetime
