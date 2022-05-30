@@ -243,11 +243,11 @@ if submitted:
     age = today.year - int(born)
     address = address.title()
     try: 
-        geolocator = Nominatim(user_agent="GTA Lookup")
-        geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
+        geolocator = Nominatim(user_agent="my_app") #using open street map API 
+        geolocator = Nominatim(user_agent="my_app")
         location = geolocator.geocode(f'{address} {city} {pcode}')
-        st.write(location)
         lat = location.latitude
+        st.write(lat)
         lon = location.longitude
     except:
         lat = '0'
