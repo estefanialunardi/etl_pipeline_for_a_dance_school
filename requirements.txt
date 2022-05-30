@@ -1,7 +1,7 @@
 streamlit
 pandas
 re
-os
+os.path
 datetime
 dateutil 
 geopy.geocoders
