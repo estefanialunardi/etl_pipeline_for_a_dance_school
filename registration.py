@@ -23,6 +23,7 @@ from contextlib import contextmanager
 from pathlib import Path
 import os
 import os.path
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
@@ -85,7 +86,7 @@ with col1:
     pilates = st.button("📆 Réservez un cours")
 
 if pilates:
-    st.components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1ZK_mrOF6kydTE4tev8pM3GCg95bcCC0DxyIIw67z_Hk3CF5NNPXObP6TFHcm6VaiOwzT8HxDm", width=1200, height=800, scrolling=True)
+    components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1ZK_mrOF6kydTE4tev8pM3GCg95bcCC0DxyIIw67z_Hk3CF5NNPXObP6TFHcm6VaiOwzT8HxDm", width=1200, height=800, scrolling=True)
 
 with col2:
     inscrivez = st.button('Inscrivez-vous 👈')
