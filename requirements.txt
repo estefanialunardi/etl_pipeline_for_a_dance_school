@@ -5,8 +5,7 @@ regex
 path
 datetime
 python-dateutil 
-geocoder
-geopy
+geopy==2.1.0
 geopandas
 sshtunnel
 sqlalchemy
