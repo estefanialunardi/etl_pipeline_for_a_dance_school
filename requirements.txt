@@ -10,12 +10,10 @@ sshtunnel
 sqlalchemy
 email-to
 secure-smtplib
-base64
-sqlite3
+pybase64
+db-sqlite3
 pathlib
-uuid 
-contextlib 
-pathlib 
+contextlib2 
 uuid
 rt
 seaborn
