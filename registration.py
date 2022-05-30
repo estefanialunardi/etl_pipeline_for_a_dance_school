@@ -283,8 +283,9 @@ except:
     st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
     
 try:
+    
     #connect_to_tunnel_and_mysqlserver  
-    #load_dotenv()
+    load_dotenv()
 
     db_server = st.secrets["db_server"]
     user = st.secrets["user"]
@@ -372,7 +373,7 @@ try:
     st.success("Merci! Rendez-vous en classe !")
     st.balloons()
 except:
-    st.error("Quelque chose s'est mal passé. Réessayez plus tard!4")    
+    st.error("Quelque chose s'est mal passé. Réessayez plus tard!")    
 
 
 
