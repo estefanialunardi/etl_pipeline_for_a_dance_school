@@ -286,16 +286,16 @@ try:
     #connect_to_tunnel_and_mysqlserver  
     #load_dotenv()
 
-    db_server = st.secrets["db_server"])
-    user = st.secrets["user"])
-    db_port = st.secrets["db_port"])
-    password = st.secrets["password"])
-    ip = st.secrets["ip"])
-    db_name = st.secrets["db_name"])
-    ip_ssh = st.secrets["ip_ssh"])
-    ssh_username = st.secrets["ssh_username"])
-    ssh_password = st.secrets["ssh_password"])
-    remote_bind_address = st.secrets["remote_bind_address"])
+    db_server = st.secrets["db_server"]
+    user = st.secrets["user"]
+    db_port = st.secrets["db_port"]
+    password = st.secrets["password"]
+    ip = st.secrets["ip"]
+    db_name = st.secrets["db_name"]
+    ip_ssh = st.secrets["ip_ssh"]
+    ssh_username = st.secrets["ssh_username"]
+    ssh_password = st.secrets["ssh_password"]
+    remote_bind_address = st.secrets["remote_bind_address"]
 
 
     #db_server= os.getenv('db_server')
