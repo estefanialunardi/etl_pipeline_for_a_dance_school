@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import re
-import os 
+import os
+import os.path
 import datetime
 from dateutil import parser
 from geopy.geocoders import Nominatim 
@@ -23,6 +24,7 @@ import uuid
 from contextlib import contextmanager
 from pathlib import Path
 from uuid import uuid4
+
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 st.markdown(
