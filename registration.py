@@ -344,7 +344,7 @@ try:
         course_filled.columns = ['course', 'name']
         course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
     except:
-        st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
+        st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")
     #bytes_medical = certificat_medical.getvalue()
     #sql_blob_query = f""" INSERT INTO medical23 VALUES (%s,%s)""" 
     #engine.execute(sql_blob_query, ['2',memoryview(bytes_medical)])
@@ -369,7 +369,7 @@ try:
     st.success("Merci! Rendez-vous en classe !")
     st.balloons()
 except:
-    pass
+    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 5")
 
 
 
