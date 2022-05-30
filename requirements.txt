@@ -7,7 +7,6 @@ datetime
 python-dateutil 
 geocoder
 geopy
-geopy.geocoders
 geopandas
 sshtunnel
 sqlalchemy
