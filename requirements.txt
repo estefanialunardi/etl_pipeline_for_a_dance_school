@@ -18,5 +18,4 @@ uuid
 rt
 seaborn
 plotly.express
-plotly.graph_objects
 python-dotenv
