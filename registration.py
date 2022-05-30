@@ -246,6 +246,7 @@ if submitted:
         geolocator = Nominatim(user_agent="GTA Lookup")
         geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
         location = geolocator.geocode(f'{address} {city} {pcode}')
+        st.write(location)
         lat = location.latitude
         lon = location.longitude
     except:
