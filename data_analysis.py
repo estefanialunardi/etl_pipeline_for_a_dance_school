@@ -40,7 +40,7 @@ def check_password():
         st.error("😕 Mauvais utilisateur ou mot de passe")
         return False
     else:
-        # Password correct.
+
         return True
 
 if check_password():
@@ -70,21 +70,27 @@ if check_password():
     if nom == "":
         pass
     else:
-
-        elevesdf_query = pd.read_sql_query(f"select elevesdf.name, birthday, age, address, city, toulouse, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total from elevesdf join coursdf22 on coursdf22.name=elevesdf.name join paimentsdf22 on elevesdf.name=paimentsdf22.name where elevesdf.name = '{nom}'" ,conn_addr)
+        elevesdf_query = pd.read_sql_query(f"select elevesdf.name, birthday, age, address, city, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total from elevesdf join coursdf22 on coursdf22.name=elevesdf.name join paimentsdf22 on elevesdf.name=paimentsdf22.name where elevesdf.name = '{nom}'" ,conn_addr)
         st.write(elevesdf_query)
-    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+        elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+        st.title("Confirmer l'état du paiement")
+        status = st.selectbox('Statut de paiement', options=["En attente", "Payé"])
+        status_button = st.button("Confirmer l'état du paiement")
+        if status_button:
+            mySql_payment_status_query = f"""UPDATE paimentsdf23 set payment_status = '{status}' where `name` = '{nom}'"""
+            engine.execute(mySql_payment_status_query)
+        else:
+            pass
 
+    elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
+    st.title('Data Analysis')
     st.title('How old are the students?')
     st.write('The most prevalent age group is children. 40% of students are under 12 years old. Adolescents (13 to 17) represent 9% of those enrolled. Adults (from 18 to 62 years old) also account for 40% of the total. The other 10% are made up of elderly people up to 75 years old.')
     fig1 = px.histogram(elevesdf, x='age', nbins=20, title="Students by age groups")
     fig1.update_layout(bargap=0.2, xaxis1={'title': 'Age Group'}, yaxis1={'title': 'Students'})
     st.plotly_chart(fig1)
 
-    st.write("""Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2.
-
-    Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.
-    """)
+    st.write("""Although they are the proportionally most significant age group in the school, children are divided between the courses they most frequent. Children's classes have an average of 7 students per class(Éveil, Initiation and Préparatoire). Older children also participate in other courses, with teenagers mainly, such as the PBT, Classique 1 and Classique 2. Among the courses aimed at all age groups, the classes of Classique Moyen and Classique Intermediére are the most frequented.    """)
     courses_ages =pd.read_sql_query("""select c.name, c.course, e.age from course_filled as c join elevesdf as e on e.name = c.name""",conn_addr)
     fig3 = px.bar(courses_ages, x ='name', y=['course'], color = 'age', labels={'x':'Course', 'y':''}, title="Courses by age")
     fig3.update_layout(barmode='stack', xaxis1={'title': 'Courses'}, yaxis1={'title': ''})
