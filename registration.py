@@ -5,6 +5,7 @@ import datetime
 from dateutil import parser
 import geopy
 from geopy.geocoders import Nominatim 
+from geopy.extra.rate_limiter import RateLimiter
 from sshtunnel import SSHTunnelForwarder
 import sqlalchemy as db
 from sqlalchemy import create_engine
@@ -242,7 +243,8 @@ if submitted:
     age = today.year - int(born)
     address = address.title()
     try: 
-        geolocator = Nominatim(user_agent="geolocalização")
+        geolocator = Nominatim(user_agent="GTA Lookup")
+        geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
         location = geolocator.geocode(f'{address} {city} {pcode}')
         lat = location.latitude
         lon = location.longitude
@@ -371,7 +373,7 @@ try:
     st.success("Merci! Rendez-vous en classe !")
     st.balloons()
 except:
-    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 5")
+    pass
 
 
 
