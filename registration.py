@@ -280,13 +280,14 @@ try:
             else:
                 classes_student.append(0)
 except:
-    pass
+    st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
     
 try:
     #connect_to_tunnel_and_mysqlserver  
     #load_dotenv()
 
     db_server = st.secrets["db_server"]
+    st.write(st.secrets["db_server"])
     user = st.secrets["user"]
     db_port = st.secrets["db_port"]
     password = st.secrets["password"]
@@ -326,12 +327,12 @@ try:
         engine.execute(mySql_insert_query1)
         st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
     try: 
-        mySql_insert_query2 = f"""INSERT INTO coursdf22 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{mail}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
+        mySql_insert_query2 = f"""INSERT INTO coursdf22 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
         engine.execute(mySql_insert_query2)
     except:
         st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
     try: 
-        mySql_insert_query3 = f"""INSERT INTO paimentsdf22 (name, registration, installments, total) VALUES  ('{mail}', '{registration}', '{installments}', '{total}');"""
+        mySql_insert_query3 = f"""INSERT INTO paimentsdf22 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
         engine.execute(mySql_insert_query3)
     except:
         st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
@@ -372,7 +373,7 @@ try:
     st.success("Merci! Rendez-vous en classe !")
     st.balloons()
 except:
-    pass    
+    st.error("Quelque chose s'est mal passé. Réessayez plus tard!")    
 
 
 
