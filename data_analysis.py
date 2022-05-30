@@ -15,8 +15,10 @@ from dotenv import load_dotenv
 
 st.title('Attitude Corps et Danses')
 load_dotenv()
-data_user=os.getenv("data_user")
-data_password=os.getenv("data_password")
+st.write(data_user, st.secrets["data_user"])
+st.write(data_password, st.secrets["data_password"])
+#data_user=os.getenv("data_user")
+#data_password=os.getenv("data_password")
 
 def check_password():
     """Returns `True` if the user had a correct password."""
@@ -24,21 +26,19 @@ def check_password():
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if (
-            st.session_state["username"] == data_user and st.session_state["password"] == data_password):
+            st.session_state["password"] == data_password):
             st.session_state["password_correct"] = True
-            del st.session_state["password"]  # don't store username + password
+            del st.session_state["password"]  
             del st.session_state["username"]
         else:
             st.session_state["password_correct"] = False
     if "password_correct" not in st.session_state:
-        st.text_input("Utilisateur", on_change=password_entered, key="username")
         st.text_input("Mot de Passe", type="password", on_change=password_entered, key="password")
         return False
     elif not st.session_state["password_correct"]:
         # Password not correct, show input + error.
-        st.text_input("Username", on_change=password_entered, key="username")
         st.text_input("Password", type="password", on_change=password_entered, key="password")
-        st.error("😕 Mauvais utilisateur ou mot de passe")
+        st.error("😕 Mauvais mot de passe")
         return False
     else:
 
@@ -46,16 +46,27 @@ def check_password():
 
 if check_password():
 
-    db_server= os.getenv('db_server')
-    user=os.getenv("user")
-    db_port=os.getenv("db_port")
-    password=os.getenv("password")
-    ip=os.getenv("ip")
-    db_name=os.getenv("db_name")
-    ip_ssh=os.getenv("ip_ssh")
-    ssh_username=os.getenv("ssh_username")
-    ssh_password=os.getenv("ssh_password")
-    remote_bind_address=os.getenv("remote_bind_address")
+    st.write(db_server, st.secrets["db_server"])
+    st.write(user, st.secrets["user"])
+    st.write(db_port, st.secrets["db_port"])
+    st.write(password, st.secrets["password"])
+    st.write(ip, st.secrets["ip"])
+    st.write(db_name, st.secrets["db_name"])
+    st.write(ip_ssh, st.secrets["ip_ssh"])
+    st.write(ssh_username, st.secrets["ssh_username"])
+    st.write(ssh_password, st.secrets["ssh_password"])
+    st.write(remote_bind_address, st.secrets["remote_bind_address"])
+
+    #db_server= os.getenv('db_server')
+    #user=os.getenv("user")
+    #db_port=os.getenv("db_port")
+    #password=os.getenv("password")
+    #ip=os.getenv("ip")
+    #db_name=os.getenv("db_name")
+    #ip_ssh=os.getenv("ip_ssh")
+    #ssh_username=os.getenv("ssh_username")
+    #ssh_password=os.getenv("ssh_password")
+    #remote_bind_address=os.getenv("remote_bind_address")
     try: 
         server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
         server.start()
