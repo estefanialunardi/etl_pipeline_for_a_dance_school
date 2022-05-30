@@ -4,7 +4,7 @@ regex
 path
 datetime
 python-dateutil 
-geopy.geocoders
+geopy
 sshtunnel
 sqlalchemy
 pymysql
