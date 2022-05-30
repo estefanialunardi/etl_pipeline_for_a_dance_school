@@ -232,55 +232,52 @@ try:
             submitted = st.button("Envoyer")
 except:
     pass
-try:
-    if submitted:
-        name= name.title()
-        date = parser.parse(birthday)
-        birthday=date.strftime('%d-%m-%Y')
-        born = str(birthday).split('-')[-1]
-        today = date.today()
-        age = today.year - int(born)
-        address = address.title()
-        geolocator = Nominatim(user_agent="geolocalização")
-        location = geolocator.geocode(f'{address} {city} {pcode}')
-        lat = location.latitude
-        lon = location.longitude       
-        city = city.title()
-        if city == "Toulouse" or city =="toulouse":
-            toulouse = "Toulouse"
-        else:
-            toulouse = "Autre ville"
-        pcode = pcode
-        mail = mail.lower()
-        legal_representative =legal_representative.title()
-        classes=[]
-        for i in range(len(schedule)):
-            classes.append(schedule[i])
-        classes= ", ".join(classes)
-        schedule=classes
-        classes2=[]
-        for i in range(len(schedule2)):
-            classes2.append(schedule2[i])
-        classes2= ", ".join(classes2)
-        schedule2=classes2
-        classes3=[]
-        for i in range(len(schedule3)):
-            classes3.append(schedule3[i])
-        classes3= ", ".join(classes3)
-        schedule3=classes3
-        classes_student=[mail]
-        data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
-        for cours in data_courses:
-            if course == cours or course2 == cours or course3 == cours:
-                if course != 'carte 10 cours':
-                    classes_student.append(1)
-                else:
-                    for i in range(15):
-                        classes_student.append(1)
+if submitted:
+    name= name.title()
+    date = parser.parse(birthday)
+    birthday=date.strftime('%d-%m-%Y')
+    born = str(birthday).split('-')[-1]
+    today = date.today()
+    age = today.year - int(born)
+    address = address.title()
+    geolocator = Nominatim(user_agent="geolocalização")
+    location = geolocator.geocode(f'{address} {city} {pcode}')
+    lat = location.latitude
+    lon = location.longitude       
+    city = city.title()
+    if city == "Toulouse" or city =="toulouse":
+        toulouse = "Toulouse"
+    else:
+        toulouse = "Autre ville"
+    pcode = pcode
+    mail = mail.lower()
+    legal_representative =legal_representative.title()
+    classes=[]
+    for i in range(len(schedule)):
+        classes.append(schedule[i])
+    classes= ", ".join(classes)
+    schedule=classes
+    classes2=[]
+    for i in range(len(schedule2)):
+        classes2.append(schedule2[i])
+    classes2= ", ".join(classes2)
+    schedule2=classes2
+    classes3=[]
+    for i in range(len(schedule3)):
+        classes3.append(schedule3[i])
+    classes3= ", ".join(classes3)
+    schedule3=classes3
+    classes_student=[mail]
+    data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
+    for cours in data_courses:
+        if course == cours or course2 == cours or course3 == cours:
+            if course != 'carte 10 cours':
+                classes_student.append(1)
             else:
-                classes_student.append(0)
-except:
-    st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
+                for i in range(15):
+                    classes_student.append(1)
+        else:
+            classes_student.append(0)
 
 try:    
     #connect_to_tunnel_and_mysqlserver  
