@@ -3,6 +3,7 @@ import pandas as pd
 import re
 import datetime
 from dateutil import parser
+import geopy
 from geopy.geocoders import Nominatim 
 from sshtunnel import SSHTunnelForwarder
 import sqlalchemy as db
@@ -240,10 +241,14 @@ if submitted:
     today = date.today()
     age = today.year - int(born)
     address = address.title()
-    geolocator = Nominatim(user_agent="geolocalização")
-    location = geolocator.geocode(f'{address} {city} {pcode}')
-    lat = location.latitude
-    lon = location.longitude       
+    try: 
+        geolocator = Nominatim(user_agent="geolocalização")
+        location = geolocator.geocode(f'{address} {city} {pcode}')
+        lat = location.latitude
+        lon = location.longitude
+    except:
+        lat = '0'
+        lon = '0'       
     city = city.title()
     if city == "Toulouse" or city =="toulouse":
         toulouse = "Toulouse"
