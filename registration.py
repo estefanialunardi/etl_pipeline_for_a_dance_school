@@ -85,7 +85,7 @@ with col1:
     pilates = st.button("📆 Réservez un cours")
 
 if pilates:
-    components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1ZK_mrOF6kydTE4tev8pM3GCg95bcCC0DxyIIw67z_Hk3CF5NNPXObP6TFHcm6VaiOwzT8HxDm", width=1200, height=800, scrolling=True)
+    st.components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1ZK_mrOF6kydTE4tev8pM3GCg95bcCC0DxyIIw67z_Hk3CF5NNPXObP6TFHcm6VaiOwzT8HxDm", width=1200, height=800, scrolling=True)
 
 with col2:
     inscrivez = st.button('Inscrivez-vous 👈')
