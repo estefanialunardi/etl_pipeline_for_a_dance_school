@@ -9,7 +9,7 @@ geopy
 sshtunnel
 sqlalchemy
 email-to
-smtplib
+secure-smtplib
 base64
 sqlite3
 pathlib
