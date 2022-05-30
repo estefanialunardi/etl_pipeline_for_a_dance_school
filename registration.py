@@ -287,7 +287,6 @@ try:
     #load_dotenv()
 
     db_server = st.secrets["db_server"]
-    st.write(st.secrets["db_server"])
     user = st.secrets["user"]
     db_port = st.secrets["db_port"]
     password = st.secrets["password"]
@@ -317,7 +316,7 @@ try:
         engine = create_engine(conn_addr)
         connection = engine.connect()
     except:
-        st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
+        st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1")
     try:
         mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
         engine.execute(mySql_insert_query0)
@@ -330,12 +329,12 @@ try:
         mySql_insert_query2 = f"""INSERT INTO coursdf22 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
         engine.execute(mySql_insert_query2)
     except:
-        st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
+        st.error("Quelque chose s'est mal passé. Réessayez plus tard!2 ")
     try: 
         mySql_insert_query3 = f"""INSERT INTO paimentsdf22 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
         engine.execute(mySql_insert_query3)
     except:
-        st.error("Quelque chose s'est mal passé. Réessayez plus tard!")
+        st.error("Quelque chose s'est mal passé. Réessayez plus tard!3 ")
     try:
         courses = pd.read_sql_query("""SELECT name, course FROM coursdf22 UNION ALL SELECT name, course2 FROM coursdf22 UNION ALL SELECT name, course3 FROM coursdf22""",conn_addr)
         courses_filled=[]
@@ -373,7 +372,7 @@ try:
     st.success("Merci! Rendez-vous en classe !")
     st.balloons()
 except:
-    st.error("Quelque chose s'est mal passé. Réessayez plus tard!")    
+    st.error("Quelque chose s'est mal passé. Réessayez plus tard!4")    
 
 
 
