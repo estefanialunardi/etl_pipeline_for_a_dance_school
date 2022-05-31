@@ -376,8 +376,6 @@ try:
         #mail_server.close()
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
-    except:
-        pass
 except:
     st.error("Veuillez remplir le formulaire en entier avant de le soumettre. 📝")
 
