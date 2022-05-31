@@ -1,6 +1,3 @@
-from gettext import install
-from turtle import get_poly
-
 import streamlit as st
 import pandas as pd
 import re
