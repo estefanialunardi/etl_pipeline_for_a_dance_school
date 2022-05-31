@@ -2,7 +2,6 @@ from gettext import install
 from turtle import get_poly
 
 pip install geopy 
-pip install geocoders
 
 import streamlit as st
 import pandas as pd
