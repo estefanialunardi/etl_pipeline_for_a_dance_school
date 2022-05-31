@@ -82,7 +82,7 @@ if check_password():
     if nom == "":
         pass
     else:
-        elevesdf_query = pd.read_sql_query(f"select elevesdf.name, birthday, age, address, city, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total from elevesdf join coursdf22 on coursdf22.name=elevesdf.name join paimentsdf22 on elevesdf.name=paimentsdf22.name where elevesdf.name = '{nom}'" ,conn_addr)
+        elevesdf_query = pd.read_sql_query(f"SELECT elevesdf.name, birthday, age, address, city, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total FROM elevesdf JOIN coursdf22 ON coursdf22.name=elevesdf.name JOIN paimentsdf22 ON elevesdf.name=paimentsdf22.name WHERE elevesdf.name LIKE '{nom}'" ,conn_addr)
         st.write(elevesdf_query)
         elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
         st.title("Confirmer l'état du paiement")
