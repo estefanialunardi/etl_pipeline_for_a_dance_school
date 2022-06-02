@@ -69,17 +69,18 @@ st.markdown(
     """,
     unsafe_allow_html=True)
 
+st.header("""Bienvenue à Attitude Corps et Danses.""")
+
 st.image(('registration.jpg'))
 
-st.header("""Bienvenue à Attitude Corps et Danses.""")
-st.write(""" 👇 Cliquez sur les onglets suivants pour réserver un cours de Pilates, Stage, Atelier ou Masterclass.  Rendez-vous au studio !""")
+st.write(""" 👇 Si vous êtes dèjá inscrit à l'école, cliquez sur les onglets suivants pour réserver un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio !""")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     pilates = st.button("📆 Réservez un cours de Pilates")
 
-with col3:
+with col2:
     stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
 
 if pilates:
@@ -89,9 +90,12 @@ if stage:
     st.write("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
     #components.iframe(f"", width=1200, height=800, scrolling=True)
 
+st.write("""
 
-st.write("🩰 Si vous n'êtes pas encore inscrit, remplissez le formulaire ci-dessous. 🩰")
-st.subheader("Inscrivez-vous à l'école 👈")
+
+""")
+st.header("Inscrivez-vous à l'école 👈")
+st.subheader("🩰 Si vous n'êtes pas encore inscrit, remplissez le formulaire ci-dessous. 🩰")
 
 def course_choice (cours):
     """Student may choose its courses and better schedule"""
