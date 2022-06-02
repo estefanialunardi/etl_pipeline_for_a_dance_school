@@ -80,7 +80,7 @@ st.image(('registration.jpg'))
 
 st.subheader("""Bienvenue à Attitude Corps et Danses.""")
 
-st.sidebar.subheader("""🩰 Cliquez sur les onglets suivants pour vous inscrire à un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰"""): 
+st.sidebar.subheader("""🩰 Cliquez sur les onglets suivants pour vous inscrire à un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰""")
 
 col1, col2 = st.sidebar.columns(2)
 with col1:
