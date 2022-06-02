@@ -285,7 +285,7 @@ try:
                     for i in range(15):
                         classes_student.append(1)
             else:
-                classes_student.append(0
+                classes_student.append(0)
         #connect_to_tunnel_and_mysqlserver  
         #load_dotenv()
         db_server = st.secrets["db_server"]
