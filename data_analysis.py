@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import pandas as pd
 from sshtunnel import SSHTunnelForwarder
 import pymysql
+pymysql.install_as_MySQLdb()
 import sqlalchemy as db
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
