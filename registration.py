@@ -3,6 +3,7 @@ import pandas as pd
 import re
 import datetime
 from dateutil import parser
+import geopy
 from geopy.geocoders import Nominatim 
 from geopy.extra.rate_limiter import RateLimiter
 from sshtunnel import SSHTunnelForwarder
@@ -27,6 +28,9 @@ import os.path
 import streamlit.components.v1 as components
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
+
+st.write(geopy.__version__)
+
 
 st.markdown(
     """
