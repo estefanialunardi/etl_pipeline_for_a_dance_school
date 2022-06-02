@@ -287,7 +287,7 @@ try:
             else:
                 classes_student.append(0
         #connect_to_tunnel_and_mysqlserver  
-        load_dotenv()
+        #load_dotenv()
         db_server = st.secrets["db_server"]
         user = st.secrets["user"]
         db_port = st.secrets["db_port"]
