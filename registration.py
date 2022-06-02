@@ -94,8 +94,8 @@ st.write("""
 
 
 """)
-st.header("Inscrivez-vous à l'école 👈")
-st.subheader("🩰 Si vous n'êtes pas encore inscrit, remplissez le formulaire ci-dessous. 🩰")
+st.subheader("Inscrivez-vous à l'école 👈")
+st.write("🩰 Si vous n'êtes pas encore inscrit, remplissez le formulaire ci-dessous. 🩰")
 
 def course_choice (cours):
     """Student may choose its courses and better schedule"""
