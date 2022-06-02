@@ -26,14 +26,12 @@ expiry_days= 30
 hashed_passwords = stauth.Hasher(data_password).generate()
 names = ["Juliana Bastos", "Estefânia Mesquita"]
 
-
-
 authenticator = stauth.Authenticate(names, data_user ,hashed_passwords,cookie_name,some_signature_key, expiry_days)
 names, authentication_status, data_user  = authenticator.login('Login', 'sidebar')
 
 if authentication_status:
     authenticator.logout('Logout', 'main')
-    st.subheader(f'Coucou, {patients["name"][1]}!')
+    st.subheader(f'Coucou, {names}!')
     st.write(db_server, st.secrets["db_server"])
     st.write(user, st.secrets["user"])
     st.write(db_port, st.secrets["db_port"])
