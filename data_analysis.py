@@ -150,11 +150,10 @@ if authentication_status:
     st.title(f'In 2022, the regular students payment sumed {total_bill} Euros')
 
 elif authentication_status == False:
-    st.error('Senha e/ou nome de usuário incorretos')
-    cadastro = st.button('Cadastre-se')
+    st.error("Nom d'utilisateur et mot de passe erronés")
+
 elif authentication_status == None:
-    cadastro2 = st.button('Cadastre-se')
-    st.warning('Por favor insira o seu CPF e s
+    st.warning("S'il vous plâit, insérer votre nom d'utilisateur et votre mot de passe")
 
 def disconnect_mysql ():
     """Disconnect from MySQL server"""
