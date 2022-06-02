@@ -84,14 +84,16 @@ st.subheader("""Bienvenue à Attitude Corps et Danses.""")
 st.subheader("""🩰 Cliquez sur les onglets suivants pour vous inscrire à l'école, ou réserver un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰""")
 
 col1, col2, col3 = st.columns(3)
-with col1:
-    inscription = st.button("Inscrivez-vous à l'école 👈")
 
-with col2:
+with col1:
     pilates = st.button("📆 Réservez un cours de Pilates")
 
 with col3:
     stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
+
+col1, col2, col3 = st.columns(3)
+with col2:
+    inscription = st.button("Inscrivez-vous à l'école 👈")
 
 if pilates:
     components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=6000, scrolling=True)
