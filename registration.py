@@ -44,7 +44,7 @@ st.markdown(
     justify-content: center
     box-sizing: 5%;
     height: 3em;
-    width: 15em;
+    width: 26em;
     font-size:16px;
     border: 2px solid;
     border-radius: 5px;
@@ -90,8 +90,9 @@ if stage:
     #components.iframe(f"", width=1200, height=800, scrolling=True)
 
 
-st.subheader("Inscrivez-vous à l'école 👈")
 st.write("🩰 Si vous n'êtes pas encore inscrit, remplissez le formulaire ci-dessous. 🩰")
+st.subheader("Inscrivez-vous à l'école 👈")
+
 def course_choice (cours):
     """Student may choose its courses and better schedule"""
     cours_info =[]
@@ -151,14 +152,14 @@ def course_choice (cours):
         pass
     return cours_info
 try:
-    name= st.text_input ("Nom et prénom d'élève")
+    name= st.text_input ("Nom et prénom de l'élève")
     birthday=st.text_input("Date de naissance (jj/mm/aaaa)")
-    address = st.text_input ("Addresse")
+    address = st.text_input ("Adresse")
     city = st.text_input ("Ville")
-    pcode = st.text_input ("Postal / Zip Code", key = int)
+    pcode = st.text_input ("Code postal", key = int)
     mail = st.text_input ("Email")
-    telephone =st.text_input('Téléphone (example: +3306XXXXXXXX)')
-    legal_representative =st.text_input ("Représentant légal de l’inscrit (Pour les mineurs)")
+    telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
+    legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
     course = st.selectbox('Cours', ['Sélectionnez votre cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire', 'Moderne', 'Contemporain', 'Barre à Terre', 'PBT + Ballet Fitness', 'PBT', 'Pilates'])
     first_choice = course_choice(course)
     courses_qtd = 0
