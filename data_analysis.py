@@ -41,7 +41,7 @@ if authentication_status:
     ip_ssh = st.secrets["ip_ssh"]
     ssh_username= st.secrets["ssh_username"]
     ssh_password= st.secrets["ssh_password"]
-    remote_bind_address= st.secrets["remote_bind_address"]
+  
 
     #db_server= os.getenv('db_server')
     #user=os.getenv("user")
