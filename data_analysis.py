@@ -17,35 +17,19 @@ st.title('Attitude Corps et Danses')
 load_dotenv()
 st.write(data_user, st.secrets["data_user"])
 st.write(data_password, st.secrets["data_password"])
-#data_user=os.getenv("data_user")
-#data_password=os.getenv("data_password")
 
-def check_password():
-    """Returns `True` if the user had a correct password."""
 
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        if (
-            st.session_state["password"] == data_password):
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  
-            del st.session_state["username"]
-        else:
-            st.session_state["password_correct"] = False
-    if "password_correct" not in st.session_state:
-        st.text_input("Mot de Passe", type="password", on_change=password_entered, key="password")
-        return False
-    elif not st.session_state["password_correct"]:
-        # Password not correct, show input + error.
-        st.text_input("Password", type="password", on_change=password_entered, key="password")
-        st.error("😕 Mauvais mot de passe")
-        return False
-    else:
+cookie_name = 'some_cookie_name'
+some_signature_key= 'some_signature_key'
+expiry_days= 30
+hashed_passwords = stauth.Hasher(data_password).generate()
 
-        return True
+authenticator = stauth.Authenticate("Juliana",'juliana',hashed_passwords,cookie_name,some_signature_key, expiry_days)
+"Juliana", authentication_status, 'juliana'  = authenticator.login('Login',)
 
-if check_password():
-
+if authentication_status:
+    authenticator.logout('Logout', 'main')
+    st.subheader(f'Coucou, {patients["name"][1]}!')
     st.write(db_server, st.secrets["db_server"])
     st.write(user, st.secrets["user"])
     st.write(db_port, st.secrets["db_port"])
@@ -168,3 +152,10 @@ def disconnect_mysql ():
 def shut_ssh_tunnel ():
     """Stop the SSH tunnel"""
     server.stop()
+
+elif authentication_status == False:
+    st.error('Senha e/ou nome de usuário incorretos')
+    cadastro = st.button('Cadastre-se')
+elif authentication_status == None:
+    cadastro2 = st.button('Cadastre-se')
+    st.warning('Por favor insira o seu CPF e s
