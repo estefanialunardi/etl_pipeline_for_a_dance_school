@@ -88,17 +88,14 @@ with col1:
 with col2:
     stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
 
-with col3:
-    inscription = st.button("Inscrivez-vous à l'école 👈")
-
 if pilates:
     components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=1200, height=700, scrolling=True)
 
 if stage:
     st.write("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
     #components.iframe(f"", width=1200, height=800, scrolling=True)
-
-if inscription:
+    
+with st.expander("Inscrivez-vous à l'école 👈"):
     st.write("""🩰 Remplissez le formulaire ci-dessous, pour vous inscrire à l'école ! 
     Rendez-vous en classe ! 🩰""")
 
