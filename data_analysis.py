@@ -32,16 +32,16 @@ names, authentication_status, data_user  = authenticator.login('Login', 'sidebar
 if authentication_status:
     authenticator.logout('Logout', 'main')
     st.subheader(f'Coucou, {names}!')
-    st.write(db_server, st.secrets["db_server"])
-    st.write(user, st.secrets["user"])
-    st.write(db_port, st.secrets["db_port"])
-    st.write(password, st.secrets["password"])
-    st.write(ip, st.secrets["ip"])
-    st.write(db_name, st.secrets["db_name"])
-    st.write(ip_ssh, st.secrets["ip_ssh"])
-    st.write(ssh_username, st.secrets["ssh_username"])
-    st.write(ssh_password, st.secrets["ssh_password"])
-    st.write(remote_bind_address, st.secrets["remote_bind_address"])
+    db_server = st.secrets["db_server"]
+    user = st.secrets["user"]
+    db_port = st.secrets["db_port"]
+    password = st.secrets["password"]
+    ip = st.secrets["ip"]
+    db_name= st.secrets["db_name"]
+    ip_ssh = st.secrets["ip_ssh"]
+    ssh_username= st.secrets["ssh_username")
+    ssh_password= st.secrets["ssh_password"]
+    remote_bind_address= st.secrets["remote_bind_address"]
 
     #db_server= os.getenv('db_server')
     #user=os.getenv("user")
