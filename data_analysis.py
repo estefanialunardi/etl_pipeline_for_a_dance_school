@@ -23,9 +23,12 @@ cookie_name = 'some_cookie_name'
 some_signature_key= 'some_signature_key'
 expiry_days= 30
 hashed_passwords = stauth.Hasher(data_password).generate()
+names = ["Juliana Bastos", "Estefânia Mesquita"]
+usernames = ["juliana", "estefania"]
 
-authenticator = stauth.Authenticate("Juliana",'juliana',hashed_passwords,cookie_name,some_signature_key, expiry_days)
-"Juliana", authentication_status, 'juliana'  = authenticator.login('Login',)
+
+authenticator = stauth.Authenticate(names,usernames,hashed_passwords,cookie_name,some_signature_key, expiry_days)
+names, authentication_status, usernames  = authenticator.login('Login')
 
 if authentication_status:
     authenticator.logout('Logout', 'main')
