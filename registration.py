@@ -43,8 +43,8 @@ st.markdown(
     justify-content: center
     box-sizing: 5%;
     height: 3em;
-    width: 17em;
-    font-size:20px;
+    width: 15em;
+    font-size:18px;
     border: 2px solid;
     border-radius: 5px;
     padding: 30px;
@@ -70,18 +70,14 @@ st.markdown(
 
 
 )
-primaryColor="#662d91"
-backgroundColor="e0d2e0"
-secondaryBackgroundColor="#c9aec4"
-textColor="#262730"
-font="sans serif"
+
 
 st.image(('registration.jpg'))
 
-st.subheader("""Bienvenue à Attitude Corps et Danses.""")
+st.header("""Bienvenue à Attitude Corps et Danses.""")
 
 
-st.subheader("""🩰 Cliquez sur les onglets suivants pour vous inscrire à l'école, ou réserver un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰""")
+st.write("""🩰 Cliquez sur les onglets suivants pour vous inscrire à l'école, ou réserver un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰""")
 
 col1, col2, col3 = st.columns(3)
 
