@@ -80,19 +80,19 @@ st.image(('registration.jpg'))
 
 st.subheader("""Bienvenue à Attitude Corps et Danses.""")
 
-with st.sidebar("""🩰 Cliquez sur les onglets suivants pour vous inscrire à un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰"""): 
+st.sidebar("""🩰 Cliquez sur les onglets suivants pour vous inscrire à un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰"""): 
 
-    col1, col2 = st.columns(2)
-    with col1:
-        pilates = st.button("📆 Réservez un cours de Pilates")
-        if pilates:
-            components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=1200, height=800, scrolling=True)
+col1, col2 = st.sidebar.columns(2)
+with col1:
+    pilates = st.sidebar.button("📆 Réservez un cours de Pilates")
+    if pilates:
+        components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=1200, height=800, scrolling=True)
 
-    with col2:
-        stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
-        if pilates:
-            st.subheader("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
-            #components.iframe(f"", width=1200, height=800, scrolling=True)
+with col2:
+    stage = st.sidebar.button("🩰 Réservez Atelier/Stage/Masterclass")
+    if pilates:
+        st.sidebar.subheader("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
+        #components.iframe(f"", width=1200, height=800, scrolling=True)
 
 st.header("Inscrivez-vous à l'école 👈")
 st.subheader("""🩰 Remplissez le formulaire ci-dessous, pour vous inscrire à l'école ! 
