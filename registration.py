@@ -92,7 +92,7 @@ with col3:
     inscription = st.button("Inscrivez-vous à l'école 👈")
 
 if pilates:
-    components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=600, scrolling=True)
+    components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=1200, height=700, scrolling=True)
 
 if stage:
     st.write("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
