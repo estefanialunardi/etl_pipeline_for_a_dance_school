@@ -43,8 +43,8 @@ st.markdown(
     backgroud-color: #e0d2e0;
     justify-content: center
     box-sizing: 5%;
-    height: 3em;
-    width: 26em;
+    height: 2em;
+    width: 20em;
     font-size:16px;
     border: 2px solid;
     border-radius: 5px;
