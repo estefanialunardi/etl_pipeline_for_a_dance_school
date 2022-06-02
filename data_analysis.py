@@ -149,6 +149,13 @@ if authentication_status:
     total_bill = paimentsdf22['total'].sum()
     st.title(f'In 2022, the regular students payment sumed {total_bill} Euros')
 
+elif authentication_status == False:
+    st.error('Senha e/ou nome de usuário incorretos')
+    cadastro = st.button('Cadastre-se')
+elif authentication_status == None:
+    cadastro2 = st.button('Cadastre-se')
+    st.warning('Por favor insira o seu CPF e s
+
 def disconnect_mysql ():
     """Disconnect from MySQL server"""
     connection.close()  
@@ -156,9 +163,3 @@ def shut_ssh_tunnel ():
     """Stop the SSH tunnel"""
     server.stop()
 
-elif authentication_status == False:
-    st.error('Senha e/ou nome de usuário incorretos')
-    cadastro = st.button('Cadastre-se')
-elif authentication_status == None:
-    cadastro2 = st.button('Cadastre-se')
-    st.warning('Por favor insira o seu CPF e s
