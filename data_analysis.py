@@ -16,10 +16,9 @@ from dotenv import load_dotenv
 st.title('Attitude Corps et Danses')
 load_dotenv()
 
-st.write(data_user, st.secrets["data_user"])
-st.write(data_password, st.secrets["data_password"])
 
-
+data_user = st.secrets["data_user"]
+data_password = st.secrets["data_password"]
 cookie_name = 'some_cookie_name'
 some_signature_key= 'some_signature_key'
 expiry_days= 30
