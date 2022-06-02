@@ -250,9 +250,11 @@ try:
             lat = location.latitude
             st.write(lat)
             lon = location.longitude
-        except:
+        except Exception as geolocator:
             lat = '0'
-            lon = '0'       
+            lon = '0'
+            st.write(geolocator)
+            
         city = city.title()
         if city == "Toulouse" or city =="toulouse":
             toulouse = "Toulouse"
