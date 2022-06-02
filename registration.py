@@ -35,6 +35,7 @@ st.markdown(
     color: #662d91;
     background-color: #e0d2e0;
     /* font-size: 40px; */
+    justify-content: center
 }
 
 .stButton>button{
@@ -43,8 +44,8 @@ st.markdown(
     justify-content: center
     box-sizing: 5%;
     height: 3em;
-    width: 15em;
-    font-size:18px;
+    width: 12em;
+    font-size:16px;
     border: 2px solid;
     border-radius: 5px;
     padding: 30px;
@@ -77,18 +78,17 @@ st.image(('registration.jpg'))
 st.header("""Bienvenue à Attitude Corps et Danses.""")
 
 
-st.write("""🩰 Cliquez sur les onglets suivants pour vous inscrire à l'école, ou réserver un cours de Pilates, Stage, Atelier ou Masterclass. Rendez-vous au studio ! 🩰""")
+st.write("""🩰 Cliquez sur les onglets suivants pour réserver un cours de Pilates, Stage, Atelier ou Masterclass - ou, si n'êtes pas encore inscrit, vous inscrire à l'école.  Rendez-vous au studio ! 🩰""")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
     pilates = st.button("📆 Réservez un cours de Pilates")
 
-with col3:
+with col2:
     stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
 
-col1, col2, col3 = st.columns(3)
-with col2:
+with col3:
     inscription = st.button("Inscrivez-vous à l'école 👈")
 
 if pilates:
