@@ -4,6 +4,9 @@
 <img src="https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=whitehttps://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white" />
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 <img src="https://img.shields.io/badge/Plotly-%233F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white" />
+<img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white" />
+
+
 
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/estefanialunardi/) 
 [<img src='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' />](https://www.linkedin.com/in/estefania-mesquita)
@@ -83,7 +86,8 @@ Finally, once the connection is set, the process of uploading tables (creating o
 # Web Applications
 ## CRUD Web Application
 
-[![Streamlit App](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/registration.py)
+[![https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoCol
+](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/registration.py)
 
  <img src="https://user-images.githubusercontent.com/101064720/171775534-65b253f6-1c58-4199-8d9b-0b30187b27ae.gif" width="800" align="center" type="gif">
 
