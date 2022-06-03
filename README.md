@@ -82,16 +82,23 @@ Finally, once the connection is set, the process of uploading tables (creating o
 
 # Web Applications
 ## CRUD Web Application
-  <img src="https://user-images.githubusercontent.com/101064720/169431148-f2e3f8ca-622d-4610-8ca6-b6c4b08cfffe.gif" width="800" align="center" type="gif">
+ <img src="https://user-images.githubusercontent.com/101064720/171775534-65b253f6-1c58-4199-8d9b-0b30187b27ae.gif" width="800" align="center" type="gif">
+
 Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled out were given, so there are less chances of inadequate filling out. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
   
 After extracting all data, with this optmized process aiming to reduce the work of cleansing data, the application openas a SSH tunnel and connects to MySQL server. Then, it automatically updates all tables of the TB. The students table, which keeps information from all students, regardless if they are former students or not, search for the name provided. If there is already someone with that name in the table, it just updates its data. If its a new student, it inserts a new row.
 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
+In the same applications, students can schedule their Pilates Classes and enroll in Masterclasses, Stages and Ateliers.
+
 ## Data Analysis Web Application
- <img src="https://user-images.githubusercontent.com/101064720/169441223-1705ab81-0a5b-4f35-a0ff-6417e4cc7629.gif" width="800" align="center" type="gif">
-Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school's administration were made directly in Python, using SQLAlchemy library. It also allows the user (which would be only authorized people from the school) to resarch for specific data from students.
+ <img src="https://user-images.githubusercontent.com/101064720/171774736-81055c0a-620b-4a50-a0ea-c32dc2a86d98.gif" width="800" align="center" type="gif">
+ 
+Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school's administration were made directly in Python, using SQLAlchemy library. 
+
+It also allows the user to resarch for specific data from students and update their payment status. It's necessary to log in to access this content.
+
 
 # Analyzed data
 For a better understanding of the school's target audience, questions regarding the students' profile were evaluated - both in personal matters and in their class preferences.
