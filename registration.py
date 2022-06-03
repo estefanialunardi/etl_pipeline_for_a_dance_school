@@ -246,13 +246,10 @@ try:
             geolocator = Nominatim(user_agent="my_app")
             location = geolocator.geocode(f'{address} {city} {pcode}')
             lat = location.latitude
-            st.write(lat)
             lon = location.longitude
         except Exception as geolocator:
             lat = '0'
-            lon = '0'
-            st.write(geolocator)
-            
+            lon = '0'            
         city = city.title()
         if city == "Toulouse" or city =="toulouse":
             toulouse = "Toulouse"
