@@ -82,7 +82,12 @@ Finally, once the connection is set, the process of uploading tables (creating o
 
 # Web Applications
 ## CRUD Web Application
-  <img src="https://user-images.githubusercontent.com/101064720/169431148-f2e3f8ca-622d-4610-8ca6-b6c4b08cfffe.gif" width="800" align="center" type="gif">
+  <img src="https://user-images.githubusercontent.com/101064720/171774736-81055c0a-620b-4a50-a0ea-c32dc2a86d98.gif" width="800" align="center" type="gif">
+
+
+
+
+
 Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled out were given, so there are less chances of inadequate filling out. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
   
 After extracting all data, with this optmized process aiming to reduce the work of cleansing data, the application openas a SSH tunnel and connects to MySQL server. Then, it automatically updates all tables of the TB. The students table, which keeps information from all students, regardless if they are former students or not, search for the name provided. If there is already someone with that name in the table, it just updates its data. If its a new student, it inserts a new row.
