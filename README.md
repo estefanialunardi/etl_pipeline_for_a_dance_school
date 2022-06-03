@@ -90,7 +90,7 @@ After extracting all data, with this optmized process aiming to reduce the work 
 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
-In the same applications, students can schedule their Pilates Classes and enroll in Masterclasses, Stages and Ateliers.
+In the same applications, students can schedule their Pilates Classes and enroll in Masterclasses, Stages and Ateliers. The APP is connected to Google Agenda.
 
 ## Data Analysis Web Application
  <img src="https://user-images.githubusercontent.com/101064720/171774736-81055c0a-620b-4a50-a0ea-c32dc2a86d98.gif" width="800" align="center" type="gif">
