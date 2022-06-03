@@ -89,6 +89,8 @@ After extracting all data, with this optmized process aiming to reduce the work 
 
 In the beggining of each school year, a new table is set for courses and payments. So, the information provided is inserted as a new role on the respective table of that year.
 
+In the same applications, students can schedule their Pilates Classes and enroll in Masterclasses, Stages and Ateliers.
+
 ## Data Analysis Web Application
  <img src="https://user-images.githubusercontent.com/101064720/169441223-1705ab81-0a5b-4f35-a0ff-6417e4cc7629.gif" width="800" align="center" type="gif">
 Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school's administration were made directly in Python, using SQLAlchemy library. 
