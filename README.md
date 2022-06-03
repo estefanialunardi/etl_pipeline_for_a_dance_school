@@ -100,8 +100,6 @@ In the same applications, students can schedule their Pilates Classes and enroll
 
 ## Data Analysis Web Application
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/data_analysis.py)
-
  <img src="https://user-images.githubusercontent.com/101064720/171774736-81055c0a-620b-4a50-a0ea-c32dc2a86d98.gif" width="800" align="center" type="gif">
  
 Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school's administration were made directly in Python, using SQLAlchemy library. 
