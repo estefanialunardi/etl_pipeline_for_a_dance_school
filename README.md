@@ -82,6 +82,8 @@ Finally, once the connection is set, the process of uploading tables (creating o
 
 # Web Applications
 ## CRUD Web Application
+[![Streamlit App](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/registration.py)
+
  <img src="https://user-images.githubusercontent.com/101064720/171775534-65b253f6-1c58-4199-8d9b-0b30187b27ae.gif" width="800" align="center" type="gif">
 
 Aiming to improve the ETL proccess from now on, it was developed a new registration form on a custom web application made with the library Streamlit. All the string fields were splitted and many examples of how each field should be filled out were given, so there are less chances of inadequate filling out. The classes and schedule choice, the most unpatterned fields, are now multiselect widgets.
@@ -93,6 +95,7 @@ In the beggining of each school year, a new table is set for courses and payment
 In the same applications, students can schedule their Pilates Classes and enroll in Masterclasses, Stages and Ateliers. The APP is connected to Google Agenda.
 
 ## Data Analysis Web Application
+[![Streamlit App](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/data_analysis.py)
  <img src="https://user-images.githubusercontent.com/101064720/171774736-81055c0a-620b-4a50-a0ea-c32dc2a86d98.gif" width="800" align="center" type="gif">
  
 Also connected to the DB server, this application was developed to select, manipulate and analize data. All the queries and specific SQL commands to retrieve the information requested by the school's administration were made directly in Python, using SQLAlchemy library. 
