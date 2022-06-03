@@ -86,8 +86,7 @@ Finally, once the connection is set, the process of uploading tables (creating o
 # Web Applications
 ## CRUD Web Application
 
-[![https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoCol
-](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/registration.py)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/registration.py)
 
  <img src="https://user-images.githubusercontent.com/101064720/171775534-65b253f6-1c58-4199-8d9b-0b30187b27ae.gif" width="800" align="center" type="gif">
 
@@ -101,7 +100,7 @@ In the same applications, students can schedule their Pilates Classes and enroll
 
 ## Data Analysis Web Application
 
-[![Streamlit App](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/data_analysis.py)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/estefanialunardi/etl_pipeline_for_a_dance_school/main/data_analysis.py)
 
  <img src="https://user-images.githubusercontent.com/101064720/171774736-81055c0a-620b-4a50-a0ea-c32dc2a86d98.gif" width="800" align="center" type="gif">
  
