@@ -23,3 +23,8 @@ seaborn
 plotly.express
 python-dotenv
 streamlit_authenticator
+pydrive
+pydrive.auth 
+pydrive.drive 
+GoogleAuth
+GoogleDrive
