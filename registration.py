@@ -26,6 +26,8 @@ from pathlib import Path
 import os
 import os.path
 import streamlit.components.v1 as components
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
@@ -105,50 +107,83 @@ def course_choice (cours):
     courses_qtd = 0
     
     if cours== 'Carte de 10 cours':
-            carte_10_cours = st.multiselect('Cours', ['Sélectionnez vos cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire','Moderne','Contemporain','Barre à Terre','PBT + Ballet Fitness','PBT','Pilates'])
+            carte_10_cours = st.multiselect('Cours', ['Sélectionnez vos cours', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
             courses_qtd +=4
     else:
         pass
     if cours== 'Classique 1':
-        heure= st.multiselect('Horaire', ['Mercredi 14h15-15h30', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Mercredi 14h30-15h45', 'Je voudrais un autre horaire'])
         courses_qtd += len(heure)
     elif cours== 'Classique 2':
-        heure= st.multiselect('Horaire', ['Mercredi 17h45-19h15', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Mercredi 17h-18h30', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='Classique Moyen':
         heure= st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
+    elif cours=='Classique Moyen Confirmé':
+        heure= st.multiselect('Horaire', ['Vendredi 10h-11h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
     elif cours=='Classique Interm. – Avancé':
-        heure= st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Samedi 11h-12h30','Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Classique Intermédiaire':
+        heure= st.multiselect('Horaire', ['Mercredi 12h-13h15',  'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Classique Intermédiaire (Spetacle)':
+        heure= st.multiselect('Horaire', ['Jeudi 18h30-20h',  'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='Classique Avancé':
-        heure= st.multiselect('Horaire', ['Mardi 19h30-21h','Samedi 10h30-12h', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Mardi 19h30-21h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Pointes Intermédiaire / Avancé':
+        heure= st.multiselect('Horaire', ['Lundi 19h30-20h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Pointes Enfants / Ados':
+        heure= st.multiselect('Horaire', ['Mercredi 16h-17h', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='Pointes':
         heure= st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
-        courses_qtd +=len(heure)
+        courses_qtd +=len(heure)    
     elif cours=='Éveil':
-        heure= st.multiselect('Horaire', ['Mardi 17h-17h45', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Mercredi 13h45-14h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Débutants':
+        heure= st.multiselect('Horaire', ['Mardi 10h-11h15', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Débutants Adultes':
+        heure= st.multiselect('Horaire', ['Mercredi 18h30-19h30', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='Préparatoire':
-        heure= st.multiselect('Horaire', ['Lundi 17h-18h', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Lundi 17h30-18h30', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
-    elif cours=='Moderne':
-        heure= st.multiselect('Horaire', ['Avertissez-moi lorsque les cours sont disponibles'])
     elif cours=='Contemporain':
         heure= st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='Barre à Terre':
-        heure= st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h','Samedi 12h-13h', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Barre à Terre + Classique Moyen':
+        heure= st.multiselect('Horaire', ['Mercredi, 19h30-21h', 'Samedi 12h30-14h45', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='PBT + Ballet Fitness':
         heure= st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='PBT':
-        heure= st.multiselect('Horaire', ['Lundi 18h-19h','Mercredi 15h30-16h30', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Lundi 18h30-19h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Yoga':
+        heure= st.multiselect('Horaire', ['Vendredi 12h15-13h30', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Initiation':
+        heure= st.multiselect('Horaire', ['Jeudi 17h15-18h15', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     elif cours=='Pilates':
-        heure= st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h45-21h45','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
+        heure= st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h30-21h30','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
+        courses_qtd +=len(heure)
+    elif cours=='Streching':
+        heure= st.multiselect('Horaire', ['Jeudi 10h30-11h15', 'Je voudrais un autre horaire'])
         courses_qtd +=len(heure)
     try:
         cours_info.append(cours)
@@ -166,7 +201,9 @@ try:
     mail = st.text_input ("Email")
     telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
-    course = st.selectbox('Cours', ['Sélectionnez votre cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire', 'Moderne', 'Contemporain', 'Barre à Terre', 'PBT + Ballet Fitness', 'PBT', 'Pilates'])
+    course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
     first_choice = course_choice(course)
     courses_qtd = 0
     course = first_choice[0]
@@ -176,9 +213,13 @@ try:
 except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
 with st.expander("Plus de cours"):
-        course2 = st.selectbox('Cours', ['Sélectionnez votre second cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire', 'Moderne', 'Contemporain', 'Barre à Terre', 'PBT + Ballet Fitness', 'PBT', 'Pilates'])
+        course2 = st.selectbox('Cours', ['Sélectionnez votre second cours', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
         second_choice = course_choice(course2)
-        course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours', 'Classique 1','Classique 2','Classique Moyen','Classique Interm. – Avancé','Classique Avancé','Pointes','Éveil','Préparatoire', 'Moderne', 'Contemporain', 'Barre à Terre', 'PBT + Ballet Fitness', 'PBT', 'Pilates'])
+        course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
         third_choice = course_choice(course3)
         try:
             course2 = second_choice[0]
@@ -274,7 +315,9 @@ try:
         classes3= ", ".join(classes3)
         schedule3=classes3
         classes_student=[mail]
-        data_courses= ['carte 10 cours', 'classique 1', 'pointes', 'classique interm. – avancé', 'éveil', 'classique 2', 'pbt', 'préparatoire', 'moderne', 'pilates', 'classique moyen', 'classique avancé', 'contemporain', 'barre à terre', 'pbt + ballet fitness', 'initiation']
+        data_courses= ['Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching']
         for cours in data_courses:
             if course == cours or course2 == cours or course3 == cours:
                 if course != 'carte 10 cours':
@@ -323,17 +366,17 @@ try:
             engine.execute(mySql_insert_query1)
             st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
         try: 
-            mySql_insert_query2 = f"""INSERT INTO coursdf22 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
+            mySql_insert_query2 = f"""INSERT INTO coursdf23 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
             engine.execute(mySql_insert_query2)
         except:
             st.error("Quelque chose s'est mal passé. Réessayez plus tard!2 ")
         try: 
-            mySql_insert_query3 = f"""INSERT INTO paimentsdf22 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
+            mySql_insert_query3 = f"""INSERT INTO paimentsdf23 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
             engine.execute(mySql_insert_query3)
         except:
             st.error("Quelque chose s'est mal passé. Réessayez plus tard!3 ")
         try:
-            courses = pd.read_sql_query("""SELECT name, course FROM coursdf22 UNION ALL SELECT name, course2 FROM coursdf22 UNION ALL SELECT name, course3 FROM coursdf22""",conn_addr)
+            courses = pd.read_sql_query("""SELECT name, course FROM coursdf23 UNION ALL SELECT name, course2 FROM coursdf23 UNION ALL SELECT name, course3 FROM coursdf23""",conn_addr)
             courses_filled=[]
             name_filled=[]
             for row in range(len(courses['course'])):
@@ -353,19 +396,19 @@ try:
         #engine.execute(sql_blob_query, ['2',memoryview(bytes_dassurance)])    
         connection.close()  
         server.stop()
-        #my_email= os.getenv('my_email')
-        #mail_password= os.getenv('mail_password')
-        #msg=MIMEText(f"""{name} , 
-        #votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-        #Rendez-vous en classe !""")
-        #msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
-        #msg['From']= my_email
-        #msg["To"]= f'{mail}, {my_email}'
-        #mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-        #mail_server.ehlo()
-        #mail_server.login(my_email, mail_password)
-        #mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
-        #mail_server.close()
+        my_email= st.secrets['my_email']
+        mail_password= st.secrets['mail_password']
+        msg=MIMEText(f"""{name} , 
+        votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+        Rendez-vous en classe !""")
+        msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
+        msg['From']= my_email
+        msg["To"]= f'{mail}, {my_email}'
+        mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+        mail_server.ehlo()
+        mail_server.login(my_email, mail_password)
+        mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+        mail_server.close()
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
 except:
