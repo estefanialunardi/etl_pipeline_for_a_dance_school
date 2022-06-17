@@ -390,8 +390,8 @@ try:
         except:
             st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
         try:
-            my_email= st.secrets['my_email']
-            mail_password= st.secrets['mail_password']
+            my_email= st.secrets["my_email"]
+            mail_password= st.secrets["mail_password"]
             msg=MIMEText(f"""{name} , 
             votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
             Rendez-vous en classe !""")
@@ -436,7 +436,7 @@ try:
             #Setup the MIME
             message2 = MIMEMultipart()
             message2['From'] = sender_address
-            message2['To'] = receiver_address
+            message2['To'] = receiver_address2
             message2['Subject'] = f'Certificat {name}'
             #The subject line
             #The body and the attachments for the mail
@@ -453,7 +453,7 @@ try:
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message2.as_string()
-            session.sendmail(sender_address, receiver_address, message2)
+            session.sendmail(sender_address, receiver_address2, message2)
 
             mail_server.close()
         except:
