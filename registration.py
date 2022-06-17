@@ -297,7 +297,34 @@ try:
         pcode = pcode
         mail = mail.lower()
         legal_representative =legal_representative.title()
-        
+        classes=[]
+        for i in range(len(schedule)):
+            classes.append(schedule[i])
+        classes= ", ".join(classes)
+        schedule=classes
+        classes2=[]
+        for i in range(len(schedule2)):
+            classes2.append(schedule2[i])
+        classes2= ", ".join(classes2)
+        schedule2=classes2
+        classes3=[]
+        for i in range(len(schedule3)):
+            classes3.append(schedule3[i])
+        classes3= ", ".join(classes3)
+        schedule3=classes3
+        classes_student=[]
+        data_courses= ['Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching']
+        for cours in data_courses:
+            if course == cours or course2 == cours or course3 == cours:
+                if course != 'carte 10 cours':
+                    classes_student.append(1)
+                else:
+                    for i in range(15):
+                        classes_student.append(1)
+            else:
+                classes_student.append(0)
         #connect_to_tunnel_and_mysqlserver  
         #load_dotenv()
         db_server = st.secrets["db_server"]
