@@ -16,7 +16,9 @@ from dotenv import load_dotenv
 pymysql.install_as_MySQLdb()
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import smtplib,ssl
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib, ssl
 import base64
 import sqlite3
 import pathlib
@@ -26,8 +28,7 @@ from pathlib import Path
 import os
 import os.path
 import streamlit.components.v1 as components
-from email.mime.base import MIMEBase
-from email import encoders
+
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
@@ -394,6 +395,8 @@ try:
             msg=MIMEText(f"""{name} , 
             votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
             Rendez-vous en classe !""")
+            msg['From'] = my_email
+            msg['To'] = mail
             msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
             mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
             mail_server.ehlo()
