@@ -26,8 +26,8 @@ from pathlib import Path
 import os
 import os.path
 import streamlit.components.v1 as components
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+#from pydrive.auth import GoogleAuth
+#from pydrive.drive import GoogleDrive
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
@@ -404,10 +404,23 @@ try:
         msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
         msg['From']= my_email
         msg["To"]= f'{mail}, {my_email}'
+
+        msg = MIMEMultipart() 
+        msg['From'] = my_email 
+        msg['To'] = estefanialunardi@gmail.com 
+        msg['Subject'] = f"Certificat {name}"
+        body = "Certificat"
+        filename = "File_name_with_extension"
+        attachment = open(certificat_medical, "rb") 
+        p = MIMEBase('application', 'octet-stream') 
+        p.set_payload((attachment).read()) 
         mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
         mail_server.ehlo()
         mail_server.login(my_email, mail_password)
         mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+        
+       
+
         mail_server.close()
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
