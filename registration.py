@@ -390,18 +390,31 @@ try:
         except:
             st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
         try:
-            my_email= st.secrets['my_email']
-            mail_password= st.secrets['mail_password']
-            msg=MIMEText(f"""{name} , 
+            port = 465  # For SSL
+            smtp_server = "smtp.gmail.com"
+            sender_email = st.secrets['my_email']
+            receiver_email = mail
+            password = st.secrets['mail_password']
+            message = f"""{name} , 
             votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-            Rendez-vous en classe !""")
-            msg['From'] = my_email
-            msg['To'] = mail
-            msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
-            mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-            mail_server.ehlo()
-            mail_server.login(my_email, mail_password)
-            mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+            Rendez-vous en classe !"""
+
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, message)
+            #my_email= st.secrets['my_email']
+            #mail_password= st.secrets['mail_password']
+            #msg=MIMEText(f"""{name} , 
+            #votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+            #Rendez-vous en classe !""")
+            #msg['From'] = my_email
+            #msg['To'] = mail
+            #msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
+            #mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+            #mail_server.ehlo()
+            #mail_server.login(my_email, mail_password)
+            #mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
         except:
             st.write('1')
         try:
