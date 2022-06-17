@@ -26,8 +26,6 @@ from pathlib import Path
 import os
 import os.path
 import streamlit.components.v1 as components
-#from pydrive.auth import GoogleAuth
-#from pydrive.drive import GoogleDrive
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
