@@ -385,16 +385,8 @@ try:
             course_filled.columns = ['course', 'name']
             course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
         except:
-            st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")
-        #bytes_medical = certificat_medical.getvalue()
-        #sql_blob_query = f""" INSERT INTO medical23 VALUES (%s,%s)""" 
-        #engine.execute(sql_blob_query, ['2',memoryview(bytes_medical)])
-        #bytes_dassurance = certificat_dassurance.getvalue()
-        #sql_blob_query = f""" INSERT INTO assurance23 VALUES (%s,%s)""" 
-        #engine.execute(sql_blob_query, ['2',memoryview(bytes_dassurance)])    
+            st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
         try:
-            connection.close()  
-            server.stop()
             my_email= st.secrets['my_email']
             mail_password= st.secrets['mail_password']
             msg=MIMEText(f"""{name} , 
@@ -403,7 +395,6 @@ try:
             msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
             msg['From']= my_email
             msg["To"]= f'{mail}, {my_email}'
-
             msg = MIMEMultipart() 
             msg['From'] = my_email 
             msg['To'] = estefanialunardi@gmail.com 
