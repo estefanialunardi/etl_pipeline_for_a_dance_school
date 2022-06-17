@@ -426,7 +426,7 @@ try:
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message.as_string()
-            session.sendmail(sender_address, receiver_address, text)]
+            session.sendmail(sender_address, receiver_address, text)
 
             mail_content2 = 'Coucou! This is the certificate of assurance!'
             #Setup the MIME
