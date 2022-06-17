@@ -297,34 +297,7 @@ try:
         pcode = pcode
         mail = mail.lower()
         legal_representative =legal_representative.title()
-        classes=[]
-        for i in range(len(schedule)):
-            classes.append(schedule[i])
-        classes= ", ".join(classes)
-        schedule=classes
-        classes2=[]
-        for i in range(len(schedule2)):
-            classes2.append(schedule2[i])
-        classes2= ", ".join(classes2)
-        schedule2=classes2
-        classes3=[]
-        for i in range(len(schedule3)):
-            classes3.append(schedule3[i])
-        classes3= ", ".join(classes3)
-        schedule3=classes3
-        classes_student=[mail]
-        data_courses= ['Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
-            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
-            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching']
-        for cours in data_courses:
-            if course == cours or course2 == cours or course3 == cours:
-                if course != 'carte 10 cours':
-                    classes_student.append(1)
-                else:
-                    for i in range(15):
-                        classes_student.append(1)
-            else:
-                classes_student.append(0)
+        
         #connect_to_tunnel_and_mysqlserver  
         #load_dotenv()
         db_server = st.secrets["db_server"]
@@ -392,34 +365,37 @@ try:
         #bytes_dassurance = certificat_dassurance.getvalue()
         #sql_blob_query = f""" INSERT INTO assurance23 VALUES (%s,%s)""" 
         #engine.execute(sql_blob_query, ['2',memoryview(bytes_dassurance)])    
-        connection.close()  
-        server.stop()
-        my_email= st.secrets['my_email']
-        mail_password= st.secrets['mail_password']
-        msg=MIMEText(f"""{name} , 
-        votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-        Rendez-vous en classe !""")
-        msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
-        msg['From']= my_email
-        msg["To"]= f'{mail}, {my_email}'
+        try:
+            connection.close()  
+            server.stop()
+            my_email= st.secrets['my_email']
+            mail_password= st.secrets['mail_password']
+            msg=MIMEText(f"""{name} , 
+            votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+            Rendez-vous en classe !""")
+            msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
+            msg['From']= my_email
+            msg["To"]= f'{mail}, {my_email}'
 
-        msg = MIMEMultipart() 
-        msg['From'] = my_email 
-        msg['To'] = estefanialunardi@gmail.com 
-        msg['Subject'] = f"Certificat {name}"
-        body = "Certificat"
-        filename = "File_name_with_extension"
-        attachment = open(certificat_medical, "rb") 
-        p = MIMEBase('application', 'octet-stream') 
-        p.set_payload((attachment).read()) 
-        mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-        mail_server.ehlo()
-        mail_server.login(my_email, mail_password)
-        mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+            msg = MIMEMultipart() 
+            msg['From'] = my_email 
+            msg['To'] = estefanialunardi@gmail.com 
+            msg['Subject'] = f"Certificat {name}"
+            body = "Certificat"
+            filename = "File_name_with_extension"
+            attachment = open(certificat_medical, "rb") 
+            p = MIMEBase('application', 'octet-stream') 
+            p.set_payload((attachment).read()) 
+            mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+            mail_server.ehlo()
+            mail_server.login(my_email, mail_password)
+            mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+            mail_server.close()
+        except:
+            pass
         
-       
 
-        mail_server.close()
+            
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
 except:
