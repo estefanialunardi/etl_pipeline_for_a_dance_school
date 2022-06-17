@@ -390,43 +390,52 @@ try:
         except:
             st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
         try:
-            port = 465  # For SSL
-            smtp_server = "smtp.gmail.com"
-            sender_email = st.secrets['my_email']
-            receiver_email = mail
-            password = st.secrets['mail_password']
-            message = f"""{name} , 
-            votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-            Rendez-vous en classe !"""
+            #The mail addresses and password
+            sender_address = my_email
+            sender_pass = mail_password
+            receiver_address2 = mail
+            mail_content = f"""{name} , 
+           votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+           Rendez-vous en classe !"""
+            #Setup the MIME
+            message = MIMEMultipart()
+            message['From'] = sender_address
+            message['To'] = receiver_address2
+            message['Subject'] = f" {name}, votre inscription à Attitude Corps et Danses !"
+            #The subject line
+            #The body and the attachments for the mail
+            message.attach(MIMEText(mail_content, 'plain'))
+            #Create SMTP session for sending the mail
+            session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+            session.starttls() #enable security
+            session.login(sender_address, sender_pass) #login with mail_id and password
+            text = message.as_string()
+            session.sendmail(sender_address, receiver_address2, message)
 
-            context = ssl.create_default_context()
-            with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-                server.login(sender_email, password)
-                server.sendmail(sender_email, receiver_email, message)
-            #my_email= st.secrets['my_email']
-            #mail_password= st.secrets['mail_password']
-            #msg=MIMEText(f"""{name} , 
-            #votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-            #Rendez-vous en classe !""")
-            #msg['From'] = my_email
-            #msg['To'] = mail
-            #msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
-            #mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-            #mail_server.ehlo()
-            #mail_server.login(my_email, mail_password)
-            #mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+           #my_email= st.secrets['my_email']
+           #mail_password= st.secrets['mail_password']
+           #msg=MIMEText(f"""{name} , 
+           #votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+           #Rendez-vous en classe !""")
+           #msg['From'] = my_email
+           #msg['To'] = mail
+           #msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
+           #mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+           #mail_server.ehlo()
+           #mail_server.login(my_email, mail_password)
+           #mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
         except:
             st.write('1')
         try:
             #The mail addresses and password
             sender_address = my_email
             sender_pass = mail_password
-            receiver_address = 'estefanialunardi@gmail.com'
+            receiver_address2 = 'estefanialunardi@gmail.com'
             mail_content = 'Coucou! This is the medical certificate!'
             #Setup the MIME
             message = MIMEMultipart()
             message['From'] = sender_address
-            message['To'] = receiver_address
+            message['To'] = receiver_address2
             message['Subject'] = f'Certificat {name}'
             #The subject line
             #The body and the attachments for the mail
@@ -443,7 +452,7 @@ try:
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message.as_string()
-            session.sendmail(sender_address, receiver_address, message)
+            session.sendmail(sender_address, receiver_address2, message)
 
             mail_content2 = 'Coucou! This is the certificate of assurance!'
             #Setup the MIME
