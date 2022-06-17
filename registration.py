@@ -399,8 +399,9 @@ try:
             mail_server.ehlo()
             mail_server.login(my_email, mail_password)
             mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
-
-
+        except:
+            st.write('1')
+        try:
             #The mail addresses and password
             sender_address = my_email
             sender_pass = mail_password
@@ -426,7 +427,7 @@ try:
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message.as_string()
-            session.sendmail(sender_address, receiver_address, text)
+            session.sendmail(sender_address, receiver_address, message)
 
             mail_content2 = 'Coucou! This is the certificate of assurance!'
             #Setup the MIME
@@ -449,7 +450,7 @@ try:
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message2.as_string()
-            session.sendmail(sender_address, receiver_address, text)
+            session.sendmail(sender_address, receiver_address, message2)
 
             mail_server.close()
         except:
