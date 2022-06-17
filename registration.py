@@ -26,6 +26,8 @@ from pathlib import Path
 import os
 import os.path
 import streamlit.components.v1 as components
+from email.mime.base import MIMEBase
+from email import encoders
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
 
@@ -393,21 +395,62 @@ try:
             votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
             Rendez-vous en classe !""")
             msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
-            msg['From']= my_email
-            msg["To"]= f'{mail}, {my_email}'
-            msg = MIMEMultipart() 
-            msg['From'] = my_email 
-            msg['To'] = estefanialunardi@gmail.com 
-            msg['Subject'] = f"Certificat {name}"
-            body = "Certificat"
-            filename = "File_name_with_extension"
-            attachment = open(certificat_medical, "rb") 
-            p = MIMEBase('application', 'octet-stream') 
-            p.set_payload((attachment).read()) 
             mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
             mail_server.ehlo()
             mail_server.login(my_email, mail_password)
             mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+
+
+            #The mail addresses and password
+            sender_address = my_email
+            sender_pass = mail_password
+            receiver_address = 'estefanialunardi@gmail.com'
+            mail_content = 'Coucou! This is the medical certificate!'
+            #Setup the MIME
+            message = MIMEMultipart()
+            message['From'] = sender_address
+            message['To'] = receiver_address
+            message['Subject'] = f'Certificat {name}'
+            #The subject line
+            #The body and the attachments for the mail
+            message.attach(MIMEText(mail_content, 'plain'))
+            attach_file = open(certificat_medical, 'rb')
+            payload = MIMEBase('application', 'octate-stream')
+            payload.set_payload((attach_file).read())
+            encoders.encode_base64(payload) #encode the attachment
+            #add payload header with filename
+            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical)
+            message.attach(payload)
+            #Create SMTP session for sending the mail
+            session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+            session.starttls() #enable security
+            session.login(sender_address, sender_pass) #login with mail_id and password
+            text = message.as_string()
+            session.sendmail(sender_address, receiver_address, text)]
+
+            mail_content2 = 'Coucou! This is the certificate of assurance!'
+            #Setup the MIME
+            message2 = MIMEMultipart()
+            message2['From'] = sender_address
+            message2['To'] = receiver_address
+            message2['Subject'] = f'Certificat {name}'
+            #The subject line
+            #The body and the attachments for the mail
+            message2.attach(MIMEText(mail_content2, 'plain'))
+            attach_file2 = open(certificat_dassurance, 'rb')
+            payload = MIMEBase('application', 'octate-stream')
+            payload.set_payload((attach_file2).read())
+            encoders.encode_base64(payload) #encode the attachment
+            #add payload header with filename
+            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_dassurance)
+            message2.attach(payload)
+            #Create SMTP session for sending the mail
+            session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+            session.starttls() #enable security
+            session.login(sender_address, sender_pass) #login with mail_id and password
+            text = message2.as_string()
+            session.sendmail(sender_address, receiver_address, text)
+
             mail_server.close()
         except:
             pass
