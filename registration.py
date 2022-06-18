@@ -426,11 +426,10 @@ try:
             payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical)
             message.attach(payload)
             #Create SMTP session for sending the mail
-            session = smtplib.SMTP('smtp.gmail.com', 465) #use gmail with port
-            session.starttls() #enable security
-            session.login(sender_address, sender_pass) #login with mail_id and password
-            text = message.as_string()
-            session.sendmail(sender_address, receiver_address2, message)
+            mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+            mail_server.ehlo()
+            mail_server.login(my_email, mail_password)
+            mail_server.sendmail(sender_address, receiver_address2, message)
 
             mail_content2 = 'Coucou! This is the certificate of assurance!'
             #Setup the MIME
@@ -449,15 +448,13 @@ try:
             payload.add_header('Content-Decomposition', 'attachment', filename=certificat_dassurance)
             message2.attach(payload)
             #Create SMTP session for sending the mail
-            session = smtplib.SMTP('smtp.gmail.com', 465) #use gmail with port
-            session.starttls() #enable security
-            session.login(sender_address, sender_pass) #login with mail_id and password
-            text = message2.as_string()
-            session.sendmail(sender_address, receiver_address2, message2)
-
+            mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+            mail_server.ehlo()
+            mail_server.login(my_email, mail_password)
+            mail_server.sendmail(sender_address, receiver_address2, message2)
             mail_server.close()
-        except:
-            pass
+        except Exception as er:
+            st.write(er)
         
 
             
