@@ -426,7 +426,7 @@ try:
             payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical)
             message.attach(payload)
             #Create SMTP session for sending the mail
-            session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+            session = smtplib.SMTP('smtp.gmail.com', 465) #use gmail with port
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message.as_string()
@@ -449,7 +449,7 @@ try:
             payload.add_header('Content-Decomposition', 'attachment', filename=certificat_dassurance)
             message2.attach(payload)
             #Create SMTP session for sending the mail
-            session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+            session = smtplib.SMTP('smtp.gmail.com', 465) #use gmail with port
             session.starttls() #enable security
             session.login(sender_address, sender_pass) #login with mail_id and password
             text = message2.as_string()
