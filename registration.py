@@ -266,8 +266,10 @@ try:
     st.write(" Découvrez notre planning et nos tarifs a attitudecorpsetdanses.com/tarifs-et-planning")
     certificat_medical = st.file_uploader("Téléverser le Certificat Médical")
     if certificat_medical:
+        certificat_medical_data = certificat_medical.getvalue()
         certificat_dassurance = st.file_uploader("Téléverser le Certificat d’assurance extra-scolaire ou assurance civil")
         if certificat_dassurance:
+            certificat_dassurance_data = certificat_dassurance.getvalue()
             st.write("")
             daccord = st.multiselect("Pour l’abonnement annuel à Attitude Corps et Danses de la saison 2021/2022 je ne pourrai en aucun cas faire opposition à mes chèques ( voir article L131-35 du code monétaire et financier) ou en demander la restitution en cas d’arrêt de ma part.", ["Je suis d'accord", "Je suis pas d'accord"])
             autorise_image = st.multiselect("J'autorise l'autorisation de droit à l'image et/ou à la voix pour la promotion de l'Attitude Corps et Danses.", ["Oui", "Non"])
@@ -418,19 +420,18 @@ try:
             #The subject line
             #The body and the attachments for the mail
             message.attach(MIMEText(mail_content, 'plain'))
-            attach_file = open(certificat_medical, 'rb')
+            attach_file = open(certificat_medical_data, 'rb')
             payload = MIMEBase('application', 'octate-stream')
             payload.set_payload((attach_file).read())
             encoders.encode_base64(payload) #encode the attachment
             #add payload header with filename
-            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical)
+            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical_data)
             message.attach(payload)
             #Create SMTP session for sending the mail
             mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
             mail_server.ehlo()
             mail_server.login(my_email, mail_password)
             mail_server.sendmail(sender_address, receiver_address2, message)
-
             mail_content2 = 'Coucou! This is the certificate of assurance!'
             #Setup the MIME
             message2 = MIMEMultipart()
@@ -440,12 +441,12 @@ try:
             #The subject line
             #The body and the attachments for the mail
             message2.attach(MIMEText(mail_content2, 'plain'))
-            attach_file2 = open(certificat_dassurance, 'rb')
+            attach_file2 = open(certificat_dassurance_data, 'rb')
             payload = MIMEBase('application', 'octate-stream')
             payload.set_payload((attach_file2).read())
             encoders.encode_base64(payload) #encode the attachment
             #add payload header with filename
-            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_dassurance)
+            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_dassurance_data)
             message2.attach(payload)
             #Create SMTP session for sending the mail
             mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
