@@ -422,9 +422,9 @@ try:
             message.attach(MIMEText(body, 'plain'))
   
             # open the file in bynary
-            binary_pdf = open(certificat_medical, 'rb')
+            binary_pdf = read(certificat_medical, 'rb')
             
-            payload = MIMEBase('application', 'octate-stream', Name=certificat_medical)
+            payload = MIMEBase('application', 'octate-stream', Name=f'certificat_medical_{name}.pdf')
             # payload = MIMEBase('application', 'pdf', Name=pdfname)
             payload.set_payload((binary_pdf).read())
             
@@ -432,7 +432,7 @@ try:
             encoders.encode_base64(payload)
             
             # add header with pdf name
-            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical)
+            payload.add_header('Content-Decomposition', 'attachment', filename=f'certificat_medical_{name}.pdf')
             message.attach(payload)
             
             #use gmail with port
