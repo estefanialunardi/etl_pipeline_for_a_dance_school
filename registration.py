@@ -453,10 +453,8 @@ try:
             session.sendmail(sender, receiver, text)
             session.quit()
             print('Mail Sent')
-'''
-
-
-
+        except Exception as er:
+            st.write(er)
             
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
