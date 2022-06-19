@@ -422,11 +422,11 @@ try:
             message.attach(MIMEText(body, 'plain'))
   
             # open the file in bynary
-            binary_pdf = read(certificat_medical, 'rb')
+            binary_pdf = certificat_medical.read()
             
             payload = MIMEBase('application', 'octate-stream', Name=f'certificat_medical_{name}.pdf')
             # payload = MIMEBase('application', 'pdf', Name=pdfname)
-            payload.set_payload((binary_pdf).read())
+            payload.set_payload(binary_pdf)
             
             # enconding the binary into base64
             encoders.encode_base64(payload)
