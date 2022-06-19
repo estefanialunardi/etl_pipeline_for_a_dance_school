@@ -410,7 +410,7 @@ try:
         #attachments - email
         
         try:
-            body = f'''Certificat {name}'''
+            body = f'''Certificat medical {name}'''
             sender = my_email
             password = mail_password
             receiver = 'estefanialunardi@gmail.com'
@@ -447,7 +447,48 @@ try:
             text = message.as_string()
             session.sendmail(sender, receiver, text)
             session.quit()
-            print('Mail Sent')
+
+        except Exception as er:
+            st.write(er)
+        try:
+            body = f'''Certificat assurance {name}'''
+            sender = my_email
+            password = mail_password
+            receiver = 'estefanialunardi@gmail.com'
+            #Setup the MIME
+            message = MIMEMultipart()
+            message['From'] = sender
+            message['To'] = receiver
+            message['Subject'] = 'This email has an attacment, certificat_dassurance file'
+            message.attach(MIMEText(body, 'plain'))
+  
+            # open the file in bynary
+            binary_pdf = certificat_dassurance.read()
+            
+            payload = MIMEBase('application', 'octate-stream', Name=f'certificat_dassurance_{name}.pdf')
+            # payload = MIMEBase('application', 'pdf', Name=pdfname)
+            payload.set_payload(binary_pdf)
+            
+            # enconding the binary into base64
+            encoders.encode_base64(payload)
+            
+            # add header with pdf name
+            payload.add_header('Content-Decomposition', 'attachment', filename=f'certificat_dassurance_{name}.pdf')
+            message.attach(payload)
+            
+            #use gmail with port
+            session = smtplib.SMTP('smtp.gmail.com', 587)
+            
+            #enable security
+            session.starttls()
+            
+            #login with mail_id and password
+            session.login(sender, password)
+            
+            text = message.as_string()
+            session.sendmail(sender, receiver, text)
+            session.quit()
+
         except Exception as er:
             st.write(er)
             
