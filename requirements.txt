@@ -23,3 +23,15 @@ seaborn
 plotly.express
 python-dotenv
 streamlit_authenticator
+
+print_function
+google.auth.transport.requests 
+Request
+google.oauth2.credentials 
+Credentials
+google_auth_oauthlib.flow 
+InstalledAppFlow
+googleapiclient.discovery 
+build
+googleapiclient.errors 
+HttpError

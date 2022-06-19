@@ -28,6 +28,12 @@ from pathlib import Path
 import os
 import os.path
 import streamlit.components.v1 as components
+from __future__ import print_function
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 
 st.set_page_config(page_title='Attitude Corps et Danses | Inscrivez-vous', page_icon=('logo.png'), layout="centered", initial_sidebar_state="auto", menu_items=None)
@@ -406,57 +412,51 @@ try:
             mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
         except Exception as er:
             st.write(er)
+
+        #attachments - email
+        
         try:
-            #The mail addresses and password
-            sender_address = my_email
-            sender_pass = mail_password
-            receiver_address2 = 'estefanialunardi@gmail.com'
-            mail_content = 'Coucou! This is the medical certificate!'
+            body = f'''Certificat {name}'''
+            sender = my_email
+            password = mail_password
+            receiver = 'estefanialunardi@gmail.com'
             #Setup the MIME
             message = MIMEMultipart()
-            message['From'] = sender_address
-            message['To'] = receiver_address2
-            message['Subject'] = f'Certificat {name}'
-            #The subject line
-            #The body and the attachments for the mail
-            message.attach(MIMEText(mail_content, 'plain'))
-            attach_file = open(certificat_medical_data, 'rb')
-            payload = MIMEBase('application', 'octate-stream')
-            payload.set_payload((attach_file).read())
-            encoders.encode_base64(payload) #encode the attachment
-            #add payload header with filename
-            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical_data)
+            message['From'] = sender
+            message['To'] = receiver
+            message['Subject'] = 'This email has an attacment, certificat_medical file'
+            message.attach(MIMEText(body, 'plain'))
+  
+            # open the file in bynary
+            binary_pdf = open(certificat_medical, 'rb')
+            
+            payload = MIMEBase('application', 'octate-stream', Name=certificat_medical)
+            # payload = MIMEBase('application', 'pdf', Name=pdfname)
+            payload.set_payload((binary_pdf).read())
+            
+            # enconding the binary into base64
+            encoders.encode_base64(payload)
+            
+            # add header with pdf name
+            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_medical)
             message.attach(payload)
-            #Create SMTP session for sending the mail
-            mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-            mail_server.ehlo()
-            mail_server.login(my_email, mail_password)
-            mail_server.sendmail(sender_address, receiver_address2, message)
-            mail_content2 = 'Coucou! This is the certificate of assurance!'
-            #Setup the MIME
-            message2 = MIMEMultipart()
-            message2['From'] = sender_address
-            message2['To'] = receiver_address2
-            message2['Subject'] = f'Certificat {name}'
-            #The subject line
-            #The body and the attachments for the mail
-            message2.attach(MIMEText(mail_content2, 'plain'))
-            attach_file2 = open(certificat_dassurance_data, 'rb')
-            payload = MIMEBase('application', 'octate-stream')
-            payload.set_payload((attach_file2).read())
-            encoders.encode_base64(payload) #encode the attachment
-            #add payload header with filename
-            payload.add_header('Content-Decomposition', 'attachment', filename=certificat_dassurance_data)
-            message2.attach(payload)
-            #Create SMTP session for sending the mail
-            mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-            mail_server.ehlo()
-            mail_server.login(my_email, mail_password)
-            mail_server.sendmail(sender_address, receiver_address2, message2)
-            mail_server.close()
-        except Exception as er:
-            st.write(er)
-        
+            
+            #use gmail with port
+            session = smtplib.SMTP('smtp.gmail.com', 587)
+            
+            #enable security
+            session.starttls()
+            
+            #login with mail_id and password
+            session.login(sender, password)
+            
+            text = message.as_string()
+            session.sendmail(sender, receiver, text)
+            session.quit()
+            print('Mail Sent')
+'''
+
+
 
             
         st.success("Merci! Rendez-vous en classe !")
