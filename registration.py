@@ -250,13 +250,15 @@ with st.expander("Plus de cours"):
 if courses_qtd == 0:
     st.write("Sélectionnez votre cours pour continuez")
 elif courses_qtd == 1:
-    price = 470
+    price = 500
 elif courses_qtd == 2:
-    price = 690   
+    price = 720   
 elif courses_qtd == 3:
-    price = 850
-elif courses_qtd > 3:
-    price = 1100      
+    price = 880
+elif courses_qtd == 4:
+    price = 1000      
+elif courses_qtd > 4:
+    price = 1040      
 try:
     registration = 30
     total = price+registration
