@@ -107,11 +107,8 @@ def course_choice (cours):
     cours_info =[]
     courses_qtd = 0
     
-    if cours== 'Carte de 10 cours':
-            carte_10_cours = st.multiselect('Cours', ['Sélectionnez vos cours', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
-            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
-            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
-            courses_qtd +=4
+    if cours== 'Cours Illimitées':
+        courses_qtd +=4
     else:
         pass
     if cours== 'Classique 1':
@@ -202,7 +199,7 @@ try:
     mail = st.text_input ("Email")
     telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
-    course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Carte de 10 cours', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+    course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
     first_choice = course_choice(course)
