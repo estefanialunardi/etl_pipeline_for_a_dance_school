@@ -184,10 +184,7 @@ def course_choice (cours):
             courses_qtd +=len(heure)
     cours_info.append(cours)
     cours_info.append(courses_qtd)
-    try:
-        cours_info.append(heure)
-    except:
-        pass
+    cours_info.append(heure)
     return cours_info
 try:
     name= st.text_input ("Nom et prénom de l'élève")
@@ -207,6 +204,7 @@ try:
     schedule = first_choice[1]
     courses_qtd_1 = first_choice[2]
     courses_qtd += courses_qtd_1
+    
 except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
 with st.expander("Plus de cours"):
