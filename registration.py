@@ -108,6 +108,7 @@ def course_choice (cours):
     courses_qtd = 0
     
     if cours== 'Cours Illimitées':
+        heure = 'Toutes'
         courses_qtd +=4
     elif cours== 'Classique 1':
         heure= st.multiselect('Horaire', ['Mercredi 14h30-15h45', 'Je voudrais un autre horaire'])
@@ -181,10 +182,10 @@ def course_choice (cours):
     elif cours=='Streching':
             heure= st.multiselect('Horaire', ['Jeudi 10h30-11h15', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
+    cours_info.append(cours)
+    cours_info.append(courses_qtd)
     try:
-        cours_info.append(cours)
         cours_info.append(heure)
-        cours_info.append(courses_qtd)
     except:
         pass
     return cours_info
