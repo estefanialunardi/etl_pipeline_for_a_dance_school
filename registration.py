@@ -182,9 +182,12 @@ def course_choice (cours):
     elif cours=='Streching':
             heure= st.multiselect('Horaire', ['Jeudi 10h30-11h15', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
-    cours_info.append(cours)
-    cours_info.append(courses_qtd)
-    cours_info.append(heure)
+    try:
+        cours_info.append(cours)
+        cours_info.append(courses_qtd)
+        cours_info.append(heure)
+    except:
+        pass
     return cours_info
 try:
     name= st.text_input ("Nom et prénom de l'élève")
@@ -204,7 +207,7 @@ try:
     schedule = first_choice[1]
     courses_qtd_1 = first_choice[2]
     courses_qtd += courses_qtd_1
-    
+
 except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
 with st.expander("Plus de cours"):
