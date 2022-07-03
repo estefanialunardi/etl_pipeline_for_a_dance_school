@@ -263,17 +263,11 @@ try:
     installments = st.selectbox("Le paiement du cours sera effectué avec", ('1 chèque', '2 chèques', '3 chèques', '4 chèques', '5 chèques', '6 chèques', '7 chèques', '8 chèques', '9 chèques', '10 chèques')) 
     installments = installments.split(' ')[0]
     st.write(" Découvrez notre planning et nos tarifs a attitudecorpsetdanses.com/tarifs-et-planning")
-    certificat_medical = st.file_uploader("Téléverser le Certificat Médical")
-    if certificat_medical:
-        certificat_medical_data = certificat_medical.getvalue()
-        certificat_dassurance = st.file_uploader("Téléverser le Certificat d’assurance extra-scolaire ou assurance civil")
-        if certificat_dassurance:
-            certificat_dassurance_data = certificat_dassurance.getvalue()
-            st.write("")
-            daccord = st.multiselect("Pour l’abonnement annuel à Attitude Corps et Danses de la saison 2022/2023 je ne pourrai en aucun cas faire opposition à mes chèques ( voir article L131-35 du code monétaire et financier) ou en demander la restitution en cas d’arrêt de ma part.", ["Je suis d'accord", "Je suis pas d'accord"])
-            autorise_image = st.multiselect("J'autorise l'autorisation de droit à l'image et/ou à la voix pour la promotion de l'Attitude Corps et Danses.", ["Oui", "Non"])
-            reconnais_pris = st.multiselect("Je reconnais avoir pris connaissance du règlement intérieur *, des conditions générales d’inscriptions* de l’Association Attitude Corps et Danses, d’avoir présenté un certificat médical de non-contre indication à la pratique de la danse et d’avoir présenté un certificat d’assurance extra-scolaire ou assurance civil.* (*Règlement intérieur/ conditions générales disponibles sur: https://attitudecorpsetdanses.com/reglement-interieur/*).", ["Oui", "Non"])  
-            submitted = st.button("Envoyer")
+    if installments:
+        daccord = st.multiselect("Pour l’abonnement annuel à Attitude Corps et Danses de la saison 2022/2023 je ne pourrai en aucun cas faire opposition à mes chèques ( voir article L131-35 du code monétaire et financier) ou en demander la restitution en cas d’arrêt de ma part.", ["Je suis d'accord", "Je suis pas d'accord"])
+        autorise_image = st.multiselect("J'autorise l'autorisation de droit à l'image et/ou à la voix pour la promotion de l'Attitude Corps et Danses.", ["Oui", "Non"])
+        reconnais_pris = st.multiselect("Je reconnais avoir pris connaissance du règlement intérieur *, des conditions générales d’inscriptions* de l’Association Attitude Corps et Danses, d’avoir présenté un certificat médical de non-contre indication à la pratique de la danse et d’avoir présenté un certificat d’assurance extra-scolaire ou assurance civil.* (*Règlement intérieur/ conditions générales disponibles sur: https://attitudecorpsetdanses.com/reglement-interieur/*).", ["Oui", "Non"])  
+        submitted = st.button("Envoyer")
 except:
     pass
 try:
@@ -408,89 +402,6 @@ try:
 
         #attachments - email
         
-        try:
-            body = f'''Certificat medical {name}'''
-            sender = my_email
-            password = mail_password
-            receiver = 'estefanialunardi@gmail.com'
-            #Setup the MIME
-            message = MIMEMultipart()
-            message['From'] = sender
-            message['To'] = receiver
-            message['Subject'] = 'This email has an attacment, certificat_medical file'
-            message.attach(MIMEText(body, 'plain'))
-  
-            # open the file in bynary
-            binary_pdf = certificat_medical.read()
-            
-            payload = MIMEBase('application', 'octate-stream', Name=f'certificat_medical_{name}.pdf')
-            # payload = MIMEBase('application', 'pdf', Name=pdfname)
-            payload.set_payload(binary_pdf)
-            
-            # enconding the binary into base64
-            encoders.encode_base64(payload)
-            
-            # add header with pdf name
-            payload.add_header('Content-Decomposition', 'attachment', filename=f'certificat_medical_{name}.pdf')
-            message.attach(payload)
-            
-            #use gmail with port
-            session = smtplib.SMTP('smtp.gmail.com', 587)
-            
-            #enable security
-            session.starttls()
-            
-            #login with mail_id and password
-            session.login(sender, password)
-            
-            text = message.as_string()
-            session.sendmail(sender, receiver, text)
-            session.quit()
-
-        except Exception as er:
-            st.write(er)
-        try:
-            body = f'''Certificat assurance {name}'''
-            sender = my_email
-            password = mail_password
-            receiver = 'estefanialunardi@gmail.com'
-            #Setup the MIME
-            message = MIMEMultipart()
-            message['From'] = sender
-            message['To'] = receiver
-            message['Subject'] = 'This email has an attacment, certificat_dassurance file'
-            message.attach(MIMEText(body, 'plain'))
-  
-            # open the file in bynary
-            binary_pdf = certificat_dassurance.read()
-            
-            payload = MIMEBase('application', 'octate-stream', Name=f'certificat_dassurance_{name}.pdf')
-            # payload = MIMEBase('application', 'pdf', Name=pdfname)
-            payload.set_payload(binary_pdf)
-            
-            # enconding the binary into base64
-            encoders.encode_base64(payload)
-            
-            # add header with pdf name
-            payload.add_header('Content-Decomposition', 'attachment', filename=f'certificat_dassurance_{name}.pdf')
-            message.attach(payload)
-            
-            #use gmail with port
-            session = smtplib.SMTP('smtp.gmail.com', 587)
-            
-            #enable security
-            session.starttls()
-            
-            #login with mail_id and password
-            session.login(sender, password)
-            
-            text = message.as_string()
-            session.sendmail(sender, receiver, text)
-            session.quit()
-
-        except Exception as er:
-            st.write(er)
-            
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
 except:
