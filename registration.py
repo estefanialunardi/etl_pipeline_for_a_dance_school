@@ -358,7 +358,7 @@ try:
             engine.execute(mySql_insert_query0)
             st.spinner(text="S'il vous plaît, attendez !")
         except: 
-            mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, toulouse, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ('{name}', '{birthday}', {age}, '{address}', '{city}', '{toulouse}', {pcode},{lat}, {lon}, '{mail}', '{telephone}', '{legal_representative}')"""
+            mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, toulouse, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ("{name}", '{birthday}', {age}, "{address}", "{city}", '{toulouse}', '{pcode}','{lat}', '{lon}', '{mail}', '{telephone}', "{legal_representative}");"""
             engine.execute(mySql_insert_query1)
             st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
         try: 
