@@ -404,7 +404,8 @@ try:
         
         st.success("Merci! Rendez-vous en classe !")
         st.balloons()
-except:
+except Exception as er:
     st.error("Veuillez remplir le formulaire en entier avant de le soumettre. 📝")
+    st.write(er)
 
 
