@@ -1,6 +1,5 @@
-                            ]
-+import streamlit_authenticator as stauth
-&¢v5                     °³33333333333333333333333333333333333333333333335v'z°¬import seaborn as sns
+
+import streamlit_authenticator as stauth
 import plotly.express as px 
 import plotly.graph_objects as go
 import pandas as pd
