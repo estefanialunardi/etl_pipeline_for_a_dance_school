@@ -1,6 +1,6 @@
-import streamlit as st
-import streamlit_authenticator as stauth
-import seaborn as sns
+                            ]
++import streamlit_authenticator as stauth
+&¢v5                     °³33333333333333333333333333333333333333333333335v'z°¬import seaborn as sns
 import plotly.express as px 
 import plotly.graph_objects as go
 import pandas as pd
@@ -65,12 +65,21 @@ if authentication_status:
     engine = create_engine(conn_addr)
     connection = engine.connect()
 
+    course_df = st.checkbox('Inscriptions for this year')
+    if course_df:
+        course_query = pd.read_sql_query(f"SELECT DISTINCT * FROM coursdf23" ,conn_addr)
+        st.write(course_query)
+    payments_df = st.checkbox('Payments for this year')
+    if payments_df:
+        payments_query = pd.read_sql_query(f"SELECT DISTINCT * FROM paimentsdf23" ,conn_addr)
+        st.write(payments_query)
+
     st.title('Search for a student:')
     nom = st.text_input ("Nom et prénom d'élève")
     if nom == "":
         pass
     else:
-        elevesdf_query = pd.read_sql_query(f"SELECT elevesdf.name, birthday, age, address, city, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total FROM elevesdf JOIN coursdf22 ON coursdf22.name=elevesdf.name JOIN paimentsdf22 ON elevesdf.name=paimentsdf22.name WHERE elevesdf.name LIKE '{nom}'" ,conn_addr)
+        elevesdf_query = pd.read_sql_query(f"SELECT elevesdf.name, birthday, age, address, city, pcode, mail, telephone, legal_representative, course, schedule, course2, schedule2, course3, schedule3, registration, installments, total FROM elevesdf JOIN coursdf23 ON coursdf3.name=elevesdf.name JOIN paimentsdf23 ON elevesdf.name=paimentsdf23.name WHERE elevesdf.name LIKE '{nom}'" ,conn_addr)
         st.write(elevesdf_query)
         elevesdf = pd.read_sql_query("""select * from elevesdf""",conn_addr)
         st.title("Confirmer l'état du paiement")
@@ -98,7 +107,7 @@ if authentication_status:
 
     st.write("""Most students take only one class - children in particular do not tend to take two different courses. Proportionally, the Pointes course is the one that most receives students who take more than one class.
     """)
-    cours_cust = pd.read_sql_query(f"select coursdf22.name, nullif(course,'0') as course, nullif(course2, '0') as course2, nullif(course3, '0') as course3, total from paimentsdf22 join coursdf22 on coursdf22.name=paimentsdf22.name",conn_addr)
+    cours_cust = pd.read_sql_query(f"select coursdf23.name, nullif(course,'0') as course, nullif(course2, '0') as course2, nullif(course3, '0') as course3, total from paimentsdf23 join coursdf23 on coursdf23.name=paimentsdf23.name",conn_addr)
     fig = px.bar(cours_cust, x='total', y=['course','course2','course3'],  labels={'x':'Total', 'y':'Courses'}, title="Courses choosen as first, second or third choices")
     fig.update_layout(barmode='stack', xaxis1={'title': 'Courses'}, yaxis1={'range': [0, 30], 'title': ''})
     st.plotly_chart(fig)
@@ -127,13 +136,13 @@ if authentication_status:
     st.plotly_chart(fig)
 
     st.write("""Students prefer to pay in one or three installments. Those who take three or more courses, in general, pay in one go. In terms of income, the biggest sums come from those who take one or three classes. Proportionally, the 3-lesson package is the most profitable for the school.""")
-    paimentsdf22 = pd.read_sql_query("""select * from paimentsdf22""",conn_addr)
-    fig = px.bar(paimentsdf22, x='name', y=['installments'],  color= 'total', labels={'x':'Installments', 'y':'Total'}, title="Total paid and number of installments")
+    paimentsdf23 = pd.read_sql_query("""select * from paimentsdf23""",conn_addr)
+    fig = px.bar(paimentsdf23, x='name', y=['installments'],  color= 'total', labels={'x':'Installments', 'y':'Total'}, title="Total paid and number of installments")
     fig.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':['1', '2', '3', '4', '5', '10'], 'title': 'Number of Installments'}, yaxis1={'title': 'Number of students'})
     st.plotly_chart(fig)
 
     num_courses=[]
-    for course in paimentsdf22['total']:
+    for course in paimentsdf23['total']:
         if course == 500:
             num_courses.append('1')
         elif course == 720:
@@ -143,12 +152,12 @@ if authentication_status:
         else:
             num_courses.append('10')
 
-    fig = px.bar(paimentsdf22, x=num_courses, y='total', labels={'x':'Numero Cours', 'y':'Total'}, title="Income by number of classes package")
+    fig = px.bar(paimentsdf23, x=num_courses, y='total', labels={'x':'Numero Cours', 'y':'Total'}, title="Income by number of classes package")
     fig.update_layout(barmode='stack', xaxis={'categoryorder': 'array', 'categoryarray':['1', '2', '3', '10'], 'title': 'Number of classes'},  yaxis1={'title': 'Income'})
     st.plotly_chart(fig)
 
-    total_bill = paimentsdf22['total'].sum()
-    st.title(f'In 2022, the regular students payment sumed {total_bill} Euros')
+    total_bill = paimentsdf23['total'].sum()
+    st.title(f'In 2023, the regular students payment sumed {total_bill} Euros')
 
 elif authentication_status == False:
     st.error("Nom d'utilisateur et mot de passe erronés")
