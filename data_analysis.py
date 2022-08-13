@@ -26,7 +26,8 @@ hashed_passwords = stauth.Hasher(data_password).generate()
 names = ["Juliana Bastos", "Estefânia Mesquita"]
 
 authenticator = stauth.Authenticate(names,data_user,hashed_passwords,
-    'some_cookie_name','some_signature_key',cookie_expiry_days=30)
+    'some_cookie_name','some_signature_key')
+
 names, authentication_status, data_user  = authenticator.login('Login', 'sidebar')
 if authentication_status:
     authenticator.logout('Logout', 'main')
