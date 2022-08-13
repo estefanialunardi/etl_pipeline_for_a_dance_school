@@ -21,13 +21,11 @@ load_dotenv()
 
 data_user = st.secrets["data_user"]
 data_password = st.secrets["data_password"]
-cookie_name = 'some_cookie_name'
-some_signature_key= 'some_signature_key'
-expiry_days= 30
+
 hashed_passwords = stauth.Hasher(data_password).generate()
 names = ["Juliana Bastos", "Estefânia Mesquita"]
 
-authenticator = stauth.Authenticate(names, data_user ,hashed_passwords,cookie_name,some_signature_key, expiry_days)
+authenticator = stauth.Authenticate(names, data_user, hashed_passwords,'some_cookie_name','some_signature_key', 30)
 
 names, authentication_status, data_user  = authenticator.login('Login', 'sidebar')
 if authentication_status:
