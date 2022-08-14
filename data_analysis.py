@@ -21,14 +21,10 @@ load_dotenv()
 
 credentials = {
     "usernames":{
-        st.secrets['data_user'][0]:{
-            "name":st.secrets['data_name'][0],
-            "password":st.secrets['data_password'][0]
-            },
-        st.secrets['data_user'][1]:{
-            "name":st.secrets['data_name'][1],
-            "password":st.secrets['data_password'][1]
-            }            
+        st.secrets['data_user']:{
+            "name":st.secrets['data_name'],
+            "password":st.secrets['data_password']
+            }
         }
     }
 
@@ -39,7 +35,7 @@ authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expi
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     authenticator.logout('Logout', 'main')
-    st.subheader(f'Coucou, {names}!')
+    st.subheader(f'Coucou, {name}!')
     db_server = st.secrets["db_server"]
     user = st.secrets["user"]
     db_port = st.secrets["db_port"]
