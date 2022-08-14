@@ -21,7 +21,7 @@ load_dotenv()
 
 credentials = {
     "usernames":{
-        st.secrets['data_user']:{
+        'juliana':{
             "name":st.secrets['data_name'],
             "password":st.secrets['data_password']
             }
