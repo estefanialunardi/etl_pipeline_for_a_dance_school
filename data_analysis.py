@@ -29,11 +29,16 @@ credentials = {
     }}
 cookie= {'expiry_days': 30, 'key': 'some_signature_key', 'name': 'some_cookie_name'}
 
-authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
+authenticator = stauth.Authenticate(
+    credentials,
+    cookie['name'],
+    cookie['key'],
+    cookie['expiry_days']
+)
 
 
 name, authentication_status, username = authenticator.login('Login', 'main')
-if authentication_status:
+if authentication_status == True:
     authenticator.logout('Logout', 'main')
     st.subheader(f'Coucou, {names}!')
     db_server = st.secrets["db_server"]
@@ -47,16 +52,7 @@ if authentication_status:
     ssh_password= st.secrets["ssh_password"]
   
 
-    #db_server= os.getenv('db_server')
-    #user=os.getenv("user")
-    #db_port=os.getenv("db_port")
-    #password=os.getenv("password")
-    #ip=os.getenv("ip")
-    #db_name=os.getenv("db_name")
-    #ip_ssh=os.getenv("ip_ssh")
-    #ssh_username=os.getenv("ssh_username")
-    #ssh_password=os.getenv("ssh_password")
-    #remote_bind_address=os.getenv("remote_bind_address")
+
     try: 
         server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
         server.start()
