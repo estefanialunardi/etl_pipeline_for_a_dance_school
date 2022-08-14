@@ -21,16 +21,12 @@ load_dotenv()
 
 credentials = {
     "usernames":{
-        st.secrets['data_user'][0]:{
-            "name":st.secrets['data_name'][0],
-            "password":st.secrets['data_password'][0]
+        st.secrets['data_user']:{
+            "name":st.secrets['data_name'],
+            "password":st.secrets['data_password']
             },
-        st.secrets['data_user'][1]:{
-            "name":st.secrets['data_name'][1],
-            "password":st.secrets['data_password'][1]
-            }            
-        }
-    }
+        
+    }}
 cookie= {'expiry_days': 30, 'key': 'some_signature_key', 'name': 'some_cookie_name'}
 
 authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
