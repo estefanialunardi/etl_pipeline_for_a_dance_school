@@ -19,9 +19,18 @@ st.title('Attitude Corps et Danses')
 load_dotenv()
 
 
-with open('../config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
-
+credentials = {
+    "usernames":{
+        st.secrets['data_user'][0]:{
+            "name":st.secrets['data_name'][0],
+            "password":st.secrets['data_password'][0]
+            },
+        st.secrets['data_user'][1]:{
+            "name":st.secrets['data_name'][1],
+            "password":st.secrets['data_password'][1]
+            }            
+        }
+    }
 authenticator = Authenticate(
     config['credentials'],
     config['cookie']['name'],
