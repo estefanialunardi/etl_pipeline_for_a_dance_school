@@ -19,16 +19,16 @@ st.title('Attitude Corps et Danses')
 load_dotenv()
 
 
-data_user = st.secrets["data_user"]
+username = st.secrets["data_user"]
 data_password = st.secrets["data_password"]
 
 hashed_passwords = stauth.Hasher(data_password).generate()
 names = ["Juliana Bastos", "Estefânia Mesquita"]
 
-authenticator = stauth.Authenticate(names,data_user,hashed_passwords,
+authenticator = stauth.Authenticate(names,username,hashed_passwords,
     'some_cookie_name','some_signature_key')
 
-names, authentication_status, data_user  = authenticator.login('Login', 'sidebar')
+names, authentication_status, username  = authenticator.login('Login', 'sidebar')
 if authentication_status:
     authenticator.logout('Logout', 'main')
     st.subheader(f'Coucou, {names}!')
