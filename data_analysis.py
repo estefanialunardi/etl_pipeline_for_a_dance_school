@@ -19,7 +19,6 @@ st.title('Attitude Corps et Danses')
 load_dotenv()
 
 
-hashed_passwords = stauth.Hasher(data_password).generate()
 with open('../config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
@@ -31,9 +30,7 @@ authenticator = Authenticate(
     config['preauthorized']
 )
 
-
-
-names, authentication_status, username  = authenticator.login('Login', 'sidebar')
+name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
     authenticator.logout('Logout', 'main')
     st.subheader(f'Coucou, {names}!')
