@@ -31,6 +31,10 @@ credentials = {
             }            
         }
     }
+cookie:
+expiry_days: 30
+key: some_signature_key
+name: some_cookie_name
 authenticator = Authenticate(
     config['credentials'],
     config['cookie']['name'],
