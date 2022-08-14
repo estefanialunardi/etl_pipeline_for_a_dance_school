@@ -28,7 +28,6 @@ credentials = {
         }
     }
 
-hashed_passwords = stauth.Hasher(credentials['usernames'][st.secrets['data_user']]['password']).generate() 
 
 authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
 
