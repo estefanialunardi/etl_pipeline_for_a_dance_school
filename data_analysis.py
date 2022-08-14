@@ -33,13 +33,8 @@ credentials = {
     }
 cookie= {'expiry_days': 30, 'key': 'some_signature_key', 'name': 'some_cookie_name'}
 
-authenticator = Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
+authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
+
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status:
