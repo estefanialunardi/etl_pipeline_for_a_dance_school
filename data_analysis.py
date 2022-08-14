@@ -19,14 +19,19 @@ st.title('Attitude Corps et Danses')
 load_dotenv()
 
 
-username = st.secrets["data_user"]
-data_password = st.secrets["data_password"]
-
 hashed_passwords = stauth.Hasher(data_password).generate()
-names = ["Juliana Bastos", "Estefânia Mesquita"]
+with open('../config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
 
-authenticator = stauth.Authenticate(names,username,hashed_passwords,
-    'some_cookie_name','some_signature_key')
+authenticator = Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+
 
 names, authentication_status, username  = authenticator.login('Login', 'sidebar')
 if authentication_status:
