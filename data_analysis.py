@@ -18,7 +18,7 @@ import jwt
 
 st.title('Attitude Corps et Danses')
 
-st.head('Login')
+st.title('Login')
 username = st.text_input('Username')
 passwd = st.text_input("Password", type="password")
 user = "Juliana"
