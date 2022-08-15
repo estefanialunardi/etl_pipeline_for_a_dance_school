@@ -14,6 +14,7 @@ from datetime import datetime, date
 import os
 import os.path
 from dotenv import load_dotenv
+import jwt
 
 st.title('Attitude Corps et Danses')
 
@@ -30,7 +31,7 @@ credentials = {
 authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
 
 name, authentication_status, username = authenticator.login('Login', 'main')
-if authentication_status == True:
+if authentication_status:
     authenticator.logout('Logout', 'main')
     st.subheader(f'Coucou, {name}!')
     db_server = st.secrets["db_server"]

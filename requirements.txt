@@ -23,4 +23,5 @@ seaborn
 plotly.express
 python-dotenv
 streamlit_authenticator
+pyjwt
 
