@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit-authenticator as stauth
+import streamlit_authenticator as stauth
 import plotly.express as px 
 import plotly.graph_objects as go
 import pandas as pd

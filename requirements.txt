@@ -22,4 +22,5 @@ rt
 seaborn
 plotly.express
 python-dotenv
-streamlit-authenticator
+streamlit_authenticator
+
