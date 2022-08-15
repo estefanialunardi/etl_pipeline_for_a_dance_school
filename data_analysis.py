@@ -18,22 +18,13 @@ import jwt
 
 st.title('Attitude Corps et Danses')
 
-credentials = {
-    "usernames":{
-        'juliana':{
-            "name":'Juliana Bastos',
-            "password":st.secrets['data_password']
-            }
-        }
-    }
+st.head('Login')
+username = st.text_input('Username')
+passwd = st.text_input("Password", type="password")
+user = "Juliana"
+if username st.secrets['data_user'] == and passwd==st.secrets['data_password']
 
-
-authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
-
-name, authentication_status, username = authenticator.login('Login', 'main')
-if authentication_status:
-    authenticator.logout('Logout', 'main')
-    st.subheader(f'Coucou, {name}!')
+    st.subheader(f'Coucou, {user}!')
     db_server = st.secrets["db_server"]
     user = st.secrets["user"]
     db_port = st.secrets["db_port"]
