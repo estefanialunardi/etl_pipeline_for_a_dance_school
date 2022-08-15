@@ -13,6 +13,8 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime, date
 import os
 import os.path
+import PyJWT
+import PyYAML
 from dotenv import load_dotenv
 
 st.title('Attitude Corps et Danses')
