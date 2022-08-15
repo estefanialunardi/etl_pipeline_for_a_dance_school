@@ -20,7 +20,7 @@ st.title('Attitude Corps et Danses')
 credentials = {
     "usernames":{
         'juliana':{
-            "name":st.secrets['data_name'],
+            "name":'Juliana Bastos',
             "password":st.secrets['data_password']
             }
         }
