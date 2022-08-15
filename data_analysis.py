@@ -140,10 +140,11 @@ if username == st.secrets['data_user'] and passwd==st.secrets['data_password']:
     total_bill = paimentsdf23['total'].sum()
     st.title(f'In 2023, the regular students payment sumed {total_bill} Euros')
 
-elif authentication_status == False:
+elif username == None or passwd == None:
+    st.warning("S'il vous plâit, insérer votre nom d'utilisateur et votre mot de passe")
     st.error("Nom d'utilisateur et mot de passe erronés")
 
-elif authentication_status == None:
+else:
     st.warning("S'il vous plâit, insérer votre nom d'utilisateur et votre mot de passe")
 
 def disconnect_mysql ():
