@@ -22,7 +22,7 @@ st.head('Login')
 username = st.text_input('Username')
 passwd = st.text_input("Password", type="password")
 user = "Juliana"
-if username st.secrets['data_user'] == and passwd==st.secrets['data_password']
+if username == st.secrets['data_user'] and passwd==st.secrets['data_password']
 
     st.subheader(f'Coucou, {user}!')
     db_server = st.secrets["db_server"]
