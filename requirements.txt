@@ -22,7 +22,4 @@ rt
 seaborn
 plotly.express
 python-dotenv
-streamlit_authenticator
-PyJWT==2.3.0
-bcrypt == 3.1.7
-PyYAML == 5.3.1
+streamlit-authenticator

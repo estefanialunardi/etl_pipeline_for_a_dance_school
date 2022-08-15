@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit_authenticator as stauth
+import streamlit-authenticator as stauth
 import plotly.express as px 
 import plotly.graph_objects as go
 import pandas as pd
@@ -13,8 +13,6 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime, date
 import os
 import os.path
-import PyJWT
-import PyYAML
 from dotenv import load_dotenv
 
 st.title('Attitude Corps et Danses')
@@ -30,7 +28,6 @@ credentials = {
 
 
 authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
-
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 if authentication_status == True:
