@@ -271,7 +271,9 @@ try:
 except:
     pass
 try:
-    if len(mail)>0:
+    if len(mail)<1:
+        st.error("Veuillez remplir votre mail en entier avant de le soumettre. 📝")
+    else:
         if submitted:
             name= name.title()
             date = parser.parse(birthday)
