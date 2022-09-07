@@ -271,7 +271,7 @@ try:
 except:
     pass
 try:
-    if len(email)>0:
+    if len(mail)>0:
         if submitted:
             name= name.title()
             date = parser.parse(birthday)
@@ -393,7 +393,7 @@ try:
                 L’entrée de l’école se fera par le 46 Rue de l’ Industrie. Veuillez utiliser ces codes pour rentrer à l’immeuble.
                 Portillon: 7913A 
                 Porte Bâtiment: 7946A
-                
+
                 À très vite, """)
                 msg['From'] = my_email
                 msg['To'] = mail
