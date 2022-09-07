@@ -402,8 +402,8 @@ try:
                 mail_server.ehlo()
                 mail_server.login(my_email, mail_password)
                 mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
-        except Exception as er:
-            st.write(er)
+            except Exception as er:
+                st.write(er)
 
         #attachments - email
         
