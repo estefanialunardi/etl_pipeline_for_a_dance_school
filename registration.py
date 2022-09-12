@@ -89,7 +89,7 @@ with col2:
     stage = st.button("🩰 Réservez Atelier/Stage/Masterclass")
 
 if pilates:
-    components.iframe(f"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21ETB1iKOj87j50js_5Gka9a2cTemP9Rd7IElwSC8lwvvisCKYJgh9WCT1RYohO_TbKRpk9usJ", width=1200, height=700, scrolling=True)
+    components.iframe(f"https://doodle.com/meeting/participate/id/bD98ZVYd", width=1200, height=700, scrolling=True)
 
 if stage:
     st.write("Il n'y a pas de stages, d'ateliers ou de masterclasses disponibles pour le moment 😞")
