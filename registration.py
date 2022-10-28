@@ -297,7 +297,7 @@ elif courses_carte_pilates == 2:
 try:
     registration = 30
     total = price+price_carte_danse+price_carte_pilates+registration
-    st.write(f'Total {total}€ ({price}€ des cours + {registration}€ adhésion)')
+    st.write(f'Total {total}€ ({price+price_carte_danse+price_carte_pilates}€ des cours + {registration}€ adhésion)')
     installments = st.selectbox("Le paiement du cours sera effectué avec", ('1 chèque', '2 chèques', '3 chèques', '4 chèques', '5 chèques', '6 chèques', '7 chèques', '8 chèques', '9 chèques', '10 chèques')) 
     installments = installments.split(' ')[0]
     st.write(" Découvrez notre planning et nos tarifs a attitudecorpsetdanses.com/tarifs-et-planning")
