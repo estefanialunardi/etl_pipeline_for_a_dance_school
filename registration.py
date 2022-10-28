@@ -107,7 +107,7 @@ def course_choice (cours):
     cours_info =[]
     courses_qtd = 0
     
-    if cours == " 10 cours danse/PBT/BAT":
+    if cours == "10 cours danse/PBT/BAT":
         heure == 'Toute'
         courses_qtd += 9
     elif cours== 'Cours Illimitées':
