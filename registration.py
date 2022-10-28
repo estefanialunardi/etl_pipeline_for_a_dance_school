@@ -229,11 +229,11 @@ try:
 except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
 with st.expander("Plus de cours"):
-        course2 = st.selectbox('Cours', ['Sélectionnez votre second cours',  'Carte 10 cours danse/PBT/BAT', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+        course2 = st.selectbox('Cours', ['Sélectionnez votre second cours',  'Carte 10 cours danse/PBT/BAT'', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
         second_choice = course_choice(course2)
-        course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours',  'Carte 10 cours danse/PBT/BAT','Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+        course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours',  'Carte 10 cours danse/PBT/BAT'','Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
         third_choice = course_choice(course3)
