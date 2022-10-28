@@ -272,6 +272,7 @@ with st.expander("Plus de cours"):
             pass
 price_carte_danse = 0
 price_carte_pilates =0
+price = 0
 if courses_qtd == 0:
     st.write("Sélectionnez votre cours pour continuez")
 elif courses_qtd == 1:
