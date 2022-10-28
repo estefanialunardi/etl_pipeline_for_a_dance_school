@@ -107,7 +107,10 @@ def course_choice (cours):
     cours_info =[]
     courses_qtd = 0
     
-    if cours== 'Cours Illimitées':
+    if cours == " 10 cours danse/PBT/BAT"
+        heure == 'Toute'
+        courses_qtd = 20
+    elif cours== 'Cours Illimitées':
         heure= 'Toute'
         courses_qtd +=5
     else:
@@ -199,7 +202,7 @@ try:
     mail = st.text_input ("Email")
     telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
-    course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+    course = st.selectbox('Cours', ['Sélectionnez vos cours', '10 cours danse/PBT/BAT','Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
     first_choice = course_choice(course)
@@ -255,7 +258,10 @@ elif courses_qtd == 3:
 elif courses_qtd == 4:
     price = 1000      
 elif courses_qtd > 4:
-    price = 1040      
+    price = 1040   
+elif courses_qtd > 19:
+    price = 180 
+
 try:
     registration = 30
     total = price+registration
