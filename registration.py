@@ -109,7 +109,7 @@ def course_choice (cours):
     
     if cours == " 10 cours danse/PBT/BAT":
         heure == 'Toute'
-        courses_qtd += 10
+        courses_qtd += 9
     elif cours== 'Cours Illimitées':
         heure= 'Toute'
         courses_qtd +=5
@@ -249,6 +249,7 @@ with st.expander("Plus de cours"):
             pass
 if courses_qtd == 0:
     st.write("Sélectionnez votre cours pour continuez")
+    price = 0
 elif courses_qtd == 1:
     price = 500
 elif courses_qtd == 2:
