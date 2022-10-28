@@ -108,8 +108,8 @@ def course_choice (cours):
     courses_qtd = 0
     
     if cours == "10 cours danse/PBT/BAT":
-        heure == 'Toute'
-        courses_qtd += 10
+        heure = 'Toute'
+        courses_qtd +=10
     elif cours== 'Cours Illimitées':
         heure= 'Toute'
         courses_qtd +=5
