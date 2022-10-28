@@ -199,6 +199,8 @@ def course_choice (cours):
         cours_info.append(cours)
         cours_info.append(heure)
         cours_info.append(courses_qtd)
+        cours_info.append(courses_carte_danse)
+        cours_info.append(courses_carte_pilates)
     except:
         pass
     return cours_info
@@ -222,9 +224,9 @@ try:
     schedule = first_choice[1]
     courses_qtd_1 = first_choice[2]
     courses_qtd += courses_qtd_1
-    courses_carte_danse1 = first_choice[2]
+    courses_carte_danse1 = first_choice[3]
     courses_carte_danse += courses_carte_danse1
-    courses_carte_pilates1 = first_choice[2]
+    courses_carte_pilates1 = first_choice[4]
     courses_carte_pilates += courses_carte_pilates1
 except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
@@ -246,9 +248,9 @@ with st.expander("Plus de cours"):
             else:
                 schedule2 = second_choice[1]
                 courses_qtd_2 = second_choice[2]
-                courses_carte_danse2 = second_choice[2]
+                courses_carte_danse2 = second_choice[3]
                 courses_carte_danse += courses_carte_danse2
-                courses_carte_pilates2 = second_choice[2]
+                courses_carte_pilates2 = second_choice[4]
                 courses_carte_pilates += courses_carte_pilates2
             course3 = third_choice[0]         
             if course3 == 'Sélectionnez votre troisième cours':
@@ -258,9 +260,9 @@ with st.expander("Plus de cours"):
             else:
                 schedule3 = third_choice[1]
                 courses_qtd_3 = third_choice[2]
-                courses_carte_danse3 = third_choice[2]
+                courses_carte_danse3 = third_choice[3]
                 courses_carte_danse += courses_carte_danse3
-                courses_carte_pilates3 = third_choice[2]
+                courses_carte_pilates3 = third_choice[4]
                 courses_carte_pilates += courses_carte_pilates3
             
         except:
