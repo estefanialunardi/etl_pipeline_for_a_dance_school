@@ -109,7 +109,7 @@ def course_choice (cours):
     
     if cours == " 10 cours danse/PBT/BAT":
         heure == 'Toute'
-        courses_qtd = 20
+        courses_qtd += 10
     elif cours== 'Cours Illimitées':
         heure= 'Toute'
         courses_qtd +=5
@@ -259,7 +259,7 @@ elif courses_qtd == 4:
     price = 1000      
 elif courses_qtd > 4:
     price = 1040   
-elif courses_qtd > 19:
+elif courses_qtd > 9:
     price = 180 
 
 try:
