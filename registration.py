@@ -249,7 +249,6 @@ with st.expander("Plus de cours"):
             pass
 if courses_qtd == 0:
     st.write("Sélectionnez votre cours pour continuez")
-    price = 0
 elif courses_qtd == 1:
     price = 500
 elif courses_qtd == 2:
