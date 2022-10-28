@@ -106,10 +106,19 @@ def course_choice (cours):
     """Student may choose its courses and better schedule"""
     cours_info =[]
     courses_qtd = 0
-    
-    if cours == "10 cours danse/PBT/BAT":
+    courses_carte_danse =0
+    courses_carte_pilates =0
+    if cours == "Carte 10 cours danse/PBT/BAT":
         heure = 'Toute'
-        courses_qtd +=10
+        courses_carte_danse+=1
+    elif cours == "Carte pilâtes 10 cours":
+        heure = 'Toute'
+        courses_qtd +=0
+        courses_carte_pilates +=1
+    elif cours == "Carte pilâtes 20 cours":
+        heure = 'Toute'
+        courses_qtd +=0
+        courses_carte_pilates +=2
     elif cours== 'Cours Illimitées':
         heure= 'Toute'
         courses_qtd +=5
@@ -202,23 +211,29 @@ try:
     mail = st.text_input ("Email")
     telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
-    course = st.selectbox('Cours', ['Sélectionnez vos cours', '10 cours danse/PBT/BAT','Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+    course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Carte 10 cours danse/PBT/BAT', 'Carte pilâtes 10 cours', 'Carte pilâtes 20 cours', 'Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
     first_choice = course_choice(course)
     courses_qtd = 0
+    courses_carte_danse =0
+    courses_carte_pilates =0
     course = first_choice[0]
     schedule = first_choice[1]
     courses_qtd_1 = first_choice[2]
     courses_qtd += courses_qtd_1
+    courses_carte_danse1 = first_choice[2]
+    courses_carte_danse += courses_carte_danse1
+    courses_carte_pilates1 = first_choice[2]
+    courses_carte_pilates += courses_carte_pilates1
 except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
 with st.expander("Plus de cours"):
-        course2 = st.selectbox('Cours', ['Sélectionnez votre second cours',  '10 cours danse/PBT/BAT', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+        course2 = st.selectbox('Cours', ['Sélectionnez votre second cours',  'Carte 10 cours danse/PBT/BAT', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
         second_choice = course_choice(course2)
-        course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours',  '10 cours danse/PBT/BAT','Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
+        course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours',  'Carte 10 cours danse/PBT/BAT','Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
             'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
         third_choice = course_choice(course3)
@@ -231,6 +246,10 @@ with st.expander("Plus de cours"):
             else:
                 schedule2 = second_choice[1]
                 courses_qtd_2 = second_choice[2]
+                courses_carte_danse2 = second_choice[2]
+                courses_carte_danse += courses_carte_danse2
+                courses_carte_pilates2 = second_choice[2]
+                courses_carte_pilates += courses_carte_pilates2
             course3 = third_choice[0]         
             if course3 == 'Sélectionnez votre troisième cours':
                 course3 = '0'
@@ -239,6 +258,10 @@ with st.expander("Plus de cours"):
             else:
                 schedule3 = third_choice[1]
                 courses_qtd_3 = third_choice[2]
+                courses_carte_danse3 = third_choice[2]
+                courses_carte_danse += courses_carte_danse3
+                courses_carte_pilates3 = third_choice[2]
+                courses_carte_pilates += courses_carte_pilates3
             
         except:
             pass
@@ -247,6 +270,8 @@ with st.expander("Plus de cours"):
             courses_qtd += courses_qtd_3
         except:
             pass
+price_carte_danse = 0
+price_carte_pilates =0
 if courses_qtd == 0:
     st.write("Sélectionnez votre cours pour continuez")
 elif courses_qtd == 1:
@@ -259,12 +284,16 @@ elif courses_qtd == 4:
     price = 1000      
 elif courses_qtd == 5:
     price = 1040   
-elif courses_qtd == 10:
-    price = 180 
+if courses_carte_danse == 1:
+    price_carte_danse = 180
+if courses_carte_pilates == 1:
+    price_carte_pilates = 150
+elif courses_carte_pilates == 2:
+    price_carte_pilates = 270
 
 try:
     registration = 30
-    total = price+registration
+    total = price+price_carte_danse+price_carte_pilates+registration
     st.write(f'Total {total}€ ({price}€ des cours + {registration}€ adhésion)')
     installments = st.selectbox("Le paiement du cours sera effectué avec", ('1 chèque', '2 chèques', '3 chèques', '4 chèques', '5 chèques', '6 chèques', '7 chèques', '8 chèques', '9 chèques', '10 chèques')) 
     installments = installments.split(' ')[0]
