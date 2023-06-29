@@ -130,13 +130,13 @@ def course_choice (cours):
             heure= st.multiselect('Horaire', ['Mercredi 17h-18h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Classique Moyen':
-            heure= st.multiselect('Horaire', ['Lundi 10h-11h30','Mardi 18h-19h30','Vendredi 10h-11h30','Vendredi 19h15-20h45', 'Je voudrais un autre horaire'])
+            heure= st.multiselect('Horaire', ['Lundi 10h-11h30','Mercredi 19h30-21h', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Classique Moyen Confirmé':
-            heure= st.multiselect('Horaire', ['Vendredi 10h-11h30', 'Je voudrais un autre horaire'])
+            heure= st.multiselect('Horaire', ['Mardi 18h-19h30', 'Vendredi 10h-11h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Classique Interm. – Avancé':
-            heure= st.multiselect('Horaire', ['Mercredi 19h30-21h','Jeudi 18h30-20h', 'Samedi 11h-12h30','Je voudrais un autre horaire'])
+            heure= st.multiselect('Horaire', ['Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Classique Intermédiaire':
             heure= st.multiselect('Horaire', ['Mercredi 12h-13h15',  'Je voudrais un autre horaire'])
@@ -145,17 +145,11 @@ def course_choice (cours):
             heure= st.multiselect('Horaire', ['Jeudi 18h30-20h',  'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Classique Avancé':
-            heure= st.multiselect('Horaire', ['Mardi 19h30-21h', 'Je voudrais un autre horaire'])
+            heure= st.multiselect('Horaire', ['Mardi 19h30-21h', 'Vendredi 19h30-21h', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Pointes Intermédiaire / Avancé':
             heure= st.multiselect('Horaire', ['Lundi 19h30-20h30', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Pointes Enfants / Ados':
-            heure= st.multiselect('Horaire', ['Mercredi 16h-17h', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Pointes':
-            heure= st.multiselect('Horaire', ['Vendredi 20h45-21h30', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)    
+            courses_qtd +=len(heure) 
         elif cours=='Éveil':
             heure= st.multiselect('Horaire', ['Mercredi 13h45-14h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
@@ -169,22 +163,16 @@ def course_choice (cours):
             heure= st.multiselect('Horaire', ['Lundi 17h30-18h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Contemporain':
-            heure= st.multiselect('Horaire', ['Vendredi 18h-19h15', 'Je voudrais un autre horaire'])
+            heure= st.multiselect('Horaire', ['Vendredi 18h30-19h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Barre à Terre':
-            heure= st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Barre à Terre + Classique Moyen':
-            heure= st.multiselect('Horaire', ['Mercredi, 19h30-21h', 'Samedi 12h30-14h45', 'Je voudrais un autre horaire'])
+            heure= st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h', 'Vendredi 17h30-18h30' 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='PBT + Ballet Fitness':
             heure= st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='PBT':
             heure= st.multiselect('Horaire', ['Lundi 18h30-19h30', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Yoga':
-            heure= st.multiselect('Horaire', ['Vendredi 12h15-13h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Initiation':
             heure= st.multiselect('Horaire', ['Jeudi 17h15-18h15', 'Je voudrais un autre horaire'])
@@ -214,8 +202,8 @@ try:
     telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
     course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Carte 10 cours danse/PBT/BAT', 'Carte pilâtes 10 cours', 'Carte pilâtes 20 cours', 'Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
-            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
-            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Initiation', 'Streching'])
     first_choice = course_choice(course)
     courses_qtd = 0
     courses_carte_danse =0
@@ -232,12 +220,12 @@ except:
     st.write("S'il vous plaît, remplissez tout le formulaire!")  
 with st.expander("Plus de cours"):
         course2 = st.selectbox('Cours', ['Sélectionnez votre second cours',  'Carte 10 cours danse/PBT/BAT', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
-            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
-            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness',  'Initiation', 'Streching'])
         second_choice = course_choice(course2)
         course3 = st.selectbox('Cours', ['Sélectionnez votre troisième cours',  'Carte 10 cours danse/PBT/BAT','Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
-            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Pointes Enfants / Ados','Pointes', 'Éveil', 
-            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Yoga', 'Initiation', 'Streching'])
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Préparatoire', 'Pointes Intermédiaire / Avancé', 'Éveil', 
+            'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Initiation', 'Streching'])
         third_choice = course_choice(course3)
         try:
             course2 = second_choice[0]
