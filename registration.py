@@ -427,13 +427,15 @@ try:
                     mail_server.ehlo()
                     mail_server.login(my_email, mail_password)
                     mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+
+                    st.success("Merci! Rendez-vous en classe !")
+                    st.balloons()
                 except Exception as er:
                     st.write(er)
 
             #attachments - email
             
-            st.success("Merci! Rendez-vous en classe !")
-            st.balloons()
+            
    
 except:
     st.error("Veuillez remplir le formulaire en entier avant de le soumettre. 📝")
