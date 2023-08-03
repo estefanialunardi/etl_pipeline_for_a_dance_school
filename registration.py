@@ -378,7 +378,7 @@ try:
                     engine = create_engine(conn_addr)
                     connection = engine.connect()
                 except:
-                    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1")
+                    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1*")
                 try:
                     mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
                     engine.execute(mySql_insert_query0)
