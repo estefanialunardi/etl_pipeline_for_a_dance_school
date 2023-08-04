@@ -407,7 +407,7 @@ try:
                 except Exception as er:
                     st.write(er)
                 try:
-                    courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course24 FROM coursdf24 UNION ALL SELECT name, course24 FROM coursdf24""",conn_addr)
+                    courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf24""",conn_addr)
                     courses_filled=[]
                     name_filled=[]
                     for row in range(len(courses['course'])):
