@@ -377,33 +377,36 @@ try:
                     conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
                     engine = create_engine(conn_addr)
                     connection = engine.connect()
+                    trans = connection.begin()
                     st.success("Connected!")
                 except:
                     st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1")
                 try:
                     mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
-                    st.success(mySql_insert_query0)
                     connection.execute(mySql_insert_query0)
+                    trans.commit()
                     st.spinner(text="S'il vous plaît, attendez !")
                 except: 
                     try:
                         mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, toulouse, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ("{name}", '{birthday}', {age}, "{address}", "{city}", '{toulouse}', '{pcode}','{lat}', '{lon}', '{mail}', '{telephone}', "{legal_representative}");"""
-                        st.success(mySql_insert_query1)
-                        connection.execute(mySql_insert_query1)
+                        engine.execute(mySql_insert_query1)
+                        trans.commit()
                         st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
                         st.success("Connected!")
-                    except:
-                        st.error("Quelque chose s'est mal passé. Réessayez plus tard!1 ")
+                    except Exception as er:
+                    st.write(er)
                 try: 
                     mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
-                    connection.execute(mySql_insert_query2)
-                except:
-                    st.error("Quelque chose s'est mal passé. Réessayez plus tard!2 ")
+                    engine.execute(mySql_insert_query2)
+                    trans.commit()
+                except Exception as er:
+                    st.write(er)
                 try: 
                     mySql_insert_query3 = f"""INSERT INTO paimentsdf24 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
-                    connection.execute(mySql_insert_query3)
-                except:
-                    st.error("Quelque chose s'est mal passé. Réessayez plus tard!3 ")
+                    engine.execute(mySql_insert_query3)
+                    trans.commit()
+                except Exception as er:
+                    st.write(er)
                 try:
                     courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf23 UNION ALL SELECT name, course3 FROM coursdf23""",conn_addr)
                     courses_filled=[]
@@ -415,8 +418,8 @@ try:
                     course_filled = pd.DataFrame(zip(courses_filled, name_filled))
                     course_filled.columns = ['course', 'name']
                     course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
-                except:
-                    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
+                except Exception as er:
+                    st.write(er)
                 try:
                     my_email= st.secrets["my_email"]
                     mail_password= st.secrets["mail_password"]
