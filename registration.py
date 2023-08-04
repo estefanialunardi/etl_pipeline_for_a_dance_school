@@ -385,6 +385,7 @@ try:
                     connect = mysql.connector.connect(
                         host = db_server,
                         user = user,
+                        port = 3306,
                         password = password,
                         database = db_name
                     )
