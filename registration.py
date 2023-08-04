@@ -393,19 +393,21 @@ try:
                         connection.execute(text(mySql_insert_query1))
                         trans.commit()
                         st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
-                        st.success("Connected!")
+                        st.success("Student in DB!")
                     except Exception as er:
                         st.write(er)
                 try: 
                     mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
                     connection.execute(text(mySql_insert_query2))
                     trans.commit()
+                    st.success("Course in DB!")
                 except Exception as er:
                     st.write(er)
                 try: 
                     mySql_insert_query3 = f"""INSERT INTO paimentsdf24 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
                     connection.execute(text(mySql_insert_query3))
                     trans.commit()
+                    st.success("Payment in DB!")
                 except Exception as er:
                     st.write(er)
                 try:
