@@ -18,6 +18,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import mysql.connector
 import smtplib, ssl
 import base64
 import sqlite3
@@ -379,7 +380,6 @@ try:
                     connection = engine.connect()
                     st.success("Connected!")
                 try:
-                    import mysql.connector
                     connect = mysql.connector.connect(
                         host = db_server,
                         user = user,
