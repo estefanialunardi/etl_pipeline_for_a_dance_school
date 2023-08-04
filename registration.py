@@ -387,17 +387,17 @@ try:
                         engine.execute(mySql_insert_query1)
                         st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
                     try: 
-                        mySql_insert_query2 = f"""INSERT INTO coursdf23 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
+                        mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
                         engine.execute(mySql_insert_query2)
                     except:
                         st.error("Quelque chose s'est mal passé. Réessayez plus tard!2 ")
                     try: 
-                        mySql_insert_query3 = f"""INSERT INTO paimentsdf23 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
+                        mySql_insert_query3 = f"""INSERT INTO paimentsdf24 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
                         engine.execute(mySql_insert_query3)
                     except:
                         st.error("Quelque chose s'est mal passé. Réessayez plus tard!3 ")
                     try:
-                        courses = pd.read_sql_query("""SELECT name, course FROM coursdf23 UNION ALL SELECT name, course2 FROM coursdf23 UNION ALL SELECT name, course3 FROM coursdf23""",conn_addr)
+                        courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf23 UNION ALL SELECT name, course3 FROM coursdf23""",conn_addr)
                         courses_filled=[]
                         name_filled=[]
                         for row in range(len(courses['course'])):
