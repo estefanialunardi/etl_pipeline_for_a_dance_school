@@ -425,7 +425,9 @@ try:
                             course_filled.columns = ['course', 'name']
                             course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
                         except:
-                            st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
+                            st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")
+                    except:
+                        st.error(":-(")  
                     try:
                         my_email= st.secrets["my_email"]
                         mail_password= st.secrets["mail_password"]
