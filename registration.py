@@ -410,7 +410,7 @@ try:
                                 name_filled.append(courses['name'].iloc[row])
                         course_filled = pd.DataFrame(zip(courses_filled, name_filled))
                         course_filled.columns = ['course', 'name']
-                         course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
+                        course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
                     except:
                         st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
                     try:
