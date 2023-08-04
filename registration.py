@@ -378,66 +378,64 @@ try:
                     engine = create_engine(conn_addr)
                     connection = engine.connect()
                     st.success("Connected!")
-                try:
-                    try:
-                        mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
-                        connection.execute(mySql_insert_query0)
-                        st.spinner(text="S'il vous plaît, attendez !")
-                    except: 
-                        try:
-                            mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, toulouse, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ("{name}", '{birthday}', {age}, "{address}", "{city}", '{toulouse}', '{pcode}','{lat}', '{lon}', '{mail}', '{telephone}', "{legal_representative}");"""
-                            engine.execute(mySql_insert_query1)
-                            st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
-                            st.success("Connected!")
-                        except:
-                            st.error("Quelque chose s'est mal passé. Réessayez plus tard!1 ")
-                    try: 
-                        mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
-                        engine.execute(mySql_insert_query2)
-                    except:
-                        st.error("Quelque chose s'est mal passé. Réessayez plus tard!2 ")
-                    try: 
-                        mySql_insert_query3 = f"""INSERT INTO paimentsdf24 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
-                        engine.execute(mySql_insert_query3)
-                    except:
-                        st.error("Quelque chose s'est mal passé. Réessayez plus tard!3 ")
-                    try:
-                        courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf23 UNION ALL SELECT name, course3 FROM coursdf23""",conn_addr)
-                        courses_filled=[]
-                        name_filled=[]
-                        for row in range(len(courses['course'])):
-                            if courses['course'].iloc[row] !='0' and courses['course'].iloc[row]  != "":
-                                courses_filled.append(courses['course'].iloc[row])
-                                name_filled.append(courses['name'].iloc[row])
-                        course_filled = pd.DataFrame(zip(courses_filled, name_filled))
-                        course_filled.columns = ['course', 'name']
-                        course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
-                    except:
-                        st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
-                    try:
-                        my_email= st.secrets["my_email"]
-                        mail_password= st.secrets["mail_password"]
-                        msg=MIMEText(f"""{name} , 
-                        votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-                        L’entrée de l’école se fera par le 46 Rue de l’ Industrie. Veuillez utiliser ces codes pour rentrer à l’immeuble.
-                        Portillon: 7913A 
-                        Porte Bâtiment: 7946A
-
-                        À très vite, """)
-                        msg['From'] = my_email
-                        msg['To'] = mail
-                        msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
-                        mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
-                        mail_server.ehlo()
-                        mail_server.login(my_email, mail_password)
-                        mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
-
-                        st.success("Merci! Rendez-vous en classe !")
-                        st.balloons()
-                    except Exception as er:
-                        st.write(er)
                 except:
                     st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1")
+                try:
+                    mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
+                    connection.execute(mySql_insert_query0)
+                    st.spinner(text="S'il vous plaît, attendez !")
+                except: 
+                    try:
+                        mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, toulouse, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ("{name}", '{birthday}', {age}, "{address}", "{city}", '{toulouse}', '{pcode}','{lat}', '{lon}', '{mail}', '{telephone}', "{legal_representative}");"""
+                        engine.execute(mySql_insert_query1)
+                        st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
+                        st.success("Connected!")
+                    except:
+                        st.error("Quelque chose s'est mal passé. Réessayez plus tard!1 ")
+                try: 
+                    mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
+                    engine.execute(mySql_insert_query2)
+                except:
+                    st.error("Quelque chose s'est mal passé. Réessayez plus tard!2 ")
+                try: 
+                    mySql_insert_query3 = f"""INSERT INTO paimentsdf24 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
+                    engine.execute(mySql_insert_query3)
+                except:
+                    st.error("Quelque chose s'est mal passé. Réessayez plus tard!3 ")
+                try:
+                    courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf23 UNION ALL SELECT name, course3 FROM coursdf23""",conn_addr)
+                    courses_filled=[]
+                    name_filled=[]
+                    for row in range(len(courses['course'])):
+                        if courses['course'].iloc[row] !='0' and courses['course'].iloc[row]  != "":
+                            courses_filled.append(courses['course'].iloc[row])
+                            name_filled.append(courses['name'].iloc[row])
+                    course_filled = pd.DataFrame(zip(courses_filled, name_filled))
+                    course_filled.columns = ['course', 'name']
+                    course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
+                except:
+                    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 4")  
+                try:
+                    my_email= st.secrets["my_email"]
+                    mail_password= st.secrets["mail_password"]
+                    msg=MIMEText(f"""{name} , 
+                    votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
+                    L’entrée de l’école se fera par le 46 Rue de l’ Industrie. Veuillez utiliser ces codes pour rentrer à l’immeuble.
+                    Portillon: 7913A 
+                    Porte Bâtiment: 7946A
+                    À très vite, """)
+                    msg['From'] = my_email
+                    msg['To'] = mail
+                    msg['Subject']= f" {name}, votre inscription à Attitude Corps et Danses !"
+                    mail_server = smtplib.SMTP_SSL('smtp.gmail.com' ,465)
+                    mail_server.ehlo()
+                    mail_server.login(my_email, mail_password)
+                    mail_server.sendmail(msg["From"], msg["To"], msg.as_string())
+                    st.success("Merci! Rendez-vous en classe !")
+                    st.balloons()
+                except Exception as er:
+                    st.write(er)
+                
                 
 
             #attachments - email
