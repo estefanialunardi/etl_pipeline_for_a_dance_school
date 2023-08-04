@@ -407,19 +407,6 @@ try:
                 except Exception as er:
                     st.write(er)
                 try:
-                    courses = pd.read_sql_query("""SELECT name, course FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf24 UNION ALL SELECT name, course2 FROM coursdf24""",conn_addr)
-                    courses_filled=[]
-                    name_filled=[]
-                    for row in range(len(courses['course'])):
-                        if courses['course'].iloc[row] !='0' and courses['course'].iloc[row]  != "":
-                            courses_filled.append(courses['course'].iloc[row])
-                            name_filled.append(courses['name'].iloc[row])
-                    course_filled = pd.DataFrame(zip(courses_filled, name_filled))
-                    course_filled.columns = ['course', 'name']
-                    course_filled.to_sql('course_filled', conn_addr, if_exists='replace', index=False)
-                except Exception as er:
-                    st.write(er)
-                try:
                     my_email= st.secrets["my_email"]
                     mail_password= st.secrets["mail_password"]
                     msg=MIMEText(f"""{name} , 
