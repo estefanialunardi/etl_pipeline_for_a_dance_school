@@ -394,7 +394,7 @@ try:
                         st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
                         st.success("Connected!")
                     except Exception as er:
-                    st.write(er)
+                        st.write(er)
                 try: 
                     mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
                     engine.execute(mySql_insert_query2)
