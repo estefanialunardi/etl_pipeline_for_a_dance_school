@@ -382,14 +382,15 @@ try:
                 except:
                     st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1")
                 try:
+                    from sqlalchemy import text
                     mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
-                    connection.execute(mySql_insert_query0)
+                    connection.execute(text(mySql_insert_query0))
                     trans.commit()
                     st.spinner(text="S'il vous plaît, attendez !")
                 except: 
                     try:
                         mySql_insert_query1 = f"""INSERT INTO elevesdf (name, birthday, age, address, city, toulouse, pcode, lat, `long`, mail, telephone, legal_representative) VALUES ("{name}", '{birthday}', {age}, "{address}", "{city}", '{toulouse}', '{pcode}','{lat}', '{lon}', '{mail}', '{telephone}', "{legal_representative}");"""
-                        connection.execute(mySql_insert_query1)
+                        connection.execute(text(mySql_insert_query1))
                         trans.commit()
                         st.spinner(text="Veuillez patienter pendant que nous enregistrons vos informations !")
                         st.success("Connected!")
@@ -397,13 +398,13 @@ try:
                         st.write(er)
                 try: 
                     mySql_insert_query2 = f"""INSERT INTO coursdf24 (name, course, schedule, course2, schedule2, course3, schedule3) VALUES ('{name}', '{course}', '{schedule}','{course2}', '{schedule2}','{course3}', '{schedule3}'); """
-                    connection.execute(mySql_insert_query2)
+                    connection.execute(text(mySql_insert_query2))
                     trans.commit()
                 except Exception as er:
                     st.write(er)
                 try: 
                     mySql_insert_query3 = f"""INSERT INTO paimentsdf24 (name, registration, installments, total) VALUES  ('{name}', '{registration}', '{installments}', '{total}');"""
-                    connection.execute(mySql_insert_query3)
+                    connection.execute(text(mySql_insert_query3))
                     trans.commit()
                 except Exception as er:
                     st.write(er)
