@@ -351,15 +351,15 @@ try:
                         classes_student.append(0)
                 #connect_to_tunnel_and_mysqlserver  
                 #load_dotenv()
-                db_server = st.secrets["db_server"]
+                dbserver = st.secrets["db_server"]
                 user = st.secrets["user"]
                 db_port = st.secrets["db_port"]
                 password = st.secrets["password"]
                 ip = st.secrets["ip"]
                 db_name = st.secrets["db_name"]
-                ip_ssh = st.secrets["ip_ssh"]
-                ssh_username = st.secrets["ssh_username"]
-                ssh_password = st.secrets["ssh_password"]
+                ipssh = st.secrets["ip_ssh"]
+                sshusername = st.secrets["ssh_username"]
+                sshpassword = st.secrets["ssh_password"]
                 #db_server= os.getenv('db_server')
                 #user=os.getenv("user")
                 #db_port=os.getenv("db_port")
@@ -371,14 +371,14 @@ try:
                 #ssh_password=os.getenv("ssh_password")
                 #remote_bind_address=os.getenv("remote_bind_address")
                 try:
-                    server = SSHTunnelForwarder((ip_ssh, 4242), ssh_username=ssh_username, ssh_password=ssh_password, remote_bind_address=(db_server, 3306))
+                    server = SSHTunnelForwarder((ipssh, 4242), ssh_username=sshusername, ssh_password=sshpassword, remote_bind_address=(dbserver, 3306))
                     server.start()
                     port = str(server.local_bind_port)
-                    conn_addr = 'mysql://' + user + ':' + password + '@' + db_server + ':' + port + '/' + db_name
+                    conn_addr = 'mysql://' + user + ':' + password + '@' + dbserver + ':' + port + '/' + db_name
                     engine = create_engine(conn_addr)
                     connection = engine.connect()
                 except:
-                    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1*")
+                    st.error("Quelque chose s'est mal passé. Réessayez plus tard! 1")
                 try:
                     mySql_insert_query0 = f"""UPDATE elevesdf set name = '{name}', birthday='{birthday}', age='{age}', address='{address}', city='{city}', toulouse = '{toulouse}', cpode='{pcode}',lat='{lat}',long='{lon}', mail='{mail}', telephone = '{telephone}', legal_representative= '{legal_representative}' where `name` = '{name}'"""
                     engine.execute(mySql_insert_query0)
