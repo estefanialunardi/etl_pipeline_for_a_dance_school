@@ -211,7 +211,7 @@ try:
     telephone =st.text_input('Téléphone (exemple: +3306XXXXXXXX)')
     legal_representative =st.text_input ("Représentant légal (pour tout élève mineur)")
     course = st.selectbox('Cours', ['Sélectionnez vos cours', 'Carte 10 cours danse/PBT/BAT', 'Carte pilâtes 10 cours', 'Carte pilâtes 20 cours', 'Cours Illimitées', 'Pilates', 'Classique 1','Classique 2','Classique Moyen','Classique Moyen Confirmé','Classique Interm. – Avancé',
-            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Conteporain Enfants', 'Pointes', 'Préparatoire', 'Pointes Débutants', 'Pointes Intermédiaire / Avancé', 'Éveil', 
+            'Classique Intermédiaire', 'Classique Intermédiaire (Spetacle)', 'Classique Avancé', 'Pointes', 'Conteporain Enfants', 'Pointes', 'Préparatoire', 'Pointes Débutants', 'Pointes Intermédiaire / Avancé', 'Éveil', 
             'Débutants', 'Débutants Adultes', 'Contemporain','Barre à Terre', 'Barre à Terre + Classique Moyen','PBT', 'PBT + Ballet Fitness', 'Initiation', 'Streching'])
     first_choice = course_choice(course)
     courses_qtd = 0
