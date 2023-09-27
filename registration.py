@@ -420,9 +420,8 @@ try:
                     mail_password= st.secrets["mail_password"]
                     msg=MIMEText(f"""{name} , 
                     votre inscription à Attitude Corps et Danses a été reçue! En cas de problème concernant les informations ou les fichiers fournis, nous vous contacterons !
-                    L’entrée de l’école se fera par le 46 Rue de l’ Industrie. Veuillez utiliser ces codes pour rentrer à l’immeuble.
-                    Portillon: 7913A 
-                    Porte Bâtiment: 7946A
+                    L’entrée de l’école se fera par le 11 Rue Gabriel Péri, 31000 Toulousee. Veuillez utiliser ces codes pour rentrer à l’immeuble.
+                    Code: 1311
                     À très vite, """)
                     msg['From'] = my_email
                     msg['To'] = mail
