@@ -123,14 +123,23 @@ def course_choice (cours):
         heure= 'Toute'
         courses_qtd +=5
     else:
-        if cours== 'Classique 1':
+        if cours=='Pilates':
+            heure= st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h30-21h30','Mardi 9h-10h', 'Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
+        elif cours=='Classique Moyen':
+            heure= st.multiselect('Horaire', ['Lundi 10h-11h30','Mercredi 19h30-21h', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
+        elif cours=='Barre à Terre':
+            heure= st.multiselect('Horaire', ['Lundi 12h15-13h15','Mercredi 9h-10h', 'Vendredi 19h30-21h' 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
+        elif cours=='Préparatoire':
+            heure= st.multiselect('Horaire', ['Lundi 17h15-18h15', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
+        elif cours== 'Classique 1':
             heure= st.multiselect('Horaire', ['Mercredi 14h30-15h45', 'Je voudrais un autre horaire'])
             courses_qtd += len(heure)
         elif cours== 'Classique 2':
             heure= st.multiselect('Horaire', ['Mercredi 17h-18h30', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Classique Moyen':
-            heure= st.multiselect('Horaire', ['Lundi 10h-11h30','Mercredi 19h30-21h', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Classique Moyen Confirmé':
             heure= st.multiselect('Horaire', ['Mardi 18h15-19h45', 'Vendredi 10h-11h30', 'Je voudrais un autre horaire'])
@@ -162,14 +171,8 @@ def course_choice (cours):
         elif cours=='Débutants Adultes':
             heure= st.multiselect('Horaire', ['Mercredi 18h30-19h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
-        elif cours=='Préparatoire':
-            heure= st.multiselect('Horaire', ['Lundi 17h30-18h30', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
         elif cours=='Contemporain':
             heure= st.multiselect('Horaire', ['Vendredi 18h30-19h30', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Barre à Terre':
-            heure= st.multiselect('Horaire', ['Lundi 12h15-13h15','Mardi 9h-10h', 'Vendredi 17h30-18h30' 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='PBT + Ballet Fitness':
             heure= st.multiselect('Horaire', ['Jeudi 9h30-10h30', 'Je voudrais un autre horaire'])
@@ -179,9 +182,6 @@ def course_choice (cours):
             courses_qtd +=len(heure)
         elif cours=='Initiation':
             heure= st.multiselect('Horaire', ['Jeudi 17h15-18h15', 'Je voudrais un autre horaire'])
-            courses_qtd +=len(heure)
-        elif cours=='Pilates':
-            heure= st.multiselect('Horaire', ['Lundi 9h-10h','Lundi 20h30-21h30','Mercredi 9h-10h','Jeudi 20h-21h','Vendredi 9h-10h', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
         elif cours=='Streching':
             heure= st.multiselect('Horaire', ['Jeudi 10h30-11h15', 'Je voudrais un autre horaire'])
@@ -275,21 +275,21 @@ price = 0
 if courses_qtd == 0:
     st.write("Sélectionnez votre cours pour continuez")
 elif courses_qtd == 1:
-    price = 500
+    price = 520
 elif courses_qtd == 2:
-    price = 720   
+    price = 740   
 elif courses_qtd == 3:
-    price = 880
+    price = 920
 elif courses_qtd == 4:
-    price = 1000      
+    price = 1010      
 elif courses_qtd == 5:
-    price = 1040   
+    price = 1200   
 if courses_carte_danse == 1:
-    price_carte_danse = 180
+    price_carte_danse = 200
 if courses_carte_pilates == 1:
-    price_carte_pilates = 150
+    price_carte_pilates = 165
 elif courses_carte_pilates == 2:
-    price_carte_pilates = 270
+    price_carte_pilates = 285
 
 try:
     registration = 30
