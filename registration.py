@@ -147,9 +147,9 @@ def course_choice (cours):
         elif cours=='Pointes':
             heure= st.multiselect('Horaire', ['Lundi 19-45h-20h30','Mercredi 15h45-16h45', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
-        #elif cours=='Classique Interm. – Avancé':
-            #heure= st.multiselect('Horaire', ['Jeudi 18h30-20h', 'Je voudrais un autre horaire'])
-            #courses_qtd +=len(heure)
+        elif cours=='Classique Interm. – Avancé':
+            heure= st.multiselect('Horaire', ['Lundi 18h15-19h45', 'Mercredi 12h-13h15','Vendredi 10h-11h30', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
         elif cours=='Classique Intermédiaire':
             heure= st.multiselect('Horaire', ['Lundi 18h15-19h45','Mercredi 12h-13h15', 'Vendredi 10h-11h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
@@ -162,18 +162,18 @@ def course_choice (cours):
         elif cours=='Avancé ados/ jeune adultes':
             heure= st.multiselect('Horaire', ['Jeudi 18h30-21h', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
-        #elif cours=='Pointes Intermédiaire / Avancé':
-            #heure= st.multiselect('Horaire', ['Lundi 19h30-20h30', 'Je voudrais un autre horaire'])
-            #courses_qtd +=len(heure) 
-        #elif cours=='Éveil':
-            #heure= st.multiselect('Horaire', ['Mercredi 13h45-14h30', 'Je voudrais un autre horaire'])
-            #courses_qtd +=len(heure)
+        elif cours=='Pointes Intermédiaire / Avancé':
+            heure= st.multiselect('Horaire', ['Lundi 19h45-20h30', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure) 
+        elif cours=='Éveil':
+            heure= st.multiselect('Horaire', ['Mercredi 13h45-14h30', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
         elif cours=='Débutants':
             heure= st.multiselect('Horaire', ['Mercredi 18h30-19h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
-        #elif cours=='Débutants Adultes':
-            #heure= st.multiselect('Horaire', ['Mercredi 18h30-19h30', 'Je voudrais un autre horaire'])
-            #courses_qtd +=len(heure)
+        elif cours=='Débutants Adultes':
+            heure= st.multiselect('Horaire', ['Mardi 10h-11h', 'Mercredi 18h30-19h30', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
         elif cours=='Contemporain':
             heure= st.multiselect('Horaire', ['Vendredi 18h30-19h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
@@ -189,9 +189,9 @@ def course_choice (cours):
         elif cours=='Streching':
             heure= st.multiselect('Horaire', ['Jeudi 10h30-11h15', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
-        #elif cours=='Pointes Débutants':
-            #heure= st.multiselect('Horaire', ['Mardi 11h-11h30', 'Je voudrais un autre horaire'])
-            #courses_qtd +=len(heure)
+        elif cours=='Pointes Débutants':
+            heure= st.multiselect('Horaire', ['Mardi 11h-11h45', 'Je voudrais un autre horaire'])
+            courses_qtd +=len(heure)
         elif cours=='Conteporain Enfants':
             heure= st.multiselect('Horaire', ['Vendredi 17h30-18h30', 'Je voudrais un autre horaire'])
             courses_qtd +=len(heure)
